@@ -1,0 +1,34 @@
+#{extends 'Auth/layout.html' /}
+#{set title:'Inscription' /}
+
+<div id="registerBox" class="authBox theme theme-box level-60 radius">
+  <div class="head">Inscription</div>
+  <div class="body">
+    <form method="post">
+        <div class="formline">
+            <label>Nom d'utilisateur*</label>
+            <input type="text" name="username" maxlength="32" />
+        </div>
+        <div class="formline">
+            <label>Mot de passe*</label>
+            <input type="password" name="password" />
+        </div>
+        <div class="formline">
+            <label>Retapez-le*</label>
+            <input type="password" name="passwordAgain" />
+        </div>
+        <div class="formline">
+            <label>E-mail</label>
+            <input type="text" name="email" />
+        </div>
+        <div class="formline">
+            <button class="register">S'inscrire</button>
+        </div>
+    </form>
+    <div class="infos">* Ces champs sont requis.</div>
+    <div class="actions">
+        <a href="@{Auth.loginPage}">retour</a>
+    </div>
+  </div>
+  <div class="footer">Projet tutoré de Namolovan Nicolae et Renaudeau Gaëtan.</div>
+</div>

@@ -1,0 +1,1 @@
+[#{list items:play.mvc.Router.routes, as:'route'}{m:"${route.method}",a:"${route.action}",p:"${route.path}"}#{if !_isLast},#{/if}#{/list}]

@@ -1,0 +1,113 @@
+// Smart theme's colors declaration
+// @author gre
+
+/// Include the theme color. It must define : !theme for the general theme color and !link for general link 
+
+
+!text_light = !theme-#333
+!text_dark = #FFF
+!dark100 = !theme-#222
+!dark80 = !theme-#111
+!dark60 = !theme
+!dark40 = !theme+#222
+!dark20 = !theme+#444
+!light20 = !theme+#666
+!light40 = !theme+#6F6F6F
+!light60 = !theme+#777
+!light80 = !theme+#888
+!light100 = #FFFFFF
+!background = (!theme+#999)
+
+
+// General element style
+body
+	background-color = !background
+	background =  -moz-linear-gradient(center bottom, !background 0%, !light80 100% ) no-repeat !background
+	background =  -webkit-gradient( linear, left bottom, left top, color-stop(0, !background), color-stop(1, !light80) )  no-repeat !background
+
+#application
+	background =  -moz-linear-gradient(center bottom, !light80 0%, !light100 100% ) no-repeat !background
+	background =  -webkit-gradient( linear, left bottom, left top, color-stop(0, !light80), color-stop(1, !light100) )  no-repeat !background
+
+
+a, .theme-light a, a.theme-light
+	color = !link-#111
+	&:hover
+		color = !link+#111
+
+.theme-dark a, a.theme-dark
+	color = !link+#444
+	&:hover
+		color = !link+#666
+
+// Theme
+// all theme style have the "theme" class
+
+.theme
+	background-color = !background
+	color = !text_light
+	&.level-20, &.level-40, &.level-60, &.level-80, &.level-100
+		&.theme-box > .body, &.theme-light
+			color = !text_light
+		&.theme-box>.head, &.theme-box>.footer, &.theme-dark
+			color = !text_dark
+
+
+// *** Dark and Light ***
+// classes : "level-percent" and "theme-back"
+// * back : 'dark' or 'light' for the background color
+// * percent : a % of dark or light.
+// add "theme-hover" to manage the hover color
+// add "theme-drophover" to manage the drophover color
+// 
+// *** Box ***
+// box is a container of a "> .head", a "> .body" and a "> .footer" element
+// classes : "level-percent" and "box-back"
+// you can add "theme-hover" or "theme-drophover" like describe before.
+
+.theme
+	.theme-box.level-100 > .head, .theme-hover.theme-box.level-80:hover > .head, .theme-drophover.theme-box.level-60.drophover > .head,
+	.theme-box.level-100 > .footer, .theme-hover.theme-box.level-80:hover > .footer, .theme-drophover.theme-box.level-60.drophover > .footer,
+	.theme-dark.level-100, .theme-hover.theme-dark.level-80:hover, .theme-drophover.theme-dark.level-60.drophover
+		background-color = !dark100
+
+	.theme-box.level-80 > .head, .theme-hover.theme-box.level-60:hover > .head, .theme-drophover.theme-box.level-40.drophover > .head,
+	.theme-box.level-80 > .footer, .theme-hover.theme-box.level-60:hover > .footer, .theme-drophover.theme-box.level-40.drophover > .footer,
+	.theme-dark.level-80, .theme-hover.theme-dark.level-60:hover, .theme-drophover.theme-dark.level-40.drophover
+		background-color = !dark80
+
+	.theme-box.level-60 > .head, .theme-hover.theme-box.level-40:hover > .head, .theme-drophover.theme-box.level-20.drophover > .head,
+	.theme-box.level-60 > .footer, .theme-hover.theme-box.level-40:hover > .footer, .theme-drophover.theme-box.level-20.drophover > .footer,
+	.theme-dark.level-60, .theme-hover.theme-dark.level-40:hover, .theme-drophover.theme-dark.level-20.drophover
+		background-color = !dark60
+
+	.theme-box.level-40 > .head, .theme-hover.theme-box.level-20:hover > .head,
+	.theme-box.level-40 > .footer, .theme-hover.theme-box.level-20:hover > .footer,
+	.theme-dark.level-40, .theme-hover.theme-dark.level-20:hover
+		background-color = !dark40
+
+	.theme-box.level-20 > .head,
+	.theme-box.level-20 > .footer,
+	.theme-dark.level-20
+		background-color = !dark20
+
+	.theme-box.level-20 > .body,
+	.theme-light.level-20
+		background-color = !light20
+
+	.theme-box.level-40 > .body, .theme-hover.theme-box.level-20:hover > .body,
+	.theme-light.level-40, .theme-hover.theme-light.level-20:hover
+		background-color = !light40
+
+	.theme-box.level-60 > .body, .theme-hover.theme-box.level-40:hover > .body, .theme-drophover.theme-box.level-20.drophover > .body,
+	.theme-light.level-60, .theme-hover.theme-light.level-40:hover, .theme-drophover.theme-light.level-20.drophover
+		background-color = !light60
+
+	.theme-box.level-80 > .body, .theme-hover.theme-box.level-60:hover > .body, .theme-drophover.theme-box.level-40.drophover	> .body,
+	.theme-light.level-80, .theme-hover.theme-light.level-60:hover, .theme-drophover.theme-light.level-40.drophover
+		background-color = !light80
+
+	.theme-box.level-100 > .body, .theme-hover.theme-box.level-80:hover > .body, .theme-drophover.theme-box.level-60.drophover > .body,
+	.theme-light.level-100, .theme-hover.theme-light.level-80:hover, .theme-drophover.theme-light.level-60.drophover
+		background-color = !light100
+

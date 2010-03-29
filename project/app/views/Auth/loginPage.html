@@ -1,0 +1,27 @@
+#{extends 'Auth/layout.html' /}
+#{set title:'Page de connection' /}
+
+<div id="loginBox" class="authBox theme theme-box level-60 radius">
+  <div class="head">Saisissez vos identifiants de connexion</div>
+  <div class="body">
+    <form method="post">
+        <div class="formline">
+           <label>Identifiant</label>
+           <input type="text" name="login" />
+        </div>
+        <div class="formline">
+           <label>Mot de passe</label>
+           <input type="password" name="password" />
+        </div>
+        <div class="formline">
+           <button class="login">Se connecter</button>
+        </div>
+    </form>
+    <div class="infos">Un identifiant correspond à votre nom d'utilisateur ou à votre email si vous nous l'avez communiqué.</div>
+    <div class="actions">
+        <a href="@{Auth.registerPage}">S'inscrire</a>&nbsp;-&nbsp;
+        <a href="">Mot de passe oublié</a>
+    </div>
+  </div>
+  <div class="footer">Projet tutoré de Namolovan Nicolae et Renaudeau Gaëtan.</div>
+</div>

@@ -1,0 +1,1 @@
+${fr.zenexity.json.JSON.toJSON( play.i18n.Messages.all(play.i18n.Lang.get()))}

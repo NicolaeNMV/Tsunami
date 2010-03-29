@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title>Canvas experimentation</title>
+  </head>
+<body>
+	<canvas id="canvas" width="500" height="200" style="border: 1px solid;"></canvas>
+	<script language="javascript">
+		var vagueCanvas = function() {
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+			
+			/**
+			 * (xDelay, yDelay) is the bottom left position of the wave to trace
+			 * width and height define the size of the wave
+			 */
+			var traceUpVague = function(width, height, xDelay, yDelay) {
+				var baseY = yDelay;
+				var y = height / 5;
+				var x = width / 10;
+				ctx.beginPath();
+				ctx.moveTo(xDelay, yDelay);
+				ctx.lineTo(xDelay+x*2, yDelay);
+				ctx.bezierCurveTo(xDelay+x*2, yDelay, xDelay+x*2, yDelay-height, xDelay+x*7, yDelay-4*y);
+				ctx.bezierCurveTo(xDelay+x*5, yDelay-2*y, xDelay+x*6, yDelay, xDelay+x*8, yDelay);
+				ctx.lineTo(xDelay+width, yDelay);
+				ctx.stroke();
+			}
+			var traceSubVague = function(width, height, xDelay, yDelay) {
+				var y = height / 5;
+				var x = width / 10;
+				ctx.beginPath();
+				ctx.moveTo(xDelay+x*3, yDelay);
+				ctx.bezierCurveTo(xDelay+x*3, yDelay-y*2, xDelay+x*3, yDelay-4*y, xDelay+x*5, yDelay-4.5*y);
+				ctx.bezierCurveTo(xDelay+x*4, yDelay-y*2, xDelay+x*5, yDelay, xDelay+width, yDelay);
+				ctx.fill();
+				ctx.beginPath();
+				ctx.moveTo(xDelay, yDelay);
+				ctx.lineTo(xDelay+width, yDelay);
+				ctx.stroke();
+			}
+			
+			var traceVague = function(width, height, xCenter, yBase, alpha) {
+				var w = Math.floor(height);
+				var x = Math.floor(xCenter-w/2);
+				var y;
+				ctx.strokeStyle='rgba(10,100,190,'+(alpha||1)+')';
+				ctx.lineWidth = height/8;
+				traceUpVague(w, height/2, x, yBase);
+				ctx.beginPath();
+				ctx.moveTo(0, yBase);
+				ctx.lineTo(x, yBase);
+				ctx.moveTo(x+w, yBase);
+				ctx.lineTo(width, yBase);
+				ctx.stroke();
+				ctx.lineWidth = height/16;
+				ctx.beginPath();
+				y = Math.floor(yBase+height/4);
+				ctx.moveTo(0, y);
+				ctx.lineTo(width, y);
+				ctx.stroke();
+				ctx.strokeStyle=ctx.fillStyle='rgba(60,170,255,'+(alpha||1)+')';
+				y = Math.floor(yBase+height/7);
+				traceSubVague(w, height/2, x, y);
+				ctx.beginPath();
+				ctx.moveTo(0, y);
+				ctx.lineTo(x, y);
+				ctx.moveTo(x+w, y);
+				ctx.lineTo(width, y);
+				ctx.stroke();
+				ctx.strokeStyle='#0865BF';
+			}
+			
+			return {
+				init: function() {
+					var beginTime = new Date().getTime();
+					setInterval(function() {
+						var currentTime = new Date().getTime();
+						canvas.width = canvas.width;
+						var heightOn4 = canvas.height/4;
+						traceVague(canvas.width, canvas.height/3, ((currentTime-beginTime)/16)%(canvas.width+2*heightOn4)-heightOn4, heightOn4, .33);
+						traceVague(canvas.width, canvas.height/2, ((currentTime-beginTime)/10)%(canvas.width+2*canvas.height/3)-canvas.height/3, 2*heightOn4, .66);
+						traceVague(canvas.width, canvas.height, ((currentTime-beginTime)/7)%(canvas.width+canvas.height)-2*heightOn4, 3*heightOn4);
+					}, 30);
+				}
+			}
+		}();
+		
+		vagueCanvas.init();
+	</script>
+</body>
+</html>

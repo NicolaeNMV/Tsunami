@@ -1,0 +1,81 @@
+# Keep routes clean to read !
+
+### How to use REST and CRUD : http://en.wikipedia.org/wiki/REST#RESTful_web_services
+# GET    /resources/?                             .list
+# GET    /resources/{id}                          .retrieve
+# POST   /resources                               .create
+# PUT    /resources/{id}                          .update
+# DELETE /resources/{id}                          .delete
+
+
+### Main ###
+
+GET     /?                                      Main.index
+
+
+### Auth ###
+
+GET     /login                                  Auth.loginPage
+GET     /logout                                 Auth.logout
+GET     /register                               Auth.registerPage
+POST    /login                                  Auth.login
+POST    /register                               Auth.register
+GET     /browser																Auth.browserCompatibilityPage
+
+
+### Profile ###
+
+POST    /profile/submessage                     Profile.updateSubmessage
+
+POST    /profile/avatar                         Profile.postAvatar
+POST    /profile/avatar                         Contacts.postAvatar
+PUT     /profile/avatar                         Contacts.postAvatar
+DELETE  /profile/avatar                         Contacts.deleteAvatar
+
+PUT     /profile/status/{status}                Contacts.changeStatus
+
+GET		/theme/{theme}							Profile.changeTheme
+
+
+### Contacts ###
+
+GET    /contacts/group/{groupid}                Contacts.getGroup
+POST   /contacts/group                          Contacts.addGroup
+PUT    /contacts/group/{groupid}                Contacts.renameGroup
+DELETE /contacts/group/{groupid}                Contacts.removeGroup
+
+GET    /contacts/?                              Contacts.getAllContacts
+GET    /contacts/search/?                       Contacts.searchContact
+GET    /contacts/{userid}                       Contacts.getContact
+POST   /contacts                                Contacts.addContact
+PUT    /contacts/{userid}                       Contacts.moveContact
+DELETE /contacts/{userid}                       Contacts.removeContact
+
+POST   /contacts/{userid}/accept                Contacts.acceptContactInvitation
+POST   /contacts/{userid}/refuse                Contacts.refuseContactInvitation
+
+GET    /contacts/{userid}/avatar/{size}.png     Contacts.getAvatar
+
+
+### Vagues ###
+
+GET   /vagues/?                                 Vagues.list
+GET	  /vagues/{vagueId}                         Vagues.show
+PUT	  /vagues/{vagueId}                         Vagues.edit
+POST  /vagues                                   Vagues.create
+
+### Vaguelettes ###
+
+GET    /vagues/{vagueId}/vaguelettes            Vaguelettes.list
+GET    /vaguelettes/{vagueletteId}              Vaguelettes.view
+POST   /vagues/{vagueId}                        Vaguelettes.create
+PUT    /vaguelettes/{vagueletteId}              Vaguelettes.edit
+# DELETE /vaguelettes/{vagueletteId}              Vaguelettes.delete
+
+### Chat ###
+POST    /chat/send                              Profile.chatSend
+
+
+### static ressources ###
+
+GET     /public/                                staticDir:public

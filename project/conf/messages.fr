@@ -1,0 +1,54 @@
+
+### Error messages ###
+error.contactExists=Ce contact est déjà dans votre liste.
+error.inviteYourselfForbidden=Vous ne pouvez pas vous ajoutez vous-même.
+error.userNotFound=Ce contact n'existe pas.
+
+### General form ###
+form.OK=OK
+form.cancel=Annuler
+
+### Contact List ###
+
+# ImStatus
+imStatus.offline=Déconnecté
+imStatus.available=Disponible
+imStatus.unavailable=Occupé
+imStatus.invisible=Invisible
+imStatus.away=Absent
+imStatus.inactive=Inactif
+
+# Contact.SyncStatus
+syncStatus.invited=Invité
+syncStatus.requested=Invitation
+syncStatus.confirmed=Confirmé
+syncStatus.refused=Refusé
+syncStatus.deleted=Supprimé
+
+# Actions
+contacts.addContact=Ajouter un contact
+contacts.delete=Supprimer
+contacts.accept=Accepter
+contacts.refuse=Refuser
+contacts.chat=Chat
+
+contacts.contact=Contact
+contacts.emailOrUsername=E-mail ou nom d'utilisateur
+
+# Confirm messages
+contacts.confirm.delete=Êtes-vous sur de supprimer le contact %s ?
+
+# Misc
+contacts.noContact=Pas de contacts
+contacts.removeThisGroup=Supprimer ce groupe
+
+contacts.newGroup=Nouveau groupe %d
+contacts.noSubmessage=Pas de sous-message...
+
+contacts.moveContactToAGroup=Veuillez déplacer le contact dans un groupe.
+
+
+### Vagues list ###
+vagues.title=Liste des vagues
+vagues.button.create=Créer une vague
+vagues.search=Rechercher...

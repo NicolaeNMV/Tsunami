@@ -1,0 +1,664 @@
+06 déc. 2009 15:45:57,119 INFO  ~ Starting C:\proj\tsunami\mainline\project
+06 déc. 2009 15:45:57,151 INFO  ~ Module test-runner is available (C:\proj\tsunami\play\modules\test-runner)
+06 déc. 2009 15:45:57,984 INFO  ~ 
+06 déc. 2009 15:45:57,984 INFO  ~ Go to http://localhost:9000/@tests to run the tests
+06 déc. 2009 15:45:57,984 INFO  ~ 
+06 déc. 2009 15:45:57,984 WARN  ~ You're running Play! in DEV mode
+06 déc. 2009 15:45:58,606 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+06 déc. 2009 15:46:24,146 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 15:46:25,729 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
+06 déc. 2009 15:46:29,328 INFO  ~ Application 'Tsunami' is now started !
+06 déc. 2009 15:46:30,589 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 15:46:30,637 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 15:46:33,350 ERROR ~ 
+
+@60n3gm073
+Internal Server Error (500) for request GET /favicon.ico
+
+Template not found
+The template errors/404.null does not exist.
+
+play.exceptions.TemplateNotFoundException: Template not found : errors/404.null
+	at play.templates.TemplateLoader.load(TemplateLoader.java:69)
+	at play.mvc.results.NotFound.apply(NotFound.java:51)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:236)
+	at Invocation.HTTP Request(Play!)
+06 déc. 2009 15:51:50,363 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 15:51:56,561 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 16:07:23,875 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 16:07:23,974 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 16:50:27,278 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 16:50:27,387 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 16:52:04,529 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 19:30:09,600 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 20:56:03,463 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 20:56:04,452 ERROR ~ 
+
+@60n3gm07k
+Internal Server Error (500) for request GET /vagues
+
+JPA error
+A JPA error occured (Unable to build EntityManagerFactory): mappedBy reference an unknown target entity property: models.vagues.VagueParticipant.vague in models.vagues.Ondelette.VagueParticipants
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:156)
+	at play.Play.start(Play.java:358)
+	at play.Play.detectChanges(Play.java:450)
+	at play.Invoker$Invocation.init(Invoker.java:98)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: models.vagues.VagueParticipant.vague in models.vagues.Ondelette.VagueParticipants
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:578)
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:543)
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:66)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1177)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:329)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1162)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1226)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:173)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:854)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:667)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:154)
+	... 4 more
+06 déc. 2009 21:05:53,727 ERROR ~ 
+
+@60n3gm07l
+Internal Server Error (500) for request GET /vagues
+
+JPA error
+A JPA error occured (Unable to build EntityManagerFactory): mappedBy reference an unknown target entity property: models.vagues.VagueParticipant.vague in models.vagues.Ondelette.VagueParticipants
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:156)
+	at play.Play.start(Play.java:358)
+	at play.Play.detectChanges(Play.java:450)
+	at play.Invoker$Invocation.init(Invoker.java:98)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: models.vagues.VagueParticipant.vague in models.vagues.Ondelette.VagueParticipants
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:578)
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:543)
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:66)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1177)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:329)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1162)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1226)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:173)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:854)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:667)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:154)
+	... 4 more
+06 déc. 2009 21:06:26,628 ERROR ~ 
+
+@60n3gm07m
+Internal Server Error (500) for request GET /vagues
+
+JPA error
+A JPA error occured (Unable to build EntityManagerFactory): mappedBy reference an unknown target entity property: models.vagues.Ondelette.ondelette in models.vagues.Vague.ondeletettes
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:156)
+	at play.Play.start(Play.java:358)
+	at play.Play.detectChanges(Play.java:450)
+	at play.Invoker$Invocation.init(Invoker.java:98)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: models.vagues.Ondelette.ondelette in models.vagues.Vague.ondeletettes
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:578)
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:543)
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:66)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1177)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:329)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1162)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1226)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:173)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:854)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:667)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:154)
+	... 4 more
+06 déc. 2009 21:06:55,586 ERROR ~ 
+
+@60n3gm07n
+Internal Server Error (500) for request GET /vagues
+
+JPA error
+A JPA error occured (Unable to build EntityManagerFactory): mappedBy reference an unknown target entity property: models.vagues.Ondelette.Ondelette in models.vagues.Vague.ondeletettes
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:156)
+	at play.Play.start(Play.java:358)
+	at play.Play.detectChanges(Play.java:450)
+	at play.Invoker$Invocation.init(Invoker.java:98)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: models.vagues.Ondelette.Ondelette in models.vagues.Vague.ondeletettes
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:578)
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:543)
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:66)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1177)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:329)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1162)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1226)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:173)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:854)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:667)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:154)
+	... 4 more
+06 déc. 2009 21:08:23,058 ERROR ~ 
+
+@60n3gm07o
+Internal Server Error (500) for request GET /vagues
+
+JPA error
+A JPA error occured (Unable to build EntityManagerFactory): mappedBy reference an unknown target entity property: models.vagues.Ondelette.Vague in models.vagues.Vague.ondeletettes
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:156)
+	at play.Play.start(Play.java:358)
+	at play.Play.detectChanges(Play.java:450)
+	at play.Invoker$Invocation.init(Invoker.java:98)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: models.vagues.Ondelette.Vague in models.vagues.Vague.ondeletettes
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:578)
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:543)
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:66)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1177)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:329)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1162)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1226)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:173)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:854)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:667)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:154)
+	... 4 more
+06 déc. 2009 21:08:36,084 ERROR ~ 
+
+@60n3gm07p
+Internal Server Error (500) for request GET /vagues
+
+JPA error
+A JPA error occured (Unable to build EntityManagerFactory): mappedBy reference an unknown target entity property: models.vagues.VagueParticipant.vague in models.vagues.Ondelette.VagueParticipants
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:156)
+	at play.Play.start(Play.java:358)
+	at play.Play.detectChanges(Play.java:450)
+	at play.Invoker$Invocation.init(Invoker.java:98)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: models.vagues.VagueParticipant.vague in models.vagues.Ondelette.VagueParticipants
+	at org.hibernate.cfg.annotations.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:578)
+	at org.hibernate.cfg.annotations.CollectionBinder$1.secondPass(CollectionBinder.java:543)
+	at org.hibernate.cfg.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:66)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1177)
+	at org.hibernate.cfg.AnnotationConfiguration.secondPassCompile(AnnotationConfiguration.java:329)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1162)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1226)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:173)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:854)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:667)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:154)
+	... 4 more
+06 déc. 2009 21:10:37,432 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 21:10:37,459 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 21:10:37,537 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 21:10:40,594 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 21:10:40,919 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 21:10:46,925 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:21:18,137 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:21:18,640 ERROR ~ 
+
+@60n3gm08g
+Internal Server Error (500) for request GET /vagues
+
+No route found (In /app/views/Vagues/list.html around line 7)
+No route able to invoke action Vagues.createVague was found.
+
+play.exceptions.NoRouteFoundException: No route found
+	at play.templates.Template.throwException(Template.java:259)
+	at play.templates.Template.render(Template.java:213)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:22)
+	at play.mvc.Controller.renderTemplate(Controller.java:388)
+	at play.mvc.Controller.render(Controller.java:420)
+	at controllers.Vagues.list(Vagues.java:23)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	at Invocation.HTTP Request(Play!)
+06 déc. 2009 21:23:03,257 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 21:23:03,684 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 21:23:03,741 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 21:23:03,821 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 21:23:05,869 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 21:23:06,058 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 21:23:09,469 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:23:09,679 ERROR ~ 
+
+@60n3gm090
+Internal Server Error (500) for request GET /vagues
+
+No route found (In /app/views/Vagues/list.html around line 7)
+No route able to invoke action Vagues.createVague with arguments {} was found.
+
+play.exceptions.NoRouteFoundException: No route found
+	at play.templates.Template.throwException(Template.java:259)
+	at play.templates.Template.render(Template.java:213)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:22)
+	at play.mvc.Controller.renderTemplate(Controller.java:388)
+	at play.mvc.Controller.render(Controller.java:420)
+	at controllers.Vagues.list(Vagues.java:23)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	at Invocation.HTTP Request(Play!)
+06 déc. 2009 21:23:26,058 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 21:23:26,086 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:23:41,612 DEBUG ~ POST    /vagues                                  -> Vagues.createVague
+06 déc. 2009 21:24:07,371 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:24:07,421 ERROR ~ line 1:70: unexpected token: ON
+06 déc. 2009 21:24:07,461 ERROR ~ 
+
+@60n3gm097
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 16)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 70 [SELECT distinct vague FROM ondelette o LEFT JOIN VagueParticipant vp ON vp.ondelette = o.idWHERE vp.user = ?]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 70 [SELECT distinct vague FROM ondelette o LEFT JOIN VagueParticipant vp ON vp.ondelette = o.idWHERE vp.user = ?]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 70 [SELECT distinct vague FROM ondelette o LEFT JOIN VagueParticipant vp ON vp.ondelette = o.idWHERE vp.user = ?]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:16)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 70 [SELECT distinct vague FROM ondelette o LEFT JOIN VagueParticipant vp ON vp.ondelette = o.idWHERE vp.user = ?]
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:54)
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:47)
+	at org.hibernate.hql.ast.ErrorCounter.throwQueryException(ErrorCounter.java:82)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:284)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:182)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 21:47:13,580 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:47:13,582 ERROR ~ line 1:23: unexpected token: vague
+06 déc. 2009 21:47:13,691 ERROR ~ 
+
+@60n3gm098
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 22)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: unexpected token: vague near line 1, column 23 [SELECT distinct vFROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: vague near line 1, column 23 [SELECT distinct vFROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: vague near line 1, column 23 [SELECT distinct vFROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:22)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: vague near line 1, column 23 [SELECT distinct vFROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:54)
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:47)
+	at org.hibernate.hql.ast.ErrorCounter.throwQueryException(ErrorCounter.java:82)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:284)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:182)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 21:47:25,814 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:47:25,821 ERROR ~ line 1:37: unexpected token: v
+06 déc. 2009 21:47:25,864 ERROR ~ 
+
+@60n3gm099
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 22)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: unexpected token: v near line 1, column 37 [SELECT distinct v FROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: v near line 1, column 37 [SELECT distinct v FROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: v near line 1, column 37 [SELECT distinct v FROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:22)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: v near line 1, column 37 [SELECT distinct v FROM vague vWHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:54)
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:47)
+	at org.hibernate.hql.ast.ErrorCounter.throwQueryException(ErrorCounter.java:82)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:284)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:182)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 21:47:34,171 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:47:34,227 ERROR ~ 
+
+@60n3gm09a
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 22)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v WHERE v.ondeletettes.VagueParticipants.user = ? ]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v WHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v WHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:22)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v WHERE v.ondeletettes.VagueParticipants.user = ? ]
+	at org.hibernate.hql.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:181)
+	at org.hibernate.hql.ast.tree.FromElementFactory.addFromElement(FromElementFactory.java:110)
+	at org.hibernate.hql.ast.tree.FromClause.addFromElement(FromClause.java:94)
+	at org.hibernate.hql.ast.HqlSqlWalker.createFromElement(HqlSqlWalker.java:316)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElement(HqlSqlBaseWalker.java:3228)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElementList(HqlSqlBaseWalker.java:3112)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromClause(HqlSqlBaseWalker.java:720)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:571)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:288)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:231)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:254)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:185)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 21:54:45,384 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 21:54:45,582 ERROR ~ 
+
+@60n3gm09b
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 22)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v JOIN v.ondeletettes o JOIN o.VagueParticipants vp WHERE vp.user = ? ]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v JOIN v.ondeletettes o JOIN o.VagueParticipants vp WHERE vp.user = ? ]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v JOIN v.ondeletettes o JOIN o.VagueParticipants vp WHERE vp.user = ? ]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:22)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [SELECT distinct v FROM vague v JOIN v.ondeletettes o JOIN o.VagueParticipants vp WHERE vp.user = ? ]
+	at org.hibernate.hql.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:181)
+	at org.hibernate.hql.ast.tree.FromElementFactory.addFromElement(FromElementFactory.java:110)
+	at org.hibernate.hql.ast.tree.FromClause.addFromElement(FromClause.java:94)
+	at org.hibernate.hql.ast.HqlSqlWalker.createFromElement(HqlSqlWalker.java:316)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElement(HqlSqlBaseWalker.java:3228)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElementList(HqlSqlBaseWalker.java:3112)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromClause(HqlSqlBaseWalker.java:720)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:571)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:288)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:231)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:254)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:185)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 22:05:28,444 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 22:05:28,801 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 22:05:28,833 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 22:05:28,892 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 22:05:30,941 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 22:05:31,035 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 22:05:34,752 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:05:34,756 ERROR ~ line 1:19: expecting IDENT, found '*'
+06 déc. 2009 22:05:34,757 WARN  ~ processEqualityExpression() : No expression to process!
+06 déc. 2009 22:05:34,757 ERROR ~ line 1:56: unexpected token: ON
+06 déc. 2009 22:05:34,757 ERROR ~ line 1:108: unexpected token: ON
+06 déc. 2009 22:05:34,772 ERROR ~ 
+
+@60n3gm09k
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 27)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: expecting IDENT, found '*' near line 1, column 19 [select distinct v.* from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: expecting IDENT, found '*' near line 1, column 19 [select distinct v.* from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: expecting IDENT, found '*' near line 1, column 19 [select distinct v.* from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at controllers.Vagues.list(Vagues.java:27)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: expecting IDENT, found '*' near line 1, column 19 [select distinct v.* from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:54)
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:47)
+	at org.hibernate.hql.ast.ErrorCounter.throwQueryException(ErrorCounter.java:82)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:284)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:182)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 4 more
+06 déc. 2009 22:05:52,893 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:05:52,900 ERROR ~ line 1:54: unexpected token: ON
+06 déc. 2009 22:05:52,900 ERROR ~ line 1:106: unexpected token: ON
+06 déc. 2009 22:05:52,938 ERROR ~ 
+
+@60n3gm09l
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 27)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 54 [select distinct v from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 54 [select distinct v from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 54 [select distinct v from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at controllers.Vagues.list(Vagues.java:27)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: unexpected token: ON near line 1, column 54 [select distinct v from vague v LEFT JOIN ondelette o ON o.vague = vp.vague LEFT JOIN VagueParticipant vp ON vp.ondelette = o.id WHERE vp.vp.user = :user]
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:54)
+	at org.hibernate.hql.ast.QuerySyntaxException.convert(QuerySyntaxException.java:47)
+	at org.hibernate.hql.ast.ErrorCounter.throwQueryException(ErrorCounter.java:82)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:284)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:182)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 4 more
+06 déc. 2009 22:10:17,227 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 22:10:18,177 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 22:10:18,202 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 22:10:18,257 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 22:10:20,190 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 22:10:20,276 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 22:10:25,407 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:10:25,503 ERROR ~ 
+
+@60n3gm0a4
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 29)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:29)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+	at org.hibernate.hql.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:181)
+	at org.hibernate.hql.ast.tree.FromElementFactory.addFromElement(FromElementFactory.java:110)
+	at org.hibernate.hql.ast.tree.FromClause.addFromElement(FromClause.java:94)
+	at org.hibernate.hql.ast.HqlSqlWalker.createFromElement(HqlSqlWalker.java:316)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElement(HqlSqlBaseWalker.java:3228)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElementList(HqlSqlBaseWalker.java:3112)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromClause(HqlSqlBaseWalker.java:720)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:571)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:288)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:231)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:254)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:185)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 22:11:38,220 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 22:11:38,554 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 22:11:38,572 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 22:11:38,641 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 22:11:40,698 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 22:11:40,798 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 22:11:44,353 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:11:44,414 ERROR ~ 
+
+@60n3gm0ad
+Internal Server Error (500) for request GET /vagues
+
+Execution exception (In /app/controllers/Vagues.java around line 29)
+IllegalArgumentException occured : org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+
+play.exceptions.JavaExecutionException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+	at org.hibernate.ejb.AbstractEntityManagerImpl.throwPersistenceException(AbstractEntityManagerImpl.java:601)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:96)
+	at play.db.jpa.JPQL.find(JPQL.java:44)
+	at models.vagues.Vague.find(Vague.java)
+	at controllers.Vagues.list(Vagues.java:29)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+Caused by: org.hibernate.hql.ast.QuerySyntaxException: vague is not mapped [select v from vague v, ondelette o, models.vagues.VagueParticipant vp WHERE vp.ondelette = o AND o.vague = v AND vp.user = ?]
+	at org.hibernate.hql.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:181)
+	at org.hibernate.hql.ast.tree.FromElementFactory.addFromElement(FromElementFactory.java:110)
+	at org.hibernate.hql.ast.tree.FromClause.addFromElement(FromClause.java:94)
+	at org.hibernate.hql.ast.HqlSqlWalker.createFromElement(HqlSqlWalker.java:316)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElement(HqlSqlBaseWalker.java:3228)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromElementList(HqlSqlBaseWalker.java:3112)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.fromClause(HqlSqlBaseWalker.java:720)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:571)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:288)
+	at org.hibernate.hql.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:231)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:254)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:185)
+	at org.hibernate.hql.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:136)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:101)
+	at org.hibernate.engine.query.HQLQueryPlan.<init>(HQLQueryPlan.java:80)
+	at org.hibernate.engine.query.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:94)
+	at org.hibernate.impl.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:156)
+	at org.hibernate.impl.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:135)
+	at org.hibernate.impl.SessionImpl.createQuery(SessionImpl.java:1651)
+	at org.hibernate.ejb.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:93)
+	... 6 more
+06 déc. 2009 22:14:01,203 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:15:39,974 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:25:23,865 WARN  ~ Ignoring #Temporar (static params must be specified as key:'value',...)
+06 déc. 2009 22:25:24,289 INFO  ~ No user in database. User master (passwd:tsunami) created.
+06 déc. 2009 22:25:24,310 INFO  ~ Users 'toto', 'titi', 'tata' created for tests.
+06 déc. 2009 22:25:24,367 DEBUG ~ GET     /login                                   -> Auth.loginPage
+06 déc. 2009 22:25:27,227 DEBUG ~ POST    /login                                   -> Auth.login
+06 déc. 2009 22:25:27,339 DEBUG ~ GET     /                                        -> Main.index
+06 déc. 2009 22:25:32,534 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:25:37,091 DEBUG ~ POST    /vagues                                  -> Vagues.createVague
+06 déc. 2009 22:25:37,249 ERROR ~ 
+
+@60n3gm0be
+Internal Server Error (500) for request POST /vagues
+
+Execution exception (In /app/models/vagues/Vague.java around line 34)
+NullPointerException occured : null
+
+play.exceptions.JavaExecutionException
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:218)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException
+	at models.vagues.Vague.addOndelette(Vague.java:34)
+	at controllers.Vagues.createVague(Vagues.java:29)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:289)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:137)
+	... 1 more
+06 déc. 2009 22:29:36,316 DEBUG ~ POST    /vagues                                  -> Vagues.createVague
+06 déc. 2009 22:29:40,811 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:29:42,478 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:29:43,549 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:30:49,124 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:31:20,567 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:31:28,617 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:31:30,553 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:31:33,905 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:31:37,157 DEBUG ~ POST    /vagues                                  -> Vagues.createVague
+06 déc. 2009 22:31:43,542 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:32:02,632 DEBUG ~ GET     /vagues                                  -> Vagues.list
+06 déc. 2009 22:32:12,736 DEBUG ~ GET     /vagues                                  -> Vagues.list

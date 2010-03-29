@@ -1,0 +1,34 @@
+#{extends 'layout.html' /}
+
+    <ul id="vagues">#{list items:vagues, as:'vague' }
+    	<li><a href="@{Vagues.show(vague.id)}">${vague.subject}</a> 
+			(${vague.ondelettes.size()})</li>
+    #{/list}</ul>
+
+<p>
+	Nouveau vague
+
+	<form>
+		<input type="text" name="subject" />
+		<button>New vague</button>
+	</form>
+</p>
+
+<script language="javascript">
+	
+	$('form').submit(function(){
+		$.ajax({ 
+			url: '/vagues',
+			type: 'POST',
+			data: {subject: $('input[name=subject]').val() },
+			dataType: 'json',
+			success: function(vague) {
+				$('#vagues').append('<li><a href="/vagues/'+vague.id+'">'+vague.subject+
+				'</a> ('+vague.ondelettes.length+')</li>');
+			}
+		});
+		return false;
+	});
+	
+	
+</script>

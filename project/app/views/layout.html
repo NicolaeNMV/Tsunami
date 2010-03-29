@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+  <head>
+    <title>#{get 'title' /}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}" />
+    #{stylesheet src:'themes/'+theme+'.sass', id:'cssTheme' /}
+    #{get 'head' /}
+  </head>
+  <body class="theme">
+    <div id="main">
+      #{doLayout /}
+    </div>
+  </body>
+</html>
