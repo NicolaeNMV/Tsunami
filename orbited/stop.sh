@@ -1,3 +1,4 @@
+#!/bin/bash
 # #
 # Get the script path
 # #

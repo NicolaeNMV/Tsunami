@@ -1,3 +1,4 @@
+#!/bin/bash
 # #
 # Get the script path
 # #
@@ -18,20 +19,23 @@ PYTHONPATH=$SCRIPT_PATH/lib;
 export PYTHONPATH;
 
 if [ ! -d $PYTHONPATH ]; then
-	echo "lib extraction start";
-	tar -xjf $SCRIPT_PATH/lib.tar.bzip2
+	echo "lib extraction ...";
+	tar -xjf $SCRIPT_PATH/lib.tar.bzip2;
+	echo "extraction done.";
 fi;
 # #
 # Launch morbid_restq or orbited
 # #
-if [ "$1" = "1" ]; then
-	echo "Restq starts"
+if [ "$1" = "restq" ]; then
+	echo "Restq starts..."
 	python $SCRIPT_PATH/lib/morbid/sample_restq/restq_dummy_daemon.py --port 5001
-else if [ "$1" = "2" ]; then
-	echo "Orbited starts"
-	python $SCRIPT_PATH/lib/orbited/start.py --config $SCRIPT_PATH/orbited.cfg
-else echo -e "Syntax error! \n$0 1 - to start restq\nor\n$0 2 - to start orbited (restq required to be started first)"
-     fi;
+else
+	if [ "$1" = "orbited" ]; then
+		echo "Orbited starts..."
+		python $SCRIPT_PATH/lib/orbited/start.py --config $SCRIPT_PATH/orbited.cfg
+	else 
+		echo "Usage: 'start restq' or 'start orbited' (restq required to be started first)"
+	fi;
 fi;
 
 popd  > /dev/null # Restore the old path at the end
