@@ -67,7 +67,7 @@ tsunami.tools.namespace('tsunami.vagues');
     };
     
     var tpl_search = function() {
-      return '<input type="text" name="search" title="'+tools.i18n('vagues.search')+'" />';
+      return '<input type="text" name="search" placeholder="'+tools.i18n('vagues.search')+'" title="'+tools.i18n('vagues.search')+'" />';
     };
     
     var tpl_vagueList = function() {
@@ -199,13 +199,12 @@ tsunami.tools.namespace('tsunami.vagues');
       $(document).bind('vague.create', onAddVague);
       $(document).bind('vague.get', onGetVagueEvent);
       
-      /*
+      
       var onResize = function() {
-        $('#vagueList input[name=search]').width($('#vagueList').width()-$('#vagueList .fastCreate button').width()-40);
+        $('#vagueList input[name=search]').width($('#vagueList').width()-60);
       };
       $('#vagueList').resize(onResize);
       onResize();
-      */
     };
     
     return {

@@ -1,4 +1,304 @@
 @import main.sass
-@import contact.sass
-@import vagueList.sass
-@import vague.sass
+
+
+//// Contact ////
+
+#contactListAvatarPopup
+  -moz-border-radius: 10px
+  -webkit-border-radius: 10px
+  border: 4px solid
+  position: absolute
+  z-index: 10
+
+#contactListSelfAvatarPopup
+  padding: 4px
+  -moz-border-radius: 10px
+  -webkit-border-radius: 10px
+  border: 2px solid
+  position: absolute
+  z-index: 20
+  h3
+    text-align: center
+  .imageContainer
+    text-align: center
+    margin: 5px 0
+  form
+    margin-top: 10px
+  .uploadInProgress
+    float: right
+    color: red
+    font-weight: bold
+
+#contactList 
+  a
+    text-decoration: none
+  & > .self
+    padding: 10px 20px
+    -moz-border-radius-topleft:10px
+    -moz-border-radius-topright:10px
+    -webkit-border-top-left-radius:10px
+    -webkit-border-top-right-radius:10px
+    .status
+      width: 100%
+    .imStatus:hover
+      cursor: pointer
+      background-color: rgba(255,255,255,0.2)
+    .infos 
+      overflow: hidden
+      .submessageContainer
+        margin: 4px 0
+      img.icon
+        float: left
+        padding-bottom: 5px
+        top: 0px
+    .username
+      font-size: 1.2em
+      font-weight: bold
+    .submessage
+      font-style: italic
+      input
+        font-style: italic
+  .actionTab
+    .addContact
+      padding: 5px
+      .contact
+        border: 1px dashed
+      input[name=contact]
+        margin: 4px
+        width: 120px
+      .contactLabel
+        line-height: 2.2em
+      .error
+        clear: both
+    .info
+      font-size: .8em
+      font-style: italic
+    button
+      font-size: .8em
+    .addContactSlider
+      padding: 3px
+      margin-bottom: 5px
+      text-align: center
+      font-weight: bold
+      cursor: pointer
+      -moz-border-radius-bottomleft: 10px
+      -moz-border-radius-bottomright: 10px
+      -webkit-border-bottom-left-radius: 10px
+      -webkit-border-bottom-right-radius: 10px
+  .avatarContainer
+    float: right
+    position: relative
+    width: 40px
+    height: 40px
+  .imStatus
+    width: 40px
+    height: 40px
+    position: absolute
+    left: -4px
+    top: -4px
+    &.offline, &.invisible
+      background: url(/public/images/imStatus/offline.png) no-repeat
+    &.available
+      background: url(/public/images/imStatus/available.png) no-repeat
+    &.unavailable
+      background: url(/public/images/imStatus/unavailable.png) no-repeat
+    &.away
+      background: url(/public/images/imStatus/away.png) no-repeat
+    &.inactive
+      background: url(/public/images/imStatus/inactive.png) no-repeat
+  .dragContactContainment
+    overflow: auto
+  .groups
+    margin: 12px 0
+    padding:0 8px
+    border-top: dashed 1px
+    border-bottom: dashed 1px
+  .group
+    margin: 12px 0px
+    -moz-border-radius: 10px
+    border: 1px solid
+    & > .head
+      padding: 5px
+      font-weight: bold
+      font-size: 1.1em
+      text-align: left
+      -moz-border-radius-topleft: 10px
+      -moz-border-radius-topright: 10px
+      -webkit-border-top-left-radius: 10px
+      -webkit-border-top-right-radius: 10px
+      overflow: hidden
+      white-space:nowrap
+      .reduce
+        float: left
+      &.reduced > .head
+        -moz-border-radius: 10px
+      .groupname
+        padding: 0 2px
+        form
+          float: left
+        input
+          font-size: 1.0em
+          position: relative
+          left: -4px
+          top: -1px
+    & > .body
+      padding: 2px 5px
+      -moz-border-radius-bottomleft: 10px
+      -moz-border-radius-bottomright: 10px
+      -webkit-border-bottom-left-radius: 10px
+      -webkit-border-bottom-right-radius: 10px
+  .noContact
+    text-align: center
+    margin: 10px 0
+  .emptyGroup
+    text-align: center
+    margin: 5px
+  .contact
+    margin: 4px 0
+    padding: 2px
+    -moz-border-radius: 10px
+    -webkit-border-radius: 10px
+    clear: both
+    min-height: 33px
+    &.ui-draggable-dragging, &:hover
+      background: #fff !important
+    &.ui-draggable
+      cursor: default
+    &.ui-draggable-dragging
+      cursor: move
+      opacity: 0.8
+    .syncStatus
+      float: right
+      font-family: monospace
+      padding: 4px
+    .username
+      font-weight: bold
+    .submessage
+      font-style: italic
+    .email
+      font-style: italic
+    .infos
+      padding: 0
+      overflow: hidden
+    .actionContainer
+      :position absolute
+      :left 2px
+      :top 20px
+      display: none
+    &:hover .actionContainer
+      display: block
+  .addGroupDropZone
+    margin-top: 10px
+    padding: 10px
+    font-size: 1em
+    font-style: italic
+    text-align: center
+    -moz-border-radius: 10px
+    -webkit-border-radius: 10px
+
+
+//// Vague list /////
+
+#vagueList > .theme-box 
+  & > .head
+    padding: 3px
+  & > .body
+    padding: 5px
+    -moz-border-radius: 0px
+    -webkit-border-radius: 0px
+  & > .footer
+    padding: 2px 20px
+    position: relative
+    .searchIndicator
+      float: left
+      position: absolute
+      left: 3px
+      top: 5px
+
+#vagueList .vagues
+  padding: 0 5px
+  list-style: none
+  overflow: hidden
+
+#vagueList .vague
+  white-space: nowrap
+  padding: 4px
+  cursor: pointer
+  border-bottom: 1px solid silver
+  clear: both
+  &:hover
+    background-color: rgba(255,255,255,0.25)
+  &.opened
+    background-color: rgba(255,255,255,0.5)
+    border-left: 1px solid silver
+    border-right: 1px solid silver
+    &:hover
+      background-color: rgba(255,255,255,0.75)
+  input[type=checkbox]
+    margin: 0
+    float: left
+  .main
+    overflow: hidden
+  .stats
+    float: right
+    padding-left:5px
+  .movable
+    display: inline
+    position: relative
+  .subject
+    text-decoration: none
+    padding: 0 5px
+  .content
+    font-style: italic
+    color: silver
+
+#vagueList .fastCreate button
+  padding: 0
+  font-size: .8em
+
+#vagueList input[name=search]
+  margin: 2px
+  :padding-left 25px
+  +border-radius(10px)
+  border: 1px solid rgba(85,106,127,0.8)
+  :background url("/public/images/zoom.png") no-repeat scroll 3px 1px white
+  
+  &.empty
+    color: silver
+    font-style: italic
+
+
+
+//// Vague ////
+
+#vague > .theme-box 
+  & > .head
+    padding: 3px
+  & > .body
+    padding: 5px
+  .closeVague
+    float: right
+    cursor: pointer
+  .fastCreate
+    padding: 20px
+    text-align: center
+  .vagueContainer
+    padding: 5px 0
+    margin: 0
+    width: 100%
+    overflow: auto
+    ul.vaguelettes
+      padding: 2px
+      list-style: none
+      li.vaguelette
+        background-color: rgba(255,255,255,.5)
+        border: 1px solid
+        padding: 4px
+        margin: -1px 0 0 10px
+        button
+          text-align: center
+        textarea
+          width: 100%
+          border: 0 none
+          margin: 0
+          padding: 0

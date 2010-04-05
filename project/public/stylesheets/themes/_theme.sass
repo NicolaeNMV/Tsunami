@@ -21,36 +21,36 @@
 
 // General element style
 body
-	background-color = !background
-	background =  -moz-linear-gradient(center bottom, !background 0%, !light80 100% ) no-repeat !background
-	background =  -webkit-gradient( linear, left bottom, left top, color-stop(0, !background), color-stop(1, !light80) )  no-repeat !background
+  background-color = !background
+  background =  -moz-linear-gradient(center bottom, !background 0%, !light80 100% ) no-repeat !background
+  background =  -webkit-gradient( linear, left bottom, left top, color-stop(0, !background), color-stop(1, !light80) )  no-repeat !background
 
 #application
-	background =  -moz-linear-gradient(center bottom, !light80 0%, !light100 100% ) no-repeat !background
-	background =  -webkit-gradient( linear, left bottom, left top, color-stop(0, !light80), color-stop(1, !light100) )  no-repeat !background
+  background =  -moz-linear-gradient(center bottom, !light80 0%, !light100 100% ) no-repeat !background
+  background =  -webkit-gradient( linear, left bottom, left top, color-stop(0, !light80), color-stop(1, !light100) )  no-repeat !background
 
 
 a, .theme-light a, a.theme-light
-	color = !link-#111
-	&:hover
-		color = !link+#111
+  color = !link-#111
+  &:hover
+    color = !link+#111
 
 .theme-dark a, a.theme-dark
-	color = !link+#444
-	&:hover
-		color = !link+#666
+  color = !link+#444
+  &:hover
+    color = !link+#666
 
 // Theme
 // all theme style have the "theme" class
 
 .theme
-	background-color = !background
-	color = !text_light
-	&.level-20, &.level-40, &.level-60, &.level-80, &.level-100
-		&.theme-box > .body, &.theme-light
-			color = !text_light
-		&.theme-box>.head, &.theme-box>.footer, &.theme-dark
-			color = !text_dark
+  background-color = !background
+  color = !text_light
+  &.level-20, &.level-40, &.level-60, &.level-80, &.level-100
+    &.theme-box > .body, &.theme-light
+      color = !text_light
+    &.theme-box>.head, &.theme-box>.footer, &.theme-dark
+      color = !text_dark
 
 
 // *** Dark and Light ***
@@ -66,48 +66,48 @@ a, .theme-light a, a.theme-light
 // you can add "theme-hover" or "theme-drophover" like describe before.
 
 .theme
-	.theme-box.level-100 > .head, .theme-hover.theme-box.level-80:hover > .head, .theme-drophover.theme-box.level-60.drophover > .head,
-	.theme-box.level-100 > .footer, .theme-hover.theme-box.level-80:hover > .footer, .theme-drophover.theme-box.level-60.drophover > .footer,
-	.theme-dark.level-100, .theme-hover.theme-dark.level-80:hover, .theme-drophover.theme-dark.level-60.drophover
-		background-color = !dark100
+  .theme-box.level-100 > .head, .theme-hover.theme-box.level-80:hover > .head, .theme-drophover.theme-box.level-60.drophover > .head,
+  .theme-box.level-100 > .footer, .theme-hover.theme-box.level-80:hover > .footer, .theme-drophover.theme-box.level-60.drophover > .footer,
+  .theme-dark.level-100, .theme-hover.theme-dark.level-80:hover, .theme-drophover.theme-dark.level-60.drophover
+    background-color = !dark100
 
-	.theme-box.level-80 > .head, .theme-hover.theme-box.level-60:hover > .head, .theme-drophover.theme-box.level-40.drophover > .head,
-	.theme-box.level-80 > .footer, .theme-hover.theme-box.level-60:hover > .footer, .theme-drophover.theme-box.level-40.drophover > .footer,
-	.theme-dark.level-80, .theme-hover.theme-dark.level-60:hover, .theme-drophover.theme-dark.level-40.drophover
-		background-color = !dark80
+  .theme-box.level-80 > .head, .theme-hover.theme-box.level-60:hover > .head, .theme-drophover.theme-box.level-40.drophover > .head,
+  .theme-box.level-80 > .footer, .theme-hover.theme-box.level-60:hover > .footer, .theme-drophover.theme-box.level-40.drophover > .footer,
+  .theme-dark.level-80, .theme-hover.theme-dark.level-60:hover, .theme-drophover.theme-dark.level-40.drophover
+    background-color = !dark80
 
-	.theme-box.level-60 > .head, .theme-hover.theme-box.level-40:hover > .head, .theme-drophover.theme-box.level-20.drophover > .head,
-	.theme-box.level-60 > .footer, .theme-hover.theme-box.level-40:hover > .footer, .theme-drophover.theme-box.level-20.drophover > .footer,
-	.theme-dark.level-60, .theme-hover.theme-dark.level-40:hover, .theme-drophover.theme-dark.level-20.drophover
-		background-color = !dark60
+  .theme-box.level-60 > .head, .theme-hover.theme-box.level-40:hover > .head, .theme-drophover.theme-box.level-20.drophover > .head,
+  .theme-box.level-60 > .footer, .theme-hover.theme-box.level-40:hover > .footer, .theme-drophover.theme-box.level-20.drophover > .footer,
+  .theme-dark.level-60, .theme-hover.theme-dark.level-40:hover, .theme-drophover.theme-dark.level-20.drophover
+    background-color = !dark60
 
-	.theme-box.level-40 > .head, .theme-hover.theme-box.level-20:hover > .head,
-	.theme-box.level-40 > .footer, .theme-hover.theme-box.level-20:hover > .footer,
-	.theme-dark.level-40, .theme-hover.theme-dark.level-20:hover
-		background-color = !dark40
+  .theme-box.level-40 > .head, .theme-hover.theme-box.level-20:hover > .head,
+  .theme-box.level-40 > .footer, .theme-hover.theme-box.level-20:hover > .footer,
+  .theme-dark.level-40, .theme-hover.theme-dark.level-20:hover
+    background-color = !dark40
 
-	.theme-box.level-20 > .head,
-	.theme-box.level-20 > .footer,
-	.theme-dark.level-20
-		background-color = !dark20
+  .theme-box.level-20 > .head,
+  .theme-box.level-20 > .footer,
+  .theme-dark.level-20
+    background-color = !dark20
 
-	.theme-box.level-20 > .body,
-	.theme-light.level-20
-		background-color = !light20
+  .theme-box.level-20 > .body,
+  .theme-light.level-20
+    background-color = !light20
 
-	.theme-box.level-40 > .body, .theme-hover.theme-box.level-20:hover > .body,
-	.theme-light.level-40, .theme-hover.theme-light.level-20:hover
-		background-color = !light40
+  .theme-box.level-40 > .body, .theme-hover.theme-box.level-20:hover > .body,
+  .theme-light.level-40, .theme-hover.theme-light.level-20:hover
+    background-color = !light40
 
-	.theme-box.level-60 > .body, .theme-hover.theme-box.level-40:hover > .body, .theme-drophover.theme-box.level-20.drophover > .body,
-	.theme-light.level-60, .theme-hover.theme-light.level-40:hover, .theme-drophover.theme-light.level-20.drophover
-		background-color = !light60
+  .theme-box.level-60 > .body, .theme-hover.theme-box.level-40:hover > .body, .theme-drophover.theme-box.level-20.drophover > .body,
+  .theme-light.level-60, .theme-hover.theme-light.level-40:hover, .theme-drophover.theme-light.level-20.drophover
+    background-color = !light60
 
-	.theme-box.level-80 > .body, .theme-hover.theme-box.level-60:hover > .body, .theme-drophover.theme-box.level-40.drophover	> .body,
-	.theme-light.level-80, .theme-hover.theme-light.level-60:hover, .theme-drophover.theme-light.level-40.drophover
-		background-color = !light80
+  .theme-box.level-80 > .body, .theme-hover.theme-box.level-60:hover > .body, .theme-drophover.theme-box.level-40.drophover  > .body,
+  .theme-light.level-80, .theme-hover.theme-light.level-60:hover, .theme-drophover.theme-light.level-40.drophover
+    background-color = !light80
 
-	.theme-box.level-100 > .body, .theme-hover.theme-box.level-80:hover > .body, .theme-drophover.theme-box.level-60.drophover > .body,
-	.theme-light.level-100, .theme-hover.theme-light.level-80:hover, .theme-drophover.theme-light.level-60.drophover
-		background-color = !light100
+  .theme-box.level-100 > .body, .theme-hover.theme-box.level-80:hover > .body, .theme-drophover.theme-box.level-60.drophover > .body,
+  .theme-light.level-100, .theme-hover.theme-light.level-80:hover, .theme-drophover.theme-light.level-60.drophover
+    background-color = !light100
 
