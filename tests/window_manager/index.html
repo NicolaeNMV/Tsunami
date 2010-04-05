@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <script type="text/javascript" language="javascript" src="jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+      
+      var windowHandle = null;
+      
+      var propageResize = function(win) {
+        var maxWindowsWidth = $('#windows').width();
+        var left = 0;
+        win.siblings().each(function() {
+          left += $(this).width();
+        });
+        var width = win.width();
+        var currentWindowsWidth = left+width;
+        var newWidth = maxWindowsWidth - left;
+        win.width(newWidth);
+      }
+      
+      var updateHandle = function(clientX) {
+        if(windowHandle) {
+          var prev = windowHandle.prev();
+          var next = windowHandle.next();
+          if(!prev.size() || !prev.hasClass('window') || !next.size() || !next.hasClass('window')) return;
+          var offset = !clientX ? 0 : (clientX-$('#windows').position().left) - windowHandle.position().left;
+          
+          prev.width(prev.width()+offset).width(prev.width());
+          next.width(next.width()-offset).width(next.width());
+        }
+      }
+      
+      $('.window-handle').mousedown(function(){
+        windowHandle = $(this);
+      });
+      $(window).mouseup(function(e){
+        updateHandle(e.clientX);
+        windowHandle = null;
+      });
+      $(window).mousemove(function(e){
+        updateHandle(e.clientX);
+      });
+      $(window).resize(function(){
+        propageResize($('#windows .window').last());
+      });
+      
+      propageResize($('#windows .window').last());
+    });
+    </script>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #windows {
+      position: relative;
+      margin: 0;
+      background: #eee;
+      overflow: auto;
+      min-width: 350px;
+    }
+    .window, .window-handle {
+      min-height: 200px;
+     -moz-user-select: none;
+     -khtml-user-select: none;
+     user-select: none;
+    }
+    .window {
+      background: #ddd;
+      float: left;
+    }
+    #contactList {
+      min-width: 100px;
+      max-width: 400px;
+    }
+    #vagueList {
+      min-width: 100px;
+      max-width: 400px;
+    }
+    #vague {
+      min-width: 100px;
+    }
+    .window-handle {
+      cursor: e-resize;
+      float: left;
+      width: 5px;
+      background: silver;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="windows">
+      <div id="contactList" class="window"></div>
+      <div class="window-handle"></div>
+      <div id="vagueList" class="window"></div>
+      <div class="window-handle"></div>
+      <div id="vague" class="window"></div>
+    </div>
+  </body>
+</html>
