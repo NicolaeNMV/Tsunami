@@ -3,8 +3,7 @@ tsunami.tools.namespace('tsunami.comet');
 (function() {
 	// set up stomp client.
 	var comet = tsunami.comet;
-	var stomp = new STOMPClient();
-	comet.stomp = stomp
+	var stomp = comet.stomp = new STOMPClient();
     
 	/**
 		Trigger custom jQuery events from stomp events

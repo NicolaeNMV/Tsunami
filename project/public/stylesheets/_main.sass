@@ -6,124 +6,116 @@
 // General Style
 
 body
-  font-size: 80%
-  margin: 0 auto
+  :font-size 80%
+  :margin 0 auto
 
 input
-  border: 1px solid silver
-  -moz-border-radius: 5px
-  -webkit-border-radius: 5px
-  padding-left: 5px
+  :border 1px solid silver
+  +border-radius(5px)
+  :padding-left 5px
   &:focus
-    border: 1px solid grey
+    :border 1px solid grey
     +box-shadow(grey, 0px, 0px, 2px)
 
 img
-  border: none
+  :border none
   .icon
     padding-right: 3px
-    position: relative
-    top: 2px
+    :position relative
+    :top 2px
 
 // Theme common
 
 .theme-box > .head, .theme-box > .footer
-  text-align: center
+  :text-align center
 
 .theme-box.radius
-  -moz-border-radius: 10px
-  -webkit-border-radius: 10px
+  +border-radius(10px)
 .theme-box.radius > .head
-  -moz-border-radius-topleft: 10px
-  -moz-border-radius-topright: 10px
-  -webkit-border-top-left-radius: 10px
-  -webkit-border-top-right-radius: 10px
-  text-shadow: 0px 0px 2px black
+  +border-top-radius(10px)
+  :text-shadow 0px 0px 2px black
 .theme-box.radius > .body
-  -moz-border-radius-bottomleft: 10px
-  -moz-border-radius-bottomright: 10px
-  -webkit-border-bottom-left-radius: 10px
-  -webkit-border-bottom-right-radius: 10px
+  +border-bottom-radius(10px)
 .theme-box.radius > .footer
-  -moz-border-radius-bottomleft: 10px
-  -moz-border-radius-bottomright: 10px
-  -webkit-border-bottom-left-radius: 10px
-  -webkit-border-bottom-right-radius: 10px
+  +border-bottom-radius(10px)
 
 // Usefull class
 .clickable
-  cursor: pointer
+  :cursor pointer
 .linebreak
-  overflow:hidden
+  :overflow hidden
   white-space:nowrap
 .center
-  text-align: center
+  :text-align center
 
 // General class
 
 input
   &.errorField
-    border: 1px solid #F00
+    :border 1px solid #F00
     &:focus
-      border: 1px solid #B00
+      :border 1px solid #B00
 
 .error 
-  color: #E00
-  font-size: 10px
+  :color #E00
+  :font-size 10px
 
 .errorContainer
-  float: right
+  :float right
 
 .formline
-  padding: 4px
-  clear: both
+  :padding 4px
+  :clear both
 
 .result
   &.err
-    color: #f00
+    :color #f00
   &.success
-  color: #0f0
+  :color #0f0
 
 // Banner
 
 #themeSelect
-  text-align: right
+  :text-align right
   ul
-    padding: 5px
+    :padding 5px
   ul, li
-    display: inline
+    :display inline
   a
-    background: transparent
-    text-decoration: none
+    :background transparent
+    :text-decoration none
 
 #banner
-  padding: 10px
+  :padding 10px
   border-bottom: 2px solid black
 #bannerProfile
-  text-align: right
+  :text-align right
 
 #banner .logo
-  margin: 4px 0
+  :margin 4px 0
 #banner h1
-  text-shadow: 0px 0px 2px black, 1px 1px 4px rgba(100,220,250,.5), 3px 3px 6px rgba(255,255,255,.5)
-  padding: 0 12px
-  display: inline
+  :text-shadow 0px 0px 2px black, 1px 1px 4px rgba(100,220,250,.5), 3px 3px 6px rgba(255,255,255,.5)
+  :padding 0 12px
+  :display inline
 #banner h3
-  text-shadow: 0px 0px 1px black, 2px 2px 3px rgba(255,255,255,.5)
-  padding: 0 12px
-  display: inline
+  :text-shadow 0px 0px 1px black, 2px 2px 3px rgba(255,255,255,.5)
+  :padding 0 12px
+  :display inline
 #statusBar
-  float: left
+  :float left
 
 // Application
 #application
-  position: absolute
+  :position absolute
 
 // #windows
 
 .window
-  padding: 5px
-  margin: 0px
-  float: left
+  :padding 5px
+  :margin 0px
+  :float left
   &.ui-resizable
-    border-right: 5px solid
+    :border-right 5px solid
+
+.resize-handle
+  :cursor e-resize
