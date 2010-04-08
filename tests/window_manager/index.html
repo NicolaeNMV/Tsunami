@@ -8,7 +8,10 @@
       var g_windows;
       var g_windowsReverse;
       var g_handlers;
+      var g_windowsContainerNode;
       var HALF_SIZE_HANDLE = 2;
+      
+      var handles_total_width = 0;
       
       var initWindows = function(windows) {
         for(var w in windows) {
@@ -22,29 +25,13 @@
       };
       
       var propageResize = function() {
-        var width = 20;
-        /*for(var w in g_windows)
-          width += g_windows[w].node.width();*/
-        $('#windows').children().each(function() {
-          width += $(this).width();
-        });
-        var offset = window.outerWidth-width;
-        
-        applyOffset(offset, g_windowsReverse, window.outerWidth, offset);
+        var width = handles_total_width;
+        for(var w in g_windows)
+          width += g_windows[w].node.width();
+        var maxW = g_windowsContainerNode.width();
+        var offset = maxW-width;
+        applyOffset(offset, g_windowsReverse, maxW, offset);
       };
-      /*
-      var propageResize = function(win) {
-        var maxWindowsWidth = $('#windows').width();
-        var left = 0;
-        win.siblings().each(function() {
-          left += $(this).width();
-        });
-        var width = win.width();
-        var currentWindowsWidth = left+width;
-        var newWidth = maxWindowsWidth - left;
-        win.width(newWidth);
-      };
-      */
       
       var altIfNaN = function(value, alt) {
         return isNaN(value) ? alt : value;
@@ -98,7 +85,7 @@
           var width = win.node.width();
           var diff = (offset<0) ? Math.max(altIfNaN(win.minWidth-width, leftMax), offset) : Math.min(altIfNaN(win.maxWidth-width, rightMax), offset);
           offset -= diff;
-          win.node.width(width+diff).width(win.node.width());
+          win.node.width(width+diff);
         }
       };
       
@@ -108,7 +95,7 @@
           var offset = !clientX ? 0 : clientX - handlePosX;
           
           var leftMax = handlePosX;
-          var rightMax = window.outerWidth-handlePosX;
+          var rightMax = g_windowsContainerNode.width()-handlePosX;
           
           var handleNumber = g_handlers.index(windowHandle);
           var windowsLeft = g_windows.slice(0, handleNumber+1).reverse();
@@ -120,6 +107,7 @@
             applyOffset(offset, windowsLeft, leftMax, rightMax);
             applyOffset(-offset, windowsRight, leftMax, rightMax);
           }
+          propageResize();
         }
       }
       
@@ -144,6 +132,9 @@
           {node: '#vague', minWidth: 100}
         ]);
         g_handlers = $('.window-handle');
+        g_windowsContainerNode = $('#windows');
+        
+        handles_total_width = g_handlers.size()*g_handlers.width();
         propageResize();
       };
       
@@ -166,6 +157,7 @@
     .window, .window-handle {
       min-height: 200px;
       padding: 20px 0;
+      margin: 0;
      -moz-user-select: none;
      -khtml-user-select: none;
      user-select: none;
