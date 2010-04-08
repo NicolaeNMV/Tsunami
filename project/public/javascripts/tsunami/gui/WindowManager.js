@@ -18,168 +18,193 @@ tsunami.tools.namespace('tsunami.gui');
   var tools = tsunami.tools;
   var gui = tsunami.gui;
   
-  gui.Globals = {
-    base: null
-  };
-  
-  /**
-   * Define constraints on an axis
-   * @args min : minimum size of the window
-   * @args max : maximum size of the window
-   */
-  gui.Constraints = function(min, max) {
-    this.min = min;
-    this.max = max;
-  };
-  
-  gui.Window = function(id, xConstraints, yConstraints, options) {
-    var self = this;
-    
-    this.id = id;
-    this.constraints = {x: xConstraints, y: yConstraints};
-    this.options = options || {};
-    
-    this.getNode = function() {
-      if(this._node) return this._node;
-      this.appendToBase();
-      return this._node = $('#'+this.id, gui.Globals.base);
-    };
-    
-    this.appendToBase = function() {
-      if(!$('#'+this.id).size()) {
-        var width = this.constraints.x.min;
-        gui.Globals.base.append($('<div id="'+id+'" class="window'+(!self.options.notResizable?' ui-resizable':'')+'" />').width(width));
-      }
-      return this;
-    };
-    
-    this.applyConstraints = function() {
-      var node = this.getNode();
-      return this;
-    };
-    
-    this.bindAll = function() {
-      if(!self.options.notResizable)
-        self.getNode().resizable({
-          containment: '#windows',
-          handles: 'e',
-          maxWidth: self.constraints.x.max,
-          minWidth: self.constraints.x.min
-        });
-    };
-    
-  };
-  
-  // TODO : dynamic management of position and window size (absolute with #windows)
   
   gui.WindowManager = function() {
     
-    var margin = 15;
-    var minDefault = 100;
+    var windowHandle = null;
+    var g_windows;
+    var g_windowsReverse;
+    var g_handlers;
+    var g_windowsContainerNode;
+    var HALF_SIZE_HANDLE = 2;
     
-    // side by side windows
-    var currentWindows = [
-      new gui.Window('contactList', new gui.Constraints(250,400), new gui.Constraints(400)),
-      new gui.Window('vagueList', new gui.Constraints(250,400), new gui.Constraints(400)),
-      new gui.Window('vague', new gui.Constraints(250), new gui.Constraints(400), {notResizable: true, autoresize:true})
-    ];
+    var window_padding = 5;
     
-    var tpl_resizer = function() {
-      return $('<div class="resizer">&nbsp;</div>');
+    var handles_total_width = 0;
+    
+    var tpl_window = function(id) {
+      return '<div id="'+id+'" class="window"></div>';
     };
     
-    var getMinWidth = function() {
-      var width=margin;
-      for(var w in currentWindows)
-        width+=((currentWindows[w].options.notResizable?currentWindows[w].constraints.x.min:currentWindows[w].getNode().width())||minDefault)+margin;
-      return width;
+    var tpl_handle = function() {
+      return '<div class="window-handle"></div>';
     };
     
-    var getMinHeight = function() {
-      var minHeight = 0;
-      for(var w in currentWindows)
-        if(currentWindows[w].constraints.y.min&&currentWindows[w].constraints.y.min>minHeight)
-          minHeight = currentWindows[w].constraints.y.min;
-      return minHeight+margin;
+    var initWindows = function(windows) {
+      var windowsNode = $('<div id="windows" />');
+      var isFirst = true;
+      for(var w in windows) {
+        if(isFirst) 
+          isFirst = false;
+        else 
+          windowsNode.append(tpl_handle());
+        windowsNode.append(tpl_window(windows[w].id));
+      }
+      windowsNode.appendTo('#application');
+      
+      for(var w in windows) {
+        var win = windows[w];
+        win.node = $('#'+win.id);
+        if(win.minWidth) {
+          win.node.css('min-width', win.minWidth+'px');
+        }
+        if(win.maxWidth) win.node.css('max-width', win.maxWidth+'px');
+      }
+      g_windows = windows;
+      g_windowsReverse = windows.slice().reverse();
     };
     
-    var computeWindowsWidth = function() {
-      var total = $(window).width();
-      var minWidth = getMinWidth();
-      if(total<minWidth)
-        total = minWidth;
-      $('#windows').width(total);
-      $('#banner').width(total-20);
-      var totalAllocateSpace = margin;
-      var countAutoResizeWindows = 0;
-      for(var w in currentWindows)
-        if(!currentWindows[w].options.autoresize)
-          totalAllocateSpace += $(currentWindows[w].getNode()).width()+margin;
-        else
-          ++countAutoResizeWindows;
-      var eachSpace = countAutoResizeWindows>0 ? Math.floor((total-totalAllocateSpace)/countAutoResizeWindows) : 0;
-      for(var w in currentWindows)
-        if(currentWindows[w].options.autoresize)
-          currentWindows[w].getNode().width(eachSpace);
+    var propageResize = function() {
+      var width = handles_total_width+g_windows.length * 2 * window_padding;
+      for(var w in g_windows)
+        width += g_windows[w].node.width();
+      var maxW = g_windowsContainerNode.width();
+      var offset = maxW-width;
+      applyOffset(offset, g_windowsReverse, maxW, offset);
+      g_handlers.height(g_windowsContainerNode.height());
     };
     
-    var computeWindowsHeight = function() {
-      var minHeight = getMinHeight();
-      var height = ($(window).height()-Math.floor($('#application').position().top));
-      if(height<minHeight)
-        height=minHeight;
-      height-= 10;
-      for(var w in currentWindows)
-        currentWindows[w].getNode().height(height);
-      $('#windows').height(height);
+    var altIfNaN = function(value, alt) {
+      return isNaN(value) ? alt : value;
     };
     
-    var onGlobalWindowResize = function() {
-      computeWindowsHeight();
-      computeWindowsWidth();
+    /**
+     * return free space constraints of all windows give in arrayOfWindows
+     * @param arrayOfWindows : array of { node<jQuery selector>, 
+                                          minWidth<integer>, 
+                                          maxWidth<integer> }
+     * @return [l, r] : 
+          l : the left free space
+          r : the right free space
+          l and r are positive integer OR NaN for no limit space
+     */
+    var computeFreeSpace = function(arrayOfWindows) {
+      var free = [0, 0]; 
+      for(var a in arrayOfWindows) {
+        var win = arrayOfWindows[a];
+        var width = win.node.width();
+        if(!isNaN(free[0]))
+          free[0] += (width-(win.minWidth ? win.minWidth : 0));
+        if(!isNaN(free[1]))
+          free[1] += (!win.maxWidth) ? NaN : (win.maxWidth-width);
+      }
+      return free;
     };
     
-    var onWindowResize = function() {
-      computeWindowsWidth();
+    /**
+     * return free space constraints around handle
+     * @param handleNode : the handle node
+     * @return [l, r] : 
+          l : the left free space
+          r : the right free space
+     */
+    var computeHandleFreeSpace = function(windowsLeft, windowsRight, leftMax, rightMax) {
+      var leftFreeSpace = computeFreeSpace(windowsLeft);
+      var rightFreeSpace = computeFreeSpace(windowsRight);
+      if(isNaN(leftFreeSpace[0])) leftFreeSpace[0] = leftMax;
+      if(isNaN(leftFreeSpace[1])) leftFreeSpace[1] = rightMax;
+      if(isNaN(rightFreeSpace[0])) rightFreeSpace[0] = leftMax;
+      if(isNaN(rightFreeSpace[1])) rightFreeSpace[1] = rightMax;
+      return [Math.min(leftFreeSpace[0], rightFreeSpace[1]), Math.min(leftFreeSpace[1], rightFreeSpace[0])];
+    };
+    
+    var applyOffset = function(offset, arrayOfWindows, leftMax, rightMax) {
+      if(!offset || !arrayOfWindows) return;
+      for(var a in arrayOfWindows) {
+        if(offset==0) return;
+        var win = arrayOfWindows[a];
+        var width = win.node.width();
+        var diff = (offset<0) ? Math.max(altIfNaN(win.minWidth-width, leftMax), offset) : Math.min(altIfNaN(win.maxWidth-width, rightMax), offset);
+        offset -= diff;
+        win.node.width(width+diff);
+      }
+    };
+    
+    var updateHandle = function(clientX) {
+      if(windowHandle) {
+        var handlePosX = windowHandle.position().left+HALF_SIZE_HANDLE;
+        var offset = !clientX ? 0 : clientX - handlePosX;
+        
+        var leftMax = handlePosX;
+        var rightMax = g_windowsContainerNode.width()-handlePosX;
+        
+        var handleNumber = g_handlers.index(windowHandle);
+        var windowsLeft = g_windows.slice(0, handleNumber+1).reverse();
+        var windowsRight = g_windows.slice(handleNumber+1);
+        var freeSpace = computeHandleFreeSpace(windowsLeft, windowsRight, leftMax, rightMax);
+        
+        offset = (offset<0) ? Math.max(-freeSpace[0], offset) : Math.min(freeSpace[1], offset);
+        if(offset) {
+          applyOffset(offset, windowsLeft, leftMax, rightMax);
+          applyOffset(-offset, windowsRight, leftMax, rightMax);
+          for(var w in g_windows)
+            g_windows[w].node.trigger('resize');
+        }
+        propageResize();
+      }
     };
     
     return {
       init: function() {
-        node = $('<div id="windows" />').appendTo('#application');
-        gui.Globals.base = node;
         
-        for(var w=0; w<currentWindows.length; ++w) {
-          /*if(w!=0)
-            gui.Globals.base.append(tpl_resizer());*/
-          var currentWindow = currentWindows[w];
-          currentWindow.appendToBase().applyConstraints();
-        }
+        
+        initWindows([
+          {id: 'contactList', minWidth: 250, maxWidth: 500},
+          {id: 'vagueList', minWidth: 200, maxWidth: 500},
+          {id: 'vague', minWidth: 250}
+        ]);
+        
+        g_handlers = $('.window-handle');
+        g_windowsContainerNode = $('#windows');
+        
+        handles_total_width = g_handlers.size()*g_handlers.width();
+        propageResize();
+        
+        
+        g_handlers.mousedown(function(){
+          windowHandle = $(this);
+        });
+        $(window).mouseup(function(e){
+          updateHandle(e.clientX);
+          windowHandle = null;
+        });
+        $(window).mousemove(function(e){
+          updateHandle(e.clientX);
+        });
+        $(window).resize(function(){
+          propageResize();
+        });
+        
+        
         var windowsLoaded = 0;
-        for(var w=0; w<currentWindows.length; ++w) {
-          var currentWindow = currentWindows[w];
-          var node = currentWindow.getNode();
-          $(document).bind('window.'+currentWindow.id+'.ready', function() {
-            if(windowsLoaded>=currentWindows.length) return; // all windows are already loaded
+        for(var w in g_windows) {
+          var win = g_windows[w];
+          $(document).bind('window.'+win.id+'.ready', function() {
+            if(windowsLoaded>=g_windows.length) return; // all windows are already loaded
             windowsLoaded ++;
-            if(windowsLoaded>=currentWindows.length) {
+            if(windowsLoaded>=g_windows.length)
               gui.StatusBar.hide();
-              for(var w=0; w<currentWindows.length; ++w)
-                currentWindows[w].bindAll();
-            }
+            propageResize();
           });
-          $(node).bind('resize', computeWindowsWidth);
         }
         
-        onGlobalWindowResize();
-        $(window).resize(onGlobalWindowResize);
-        $('#windows .window').resize(onWindowResize);
         $('#windows .window').hide();
         gui.StatusBar.showLoad('Chargement de comet...');
         $(document).one('comet.connect', function() {
             gui.StatusBar.showLoad('Chargement des fenêtres...');
-        	$('#windows .window').show();
-	        $(document).trigger('WindowManager.ready');
-	    });
+            $('#windows .window').show();
+            $(document).trigger('WindowManager.ready');
+        });
       }
     }
   }();

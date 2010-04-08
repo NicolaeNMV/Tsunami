@@ -1,15 +1,29 @@
 @import main.sass
 
+#main, #application
+  :min-width 800px
 
-// #windows
+// windows
+
+#windows
+  position: relative
+  overflow: auto
+
+.window, .window-handle
+  -moz-user-select: none
+  -khtml-user-select: none
+  user-select: none
+  float: left
 
 .window
   :padding 5px
-  :margin 0px
-  :float left
+  
 
-.resize-handle
-  :cursor e-resize
+.window-handle
+  cursor: e-resize
+  background: rgba(0,0,0,0.2)
+  width: 4px
+
 
 //// Contact ////
 
