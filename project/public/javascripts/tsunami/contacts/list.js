@@ -546,7 +546,16 @@ tsunami.tools.namespace('tsunami.contacts');
       var height = Math.floor($(window).height()-node.offset().top);
       node.css('height', height+'px');
     };
-
+    
+    // Comet events
+    var contactListReload = function(e,data) {
+    	tsunami.contacts.List.getAllContacts();
+    };
+    // @TODO an bind that support multiple events? (separated by a comma)
+    remoteBind('contacts.changes',contactListReload);
+    remoteBind('user.submessage',contactListReload);
+    
+    
     return {
 
       // Public //
@@ -563,6 +572,7 @@ tsunami.tools.namespace('tsunami.contacts');
       string2groupid: string2groupid,
       
       addContact: addContact,
+      getAllContacts: getAllContacts,
 
       init: function() {
         // Fix jqueryui bug #4163 to force the cursor change on Chrome

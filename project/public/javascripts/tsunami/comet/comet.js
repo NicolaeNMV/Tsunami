@@ -4,6 +4,7 @@ tsunami.tools.namespace('tsunami.comet');
 	// set up stomp client.
 	var comet = tsunami.comet;
 	var stomp = comet.stomp = new STOMPClient();
+	comet.connected = false;
     
 	/**
 		Trigger custom jQuery events from stomp events
@@ -49,6 +50,7 @@ tsunami.tools.namespace('tsunami.comet');
 			throw "Invalid JSON: " + data;
 		}
 		
+		console.log('comet.event.'+data.event + " data: " + data.data)
 	    // Event name construction,
 	    $(document).trigger('comet.event.'+data.event, data.data);
 	};
@@ -60,18 +62,57 @@ tsunami.tools.namespace('tsunami.comet');
 
 	$(document).bind('comet.connect',function() {
 		stomp.subscribe('/events/'+currentUser.userid, {exchange:''});
+		comet.connected = true;
 	});
-
-	$(document).ready(function() {
+	$(document).bind('comet.close',function() {
+		comet.connected = false;
+		comet.connect();
+	});
+	
+	comet.setup = function () {
 		if(!window.TCPSocket) { // If the browser doesn't support the sockets (html5)
 			document.domain=document.domain;
 			Orbited.settings.port = 8001;
 			TCPSocket = Orbited.TCPSocket;
 		}
+	}
+	
+	comet.firstConnect = false;
+	comet.connectTimerWait = false; // mutex
+	// This will try to connect until the connection is enstablished
+	comet.connect = function() {
+		if (comet.connectTimerWait == true) return;
+		comet.connectTimerWait = true;
+		
+		if (comet.connected == true) return;
+		if (comet.firstConnect == true) stomp.reset();
+		else comet.firstConnect = true;
+		
 		stomp.connect('localhost', 61613, currentUser.userid, '');
+		console.log('Try to connect to stomp');
+
+		setTimeout(function(){comet.connectTimerWait=false;comet.connect()},2500);
+	}
+
+	$(document).ready(function() {
+		comet.setup();
+		comet.connect();
 	});
 
 	$(document).unload(function() {
 	// stomp.reset();
 	});
 }());
+
+// debug
+$(document).bind('comet.connect',function() {
+	console.log('comet.connected');
+});
+$(document).bind('comet.close',function() {
+	console.log('comet.close');
+});
+
+// A global function
+function remoteBind(event,func) {
+	return $(document).bind('comet.event.'+event,func);
+}

@@ -20,6 +20,8 @@ import models.contacts.ContactsList;
 import models.contacts.ImStatus;
 import models.json.UserJson;
 
+import controllers.base.Application;
+
 @SuppressWarnings("serial")
 @Entity
 public class User extends ActivityDate {
@@ -204,5 +206,20 @@ public class User extends ActivityDate {
     
     public UserJson toJson() {
         return new UserJson(this);
+    }
+    
+    public boolean sendComet(String event, Object data) {
+    	return Application.sendComet(this,event,data);
+    }
+    
+    public boolean sendComet(String event) {
+    	return Application.sendComet(this,event,true);
+    }
+    
+    // Send an event to all contacts of the user
+    public void sendCometAllContacts(String event,Object data) {
+    	for (Contact c : contacts.list()) {
+    		Application.sendComet(c.user,event,data);
+    	}
     }
 }

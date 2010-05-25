@@ -59,7 +59,7 @@ public class Application extends Base {
      * @param data : data content (can be a string, something, list of something)
      * @return true if data successfully sent
      */
-    protected static boolean sendComet(String userid, String event, Object data) {
+    public static boolean sendComet(String userid, String event, Object data) {
         User u = User.findByUserid(userid);
         return sendComet(u, event, data);
     }
@@ -72,7 +72,7 @@ public class Application extends Base {
         * @param data : data content (can be a string, something, list of something)
         * @return true if data successfully sent
     */
-    protected static boolean sendComet(User u, String event, Object data) {
+    public static boolean sendComet(User u, String event, Object data) {
       if (u == null || !u.isConnected())
         return false;
       List<User> users = new ArrayList<User>();
@@ -87,7 +87,7 @@ public class Application extends Base {
      * @param data : data content (can be a string, something, list of something)
      * @return true if data successfully sent
      */
-    protected static boolean sendComet(Collection<User> users, String event, Object data) {
+    public static boolean sendComet(Collection<User> users, String event, Object data) {
     	Map map = new HashMap();
     	map.put("event", event);
     	map.put("data", data);
@@ -95,9 +95,11 @@ public class Application extends Base {
         Client c = CometHelper.getCometClient();
         if(c==null) 
             return false;
-        for(User u : users)
-          if(u.isConnected())
-            	c.send("/events/"+u.userid, jsonData);
+        for(User u : users) {
+          //if(u.isConnected())
+          c.send("/events/"+u.userid, jsonData);
+          System.out.println("sendComet " + "/events/"+u.userid + " :" + jsonData );
+        }
         return true;
     }
 }

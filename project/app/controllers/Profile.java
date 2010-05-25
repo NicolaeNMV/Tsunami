@@ -32,6 +32,7 @@ public class Profile extends Application {
         User connectedUser = getConnectedUser();
         connectedUser.setSubmessage(submessage);
         connectedUser.refresh();
+        connectedUser.sendCometAllContacts("user.submessage",connectedUser.userid); // @TODO, include the submessage in the data
         renderJSON( connectedUser.toJson() );
     }
     

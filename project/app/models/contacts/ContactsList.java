@@ -105,6 +105,15 @@ public class ContactsList extends Model {
         return null;
     }
     
+    public List<Contact> list() {
+    	List<Contact> contacts = new ArrayList<Contact>();
+		for(ContactsGroup g : groups) {
+            for(Contact c : g.contacts)
+            	contacts.add( c );
+        }
+		return contacts;
+    }
+    
     
     public ContactsListJson toJson() {
         return new ContactsListJson(this);

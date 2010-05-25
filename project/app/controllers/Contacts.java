@@ -109,6 +109,9 @@ public class Contacts extends Application {
         // Put the contact in the group and render him
         Contact c = group.addContact(new Contact(contactUser, Contact.SyncStatus.INVITED));
         c.sync(Contact.SyncStatus.REQUESTED);
+        // Notify the contactUser
+        contactUser.sendComet("contacts.changes");
+   		
         renderJSON(c.toJson());
     }
     
@@ -129,6 +132,8 @@ public class Contacts extends Application {
         ContactsGroup group = contact.group;
         contact.sync(Contact.SyncStatus.DELETED); // TODO : we must improve something here : if the contact haven't validate the invitation, we can remove the self contact. 
         group.removeContact(contact);
+        // Notify
+        contactUser.sendComet("contacts.changes");
         renderJSON(contactJson);
     }
     
@@ -170,6 +175,7 @@ public class Contacts extends Application {
         
         contact = contact.accept();
         contact.save();
+        contactUser.sendComet("contacts.changes");
         renderJSON(contact.toJson());
     }
     
@@ -191,6 +197,7 @@ public class Contacts extends Application {
         
         ContactJson contactJson = contact.toJson();
         contact.refuse();
+        contactUser.sendComet("contacts.changes");
         renderJSON(contactJson);
     }
     
