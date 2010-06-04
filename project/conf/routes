@@ -75,6 +75,8 @@ PUT    /vaguelettes/{vagueletteId}              Vaguelettes.edit
 ### Chat ###
 POST    /chat/send                              Profile.chatSend
 
+### Comet-RestQ syncronizer ###
+POST   /cometsync/userStatus                        Cometsync.userStatus
 
 ### static ressources ###
 

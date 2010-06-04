@@ -279,6 +279,7 @@ public class Contacts extends Application {
         
         User currentUser = getConnectedUser();
         currentUser.changeStatus(newStatus);
+        currentUser.sendCometAllContacts("user.status",currentUser.userid); // @TODO send the new status
         
         renderJSON(currentUser.toJson());
     }

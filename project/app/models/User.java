@@ -87,6 +87,7 @@ public class User extends ActivityDate {
         imStatus = status;
         if(!imStatus.equals(ImStatus.OFFLINE) && !imStatus.equals(ImStatus.INACTIVE))
             selectedStatus=status;
+        save();
     }
     
     /**
