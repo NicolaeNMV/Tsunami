@@ -1,0 +1,53 @@
+#{extends 'layout.html' /}
+#{set title:'Tsunami' /}
+#{set 'head'}
+#{stylesheet 'index.sass' /}
+
+*{ LIBRARIES }*
+    #{stylesheet 'jquery/dark-hive/ui.all.css' /}
+    #{stylesheet 'jquery/dark-hive/jquery-ui-1.7.2.custom.css' /}
+    #{script 'jquery/jquery-ui-1.7.2.custom.min.js' /}
+    #{script 'jquery/jquery.jeditable.mini.js' /}
+    #{script 'jquery/jquery.form.js' /}
+    #{script 'jquery/jquery.defaultvalue.js' /}
+    #{script 'jquery/jquery.autoresize.min.js' /}
+    #{script 'jquery/jquery.ndd.js' /}
+    #{script 'postFile.js' /}
+    
+    #{script src:'orbited/orbited.js' /}
+    #{script src:'orbited/stomp.js' /}
+    
+*{ TSUNAMI }*
+    <script  type="text/javascript" language="javascript">
+      if(!window.tsunami) window.tsunami={}; tsunami.export={};
+      tsunami.export.currentUser = #{toJson currentUser /};
+      tsunami.export.routes = #{routes /};
+      tsunami.export.i18nMessages = #{i18nMessages /};
+    </script>
+    
+    #{script src:'tsunami/tools/utils.js' /}
+    #{script src:'tsunami/tools/routes.js' /}
+    #{script src:'tsunami/tools/i18n.js' /}
+    #{script src:'tsunami/tools/real-time.js' /}
+    
+    #{script src:'tsunami/comet/comet.js' /}
+    #{script src:'tsunami/comet/chat.js' /}
+    
+    #{script src:'tsunami/contacts/utils.js' /}
+#{/set}
+
+<div id="application">
+
+  <div class="theme theme-light level-60" id="contactListSelfAvatarPopup">
+    <div class="imageContainer"></div>
+    #{postFile destUrl: @Profile.postAvatar(), name: 'file' /}
+  </div>
+</div>
+
+  <a href="#">show</a>
+  
+  <script type="text/javascript">
+  $(document).ready(function(){
+    tsunami.contacts.SelfAvatarPopup.show({clientX: 100, clientY: 100})
+  })
+  </script>

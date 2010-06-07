@@ -1,0 +1,58 @@
+*{
+  Manage a drag and drop asynchronous file uploader
+  If drag and drop is not supported, an asynchronous input file is used
+  
+  Using this tag, you have to import postFile.js script
+  otherwise, or if javascript is not enabled, a simple input type file is used.
+  
+  To be disabled javascript compliant,
+  this tag MUST NOT be include in a form element, because form containing form is forbidden.
+  
+  @param destUrl : the url to send datas
+  @param displayMode (optional): 
+                      * 'input'    : only input file type is available
+                      * 'dropzone' : dropzone is available if supported, else input is used
+                      * 'both' (default) : both are avalaible if supported 
+  @param name (optional) : the name input value (default is set to 'file')
+  @param accept (optional) : accept mimetypes (all accept by default (set to 'Files') )
+  @param dropzoneText (optional) : text to display into dropzone
+  @param body (optional) : set content between #{postFile}...#{/postFile} 
+                           if you want to manage yourself the message zone and the loading image
+  
+  @author Renaudeau Gaetan <gre@zenexity.fr> - Zenexity - 2010
+}*
+%{
+  if(! _destUrl) {
+    throw new play.exceptions.TagInternalException("destUrl attribute cannot be empty for postFile tag");
+  }
+  
+  destUrl = _destUrl
+  hasBody = !!_body
+  name = _name ?: 'file'
+  
+  accept = _accept ?: 'Files'
+  
+  displayMode = _displayMode ?: 'both'
+  
+  dropzoneText = _dropzoneText ?: 'or drop a file here...'
+}%
+
+<div class="postFile">
+#{form destUrl}
+  <input type="file" name="${name}" #{if displayMode=='dropzone'}class="hideIfDropSupported"#{/if} />
+  #{if displayMode!='input'}
+  <div class="dropzone hideIfDropNotSupported" accept="${accept}" name="${name}">${dropzoneText}</div>
+  #{/if}
+  #{if hasBody}
+    #{doBody /}
+  #{/if}
+  #{else}
+    <img src="/public/images/postFileLoad.gif" class="showWhenUploadingBegin hideWhenUploadingEnd" style="display: none;"/>
+    <div class="message"></div>
+  #{/else}
+  <div class="removeIfAsynchronous">
+    <input type="hidden" name="isSynchronous" value="true" />
+    <button type="submit">Envoyer</button>
+  </div>
+#{/form}
+</div>
