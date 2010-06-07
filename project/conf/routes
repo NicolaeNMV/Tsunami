@@ -12,6 +12,7 @@
 
 GET     /?                                      Main.index
 
+GET     /test Main.test
 
 ### Auth ###
 
@@ -20,7 +21,7 @@ GET     /logout                                 Auth.logout
 GET     /register                               Auth.registerPage
 POST    /login                                  Auth.login
 POST    /register                               Auth.register
-GET     /browser																Auth.browserCompatibilityPage
+GET     /browser                                Auth.browserCompatibilityPage
 
 
 ### Profile ###

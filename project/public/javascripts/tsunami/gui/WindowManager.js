@@ -156,8 +156,6 @@ tsunami.tools.namespace('tsunami.gui');
     
     return {
       init: function() {
-        
-        
         initWindows([
           {id: 'contactList', minWidth: 250, maxWidth: 500},
           {id: 'vagueList', minWidth: 200, maxWidth: 500},
@@ -192,11 +190,17 @@ tsunami.tools.namespace('tsunami.gui');
           $(document).bind('window.'+win.id+'.ready', function() {
             if(windowsLoaded>=g_windows.length) return; // all windows are already loaded
             windowsLoaded ++;
-            if(windowsLoaded>=g_windows.length)
+            if(windowsLoaded>=g_windows.length) {
               gui.StatusBar.hide();
+            }
             propageResize();
+            
           });
         }
+        
+        setInterval(function(){ // hack for chrome
+          $(window).resize();
+        }, 1000);
         
         $('#windows .window').hide();
         gui.StatusBar.showLoad('Chargement de comet...');

@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import models.User;
 
+import play.Logger;
 import play.mvc.Before;
 import play.mvc.Router;
 import sun.misc.UUDecoder;
@@ -93,12 +94,12 @@ public class Application extends Base {
     	map.put("data", data);
     	String jsonData = new Gson().toJson(map);
         Client c = CometHelper.getCometClient();
-        if(c==null) 
+        if(c==null)
             return false;
         for(User u : users) {
           //if(u.isConnected())
           c.send("/events/"+u.userid, jsonData);
-          System.out.println("sendComet " + "/events/"+u.userid + " :" + jsonData );
+          Logger.info("sendComet /events/%s : %s", u.userid, jsonData);
         }
         return true;
     }

@@ -38,35 +38,8 @@ tsunami.tools.namespace('tsunami.contacts');
       return '<img class="avatar" src="'+tools.Router.url('Contacts.getAvatar', {size:'large', userid:tsunami.export.currentUser.userid})+'?'+contacts.Utils.getAvatarTimestamp('#'+contacts.List.userid2string(tsunami.export.currentUser.userid)+' img.avatar')+'" />';
     };
     
-    var tpl = function() {
-      return ('<h3>Mon avatar</h3>'+
-          '<div class="imageContainer">'+
-            tpl_avatar()+
-          '</div>'+
-          '<form class="uploadAvatar" enctype="multipart/form-data" action="/profile/avatar" method="POST">'+
-            '<input type="file" name="file" />'+
-            '<div><button>Envoyer</button>'+
-          '<div class="uploadInProgress">Envoi en cours... <img src="/public/images/loading.gif"/></div></div>'+
-          '</form>');
-    };
-    
-    var make = function() {
-      if(!g_node) {
-        $('#application').append('<div id="contactListSelfAvatarPopup" class="theme theme-light level-60" />');
-        g_node = $('#contactListSelfAvatarPopup');
-        render();
-      }
-      updatePosition();
-    };
-    
-    var render = function() {
-      g_node.empty();
-      g_node.append(tpl());
-      bindAll();
-    };
-    
     var updateAvatar = function() {
-      $('img.avatar', g_node).replaceWith( tpl_avatar() );
+      $('.imageContainer', g_node).empty().append( tpl_avatar() );
     };
     
     var updatePosition = function() {
@@ -74,8 +47,9 @@ tsunami.tools.namespace('tsunami.contacts');
     };
     
     var show = function() {
-      updateAvatar();
-      updatePosition().show();
+      //updateAvatar();
+      updatePosition();
+      g_node.show();
     };
     
     var hide = function() {
@@ -83,38 +57,9 @@ tsunami.tools.namespace('tsunami.contacts');
         g_node.hide();
     };
     
-    var setUploadStatus = function(inProgress) {
-      g_up_ip = !inProgress ? false : true;
-      if(g_up_ip) {
-        $('img.avatar', g_node).hide();
-        $('.uploadInProgress', g_node).show();
-      }
-      else {
-        $('img.avatar', g_node).show();
-        $('.uploadInProgress', g_node).hide();
-      }
-    };
-    
-    var bindAll = function() {
-      setUploadStatus(false);
-      $('form.uploadAvatar', g_node).ajaxForm({
-        beforeSubmit: function() {
-          setUploadStatus(true);
-        },
-        success: function(data) {
-          setUploadStatus(false);
-          hide();
-          contacts.List.touchAvatar(tsunami.export.currentUser.userid);
-        },
-        error: function() {
-          setUploadStatus(false);
-        }
-      });
-    }
-
     return {
       init: function() {
-        make();
+        g_node = $('#contactListSelfAvatarPopup');
         hide();
         $(document).click(function(e) {
           if(!($(e.target).parents().is('#contactListSelfAvatarPopup') || $(e.target).is('#contactListSelfAvatarPopup') ) && !$(e.target).is('.imStatus')) {

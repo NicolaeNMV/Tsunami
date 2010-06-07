@@ -10,5 +10,9 @@ public class Main extends Application {
           forbidden();
         render();
     }
+    
+    public static void test() {
+    	render();
+    }
 
 }

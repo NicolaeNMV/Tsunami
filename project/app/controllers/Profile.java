@@ -25,7 +25,7 @@ public class Profile extends Application {
             error(e.toString());
         }
         connectedUser.setAvatar(true);
-        renderText("ok");
+        render();
     }
     
     public static void updateSubmessage(String submessage) {

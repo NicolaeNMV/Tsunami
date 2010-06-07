@@ -11,6 +11,8 @@
     #{script 'jquery/jquery.form.js' /}
     #{script 'jquery/jquery.defaultvalue.js' /}
     #{script 'jquery/jquery.autoresize.min.js' /}
+    #{script 'jquery/jquery.ndd.js' /}
+    #{script 'postFile.js' /}
     
     #{script src:'orbited/orbited.js' /}
     #{script src:'orbited/stomp.js' /}
@@ -56,4 +58,10 @@
         <div id="bannerProfile">${currentUser.username} - <a href="@{Auth.logout}">Déconnexion</a></div>
       </div>
       <div id="application"></div>
-      
+ 
+
+  <div class="theme theme-light level-60" id="contactListSelfAvatarPopup" style="display: none;">
+    <div class="imageContainer"></div>
+    #{postFile destUrl: @Profile.postAvatar(), name: 'file' /}
+  </div>
+ 
