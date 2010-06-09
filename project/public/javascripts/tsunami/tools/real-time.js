@@ -40,8 +40,8 @@ tsunami.tools.namespace('tsunami.tools');
     };
     
     self.bindEvents = function() {
-      $(self.node).keypress(function() {
-        setTimeout(self.onInputChange, 50); // wait for dom update
+      $(self.node).keyup(function() {
+        self.onInputChange();
       });
     };
     

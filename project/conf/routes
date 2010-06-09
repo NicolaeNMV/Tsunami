@@ -80,6 +80,7 @@ GET    /vaguelettes/{vagueletteId}              Vaguelettes.view
 POST   /vagues/{vagueId}                        Vaguelettes.create
 PUT    /vaguelettes/{vagueletteId}              Vaguelettes.edit
 # DELETE /vaguelettes/{vagueletteId}              Vaguelettes.delete
+POST   /vagues/{vagueId}			Vaguelettes.editPatch
 
 ### Chat ###
 POST    /chat/send                              Profile.chatSend
