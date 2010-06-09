@@ -204,7 +204,7 @@ tsunami.tools.namespace('tsunami.gui');
         
         setInterval(function(){ // hack for chrome
           $(window).resize();
-        }, 1000);
+        }, 500);
         
         $('#windows .window').hide();
         gui.StatusBar.showLoad('Chargement de comet...');

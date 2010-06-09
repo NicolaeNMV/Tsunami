@@ -37,7 +37,7 @@ tsunami.tools.namespace('tsunami.vagues');
     var tpl = function() {
       return '<div class="theme theme-box level-40 radius">'+
           '<div class="head">&nbsp;<span class="title"></span>'+tpl_exit()+'</div>'+
-          '<div class="body vagueContainer">&nbsp;</div>'+
+          '<div class="body vagueContainer"> </div>'+
           '</div>';
     };
     
@@ -48,7 +48,21 @@ tsunami.tools.namespace('tsunami.vagues');
     };
     
     var tpl_vague = function(vague) {
-      return ( '<ul class="vaguelettes"></ul>'+
+      var ulParticipants = "<ul>";
+      ulParticipants += '<li title="Ajouter"><a href="javascript:;" class="addNewParticipant" alt="Ajouter">&nbsp;</a></li>';
+      for(var p in vague.participants) {
+        var participant = vague.participants[p];
+        ulParticipants += '<li title="'+participant.username+'">'+
+        '<img class="avatar" src="/contacts/'+participant.userid+'/avatar/small.png"  />'+
+        '<span class="username">'+participant.username+'</span>'+
+        '</li>';
+      }
+      ulParticipants += "</ul>";
+      
+      return ( '<div id="participants">'+
+      ulParticipants+
+      '</div>'+
+      '<ul class="vaguelettes"></ul>'+
       '<a href="javascript:;" class="createVaguelette">Ajouter une vaguelette</a>');
     };
     
@@ -87,6 +101,10 @@ tsunami.tools.namespace('tsunami.vagues');
       var vagueletteContext = $(this).parents().filter('.vaguelettes').size();
       var nodeToAppend = vagueletteContext ? string2vagueletteId($($(this).parents('.vaguelette')[0]).attr('id')) : 0;
       createVaguelette(g_vague.id, "", nodeToAppend);
+    };
+    
+    var onAddNewParticipantClick = function() {
+      alert("todo")
     };
     
     // from ajax
@@ -191,6 +209,7 @@ tsunami.tools.namespace('tsunami.vagues');
     var bindEvents = function() {
       $(document).bind('vague.create', onAddVague);
       $(window).resize(updateHeight);
+      $('.addNewParticipant').live('click', onAddNewParticipantClick);
     };
     
     var bindOpenMode = function() {

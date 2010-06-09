@@ -303,6 +303,7 @@
     :width 100%
     :overflow auto
     ul.vaguelettes
+      :clear left
       :padding 2px
       :list-style none
       li.vaguelette
@@ -317,7 +318,32 @@
           :border 0 none
           :margin 0
           :padding 0
-
+  
+  #participants
+    padding: 2px
+    overflow: auto
+    ul
+      list-style: none
+      padding: 0
+      margin: 0
+      
+      li
+        padding: 4px
+        float: left
+        max-width: 60px
+        img
+          display: block
+        span
+          overflow: hidden
+    
+    .addNewParticipant
+      width: 40px
+      height: 40px
+      display: block
+      text-decoration: none
+      background: url(/public/images/addNewParticipant.png) no-repeat 8px 8px
+  
+  
 
 /// Profile ///
 #banner a.profile
@@ -340,6 +366,9 @@
   border: 1px solid black
     :top none
   +border-radius(0 0 10px 10px)
+  
+  
+  
 
 /// Admin ///
 #admin
