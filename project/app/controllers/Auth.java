@@ -15,7 +15,7 @@ public class Auth extends Base {
     
     public static void loginPage() {
         addCurrentThemeToRenderArgs();
-        if(session.get("uid")!=null)
+        if(session.contains("uid"))
             redirect("/"); // Redirect if logged
         render();
     }
@@ -25,7 +25,7 @@ public class Auth extends Base {
      */
     public static void logout() {
         addCurrentThemeToRenderArgs();
-        if(session.get("uid")!=null) {
+        if(session.contains("uid")) {
             User user = User.findByUserid( session.get("uid"));
             user.imStatus = ImStatus.OFFLINE;
             user.save();
@@ -36,7 +36,7 @@ public class Auth extends Base {
     
     public static void registerPage() {
         addCurrentThemeToRenderArgs();
-        if(session.get("uid")!=null)
+        if(session.contains("uid"))
             redirect("/"); // Redirect if logged
         render();
     }

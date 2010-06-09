@@ -1,0 +1,24 @@
+%{
+currentUser =_currentUser
+}%
+
+
+    <div id="banner" class="theme theme-dark level-100">
+        <div id="themeSelect">
+          <span>Sélectionnez un thème : </span>
+          <ul>
+          #{list items:themes, as:'t'}
+            <li><a href="javascript:;" class="theme">${t}</a>#{if !t_isLast}, #{/if}</li>
+          #{/list}
+          </ul>
+        </div>
+        <div class="logo"><h1>Tsunami</h1> <h3>Communiquez à la vitesse d'un tsunami.</h3></div>
+        <div id="statusBar" style="display: none;">
+          <img src="/public/images/loading.gif"/> 
+          <span class="message"><span>
+        </div>
+        <div id="bannerProfile"><a href="#" class="profile">${currentUser.username}</a> - 
+        #{if _displayAdminZone}<a href="/admin/">zone admin</a> - #{/if}
+        #{if _displayIndex}<a href="/">index</a> - #{/if}
+        <a href="@{Auth.logout}">Déconnexion</a></div>
+      </div>

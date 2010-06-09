@@ -479,6 +479,7 @@ tsunami.tools.namespace('tsunami.contacts');
         return;
       if(!containment)
         containment = '#contactList .dragContactContainment';
+      
       $(selector).draggable({ 
         containment: containment,
         revert: true,
