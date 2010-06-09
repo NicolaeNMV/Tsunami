@@ -12,7 +12,7 @@ public class Bootstrap extends Job<Object> {
     public void doJob() {
         if (User.count() == 0) {
             // Create some test users
-            new User("master", "tsunami").save();
+            new User("master", "tsunami").setAdmin(true).save();
             Logger.info("No user in database. User master (passwd:tsunami) created.");
             User u;
             u = new User("toto", "toto");

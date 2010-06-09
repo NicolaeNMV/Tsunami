@@ -51,6 +51,8 @@ public class User extends ActivityDate {
 
     public boolean avatar;
     
+    public boolean isAdmin;
+    
     public User(String login, String password) {
         this.username = login;
         this.password = password;
@@ -61,19 +63,27 @@ public class User extends ActivityDate {
         this.contacts = new ContactsList();
         contacts.save();
         avatar = false;
+        isAdmin = false;
         initActivity();
     }
     
-    public void setAvatar(boolean exists) {
+    public User setAvatar(boolean exists) {
         if(exists!=avatar) {
             avatar=exists;
             save();
         }
+        return this;
     }
     
-    public void setSubmessage(String str) {
+    public User setAdmin(boolean isAdmin) {
+      this.isAdmin = isAdmin;
+      return this;
+    }
+    
+    public User setSubmessage(String str) {
         submessage = str;
-        save();
+        save(); // todo remove this...
+        return this;
     }
     
     public File getUserPath() {

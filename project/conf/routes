@@ -12,7 +12,12 @@
 
 GET     /?                                      Main.index
 
-GET     /test Main.test
+GET     /test                                   Main.test
+
+### Admin ###
+
+*        /admin/                                module:crud
+
 
 ### Auth ###
 

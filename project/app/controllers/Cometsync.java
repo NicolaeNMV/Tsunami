@@ -19,17 +19,13 @@ public class Cometsync extends Base {
 	    if (user == null)
             error("userNotFound");
 	    
-	    System.out.println("event: "+event);
 	    if (event.equals("connect")) {
-	    	System.out.println("connected ");
 	    	user.imStatus = ImStatus.AVAILABLE;
 	    } else {
-	    	System.out.println("offline ");
 	    	user.imStatus = ImStatus.OFFLINE;
 	    }
 	    // @TODO, include the new status of the user
 	    user.save();
-	    System.out.println("user.imStatus "+user.imStatus);
 		user.sendCometAllContacts("user.status",user.userid);
     }
 }
