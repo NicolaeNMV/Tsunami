@@ -54,7 +54,7 @@ public class Vaguelettes extends Application {
         User user = User.findByUserid(userid);
         notFoundIfNull(user);
         VagueParticipant vp = new VagueParticipant(user);
-        vaguelette.addParticipant(vp);
+        vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
     public static void editPatch(@Required Long vagueletteId, String content) {
@@ -63,7 +63,7 @@ public class Vaguelettes extends Application {
         notFoundIfNull(vaguelette);
         if(!vaguelette.containsUser(currentUser.userid))
             forbidden();
-        for(VagueParticipant vp : vaguelette.participants)
+        for(VagueParticipant vp : vaguelette.vague.participants)
           sendComet(vp.userid,"vaguelette.edit",vagueletteId);
         
         vaguelette.setBody(content);
