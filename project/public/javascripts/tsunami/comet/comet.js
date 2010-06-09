@@ -66,7 +66,6 @@ tsunami.tools.namespace('tsunami.comet');
 	});
 	$(document).bind('comet.close',function() {
 		comet.connected = false;
-		comet.connectTimerWait = false;
 		comet.connect();
 	});
 	
