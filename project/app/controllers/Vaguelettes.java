@@ -57,16 +57,14 @@ public class Vaguelettes extends Application {
         vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
-    public static void editPatch(@Required Long vagueletteId, String content) {
+    public static void editSync(@Required Long vagueletteId, String patch) {
         User currentUser = getConnectedUser();
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);
-        if(!vaguelette.containsUser(currentUser.userid))
-            forbidden();
-        for(VagueParticipant vp : vaguelette.vague.participants)
-          sendComet(vp.user.userid,"vaguelette.edit",vagueletteId);
+        // TODO, check if user is allowed to edit
+        //vaguelette.
         
-        vaguelette.setBody(content);
-        renderJSON(vaguelette.toJson());
+        //vaguelette.setBody(content);
+        //renderJSON(vaguelette.toJson());
     }
 }

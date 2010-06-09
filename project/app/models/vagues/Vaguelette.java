@@ -7,6 +7,8 @@ import models.vagues.json.*;
 
 import models.ActivityDate;
 
+import util.diff_match_patch;
+
 
 @Entity
 public class Vaguelette extends ActivityDate {
@@ -21,9 +23,16 @@ public class Vaguelette extends ActivityDate {
     
     public Long parentId;
     
+    public int version;
+    
+    @OneToMany(mappedBy="vaguelette", cascade=CascadeType.ALL)
+    public List<VagueletteHistory> histories;
+    
     public Vaguelette(String body, Vague vague) {
+      histories = new ArrayList<VagueletteHistory>();
       this.vague = vague;
       this.body = body;
+      this.version = 0;
       initActivity();
     }
     
@@ -52,4 +61,17 @@ public class Vaguelette extends ActivityDate {
     public VagueletteJson toJson() {
       return new VagueletteJson(this);
     }
+    
+    public Vaguelette addHistory(String patch, int version) {
+        VagueletteHistory vh = new VagueletteHistory(patch, version);
+        vh.vaguelette = this;
+        vh.save();
+        histories.add(vh);
+        save();
+        return this;
+    }
+    
+    /*public Vaguelette patch(String patch) {
+        
+    }*/
 }

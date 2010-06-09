@@ -1,0 +1,7 @@
+1. Modifcam ceva
+2. Are loc generarea patch-ului, se trimite la server
+3. Serverul:
+- aplica patchul la copia sa
+- inregistreaza p/u istorie
+- face +1 la versiune
+- trimite la toti patchul, si versiunea la care ea corespunde

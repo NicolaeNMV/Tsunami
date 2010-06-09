@@ -153,31 +153,7 @@ tsunami.tools.namespace('tsunami.vagues');
       ajax('Vaguelettes.edit', data, onEditVaguelette);
     };
     
-    var dmp = (function() {
-    	var dmp = new diff_match_patch();
-    	dmp.Diff_Timeout = 1;
-		dmp.Diff_EditCost = 4;
-		return dmp;
-    }());
-    
-    var bindPatchTextarea = function(conf) {
-      textarea = conf.textarea;
-      textarea.data('before',textarea.val());
-      
-      textarea.keyup(function(e) {
-        if (textarea.data('before') == undefined) return;
-        var text1 = textarea.data('before');
-        var text2 = textarea.val();
-        textarea.data('before',text2);
-        
-        var diff = dmp.diff_main(text1, text2);
-        dmp.diff_cleanupEfficiency(diff);
-		var patch_list = dmp.patch_make(text1, text2, diff);
-		patch_text = dmp.patch_toText(patch_list);
-		//      conf.vagueletteId
-		console.log(patch_text);
-      });
-    }
+
     
     // Binders //
     var bindVaguelette = function(node) {
@@ -187,13 +163,6 @@ tsunami.tools.namespace('tsunami.vagues');
 	  	textarea: textarea,
 	  	vagueletteId: id
 	  });
-      /*var rtu = new tools.RealTimeUpdate({
-        node: textarea,
-        update: function(value) {
-          editVaguelette(id, value);
-        },
-        minInterval: 1000
-      });*/
       textarea.autoResize().trigger('change.dynSiz');
     };
     

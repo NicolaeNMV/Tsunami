@@ -79,8 +79,8 @@ GET    /vagues/{vagueId}/vaguelettes            Vaguelettes.list
 GET    /vaguelettes/{vagueletteId}              Vaguelettes.view
 POST   /vagues/{vagueId}                        Vaguelettes.create
 PUT    /vaguelettes/{vagueletteId}              Vaguelettes.edit
-# DELETE /vaguelettes/{vagueletteId}              Vaguelettes.delete
-POST   /vagues/{vagueId}			Vaguelettes.editPatch
+# DELETE /vaguelettes/{vagueletteId}            Vaguelettes.delete
+POST   /vaguelettes/{vagueletteId}/sync         Vaguelettes.editSync
 
 ### Chat ###
 POST    /chat/send                              Profile.chatSend
