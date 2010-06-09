@@ -5,8 +5,7 @@ import java.io.File;
 import com.google.gson.Gson;
 
 import models.User;
-import play.data.validation.Required;
-import play.data.validation.Validation;
+import play.data.validation.*;
 import util.Avatar;
 
 import controllers.base.Application;
@@ -43,6 +42,17 @@ public class Profile extends Application {
         redirect("/");
     }
     
+    public static void changePassword
+      (@Required String password, 
+      @Required @Equals("password") String passwordRetype, 
+      @Required @MinSize(4) @MaxSize(255) String newPassword) {
+        if(validation.hasErrors()) {
+            render();
+        }
+        
+        renderText("");
+    }
+    
     /*
      * TODO:
      * - Send only if userid is a friend of current user
@@ -54,6 +64,5 @@ public class Profile extends Application {
         }
         renderText("no");
     }
-    
 
 }

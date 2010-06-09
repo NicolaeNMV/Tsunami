@@ -187,14 +187,18 @@ tsunami.tools.namespace('tsunami.gui');
         var windowsLoaded = 0;
         for(var w in g_windows) {
           var win = g_windows[w];
+            
           $(document).bind('window.'+win.id+'.ready', function() {
+            
             if(windowsLoaded>=g_windows.length) return; // all windows are already loaded
             windowsLoaded ++;
             if(windowsLoaded>=g_windows.length) {
-              gui.StatusBar.hide();
+              setTimeout(function(){
+                gui.StatusBar.hide();
+                $('.window').resize();
+              }, 300);
             }
             propageResize();
-            
           });
         }
         

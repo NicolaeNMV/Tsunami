@@ -31,6 +31,8 @@
     #{script src:'tsunami/tools/i18n.js' /}
     #{script src:'tsunami/tools/real-time.js' /}
     
+    #{script src:'tsunami/profile.js' /}
+    
     #{script src:'tsunami/comet/comet.js' /}
     #{script src:'tsunami/comet/chat.js' /}
     
@@ -42,12 +44,16 @@
     #{script src:'tsunami/gui/WindowManager.js' /}
 #{/set}
 
-#{header currentUser: currentUser, displayAdminZone: currentUser.isAdmin /}
+#{header themes: themes, currentUser: currentUser, displayAdminZone: currentUser.isAdmin /}
       <div id="application"></div>
  
 
   <div class="theme theme-light level-60" id="contactListSelfAvatarPopup" style="display: none;">
     <div class="imageContainer"></div>
     #{postFile destUrl: @Profile.postAvatar(), name: 'file' /}
+  </div>
+  
+  <div id="profile" style="display: none;">
+    #{include 'Profile/changePassword.html' /}
   </div>
  

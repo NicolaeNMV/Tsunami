@@ -16,27 +16,19 @@ public class Vaguelette extends ActivityDate {
     @Lob
     public String body;
     
-    @OneToMany(mappedBy="vaguelette", cascade=CascadeType.ALL)
-    public List<VagueParticipant> participants;
-    
     @ManyToOne
     public Vague vague;
     
     public Long parentId;
     
     public Vaguelette(String body, Vague vague) {
-      participants = new ArrayList<VagueParticipant>();
       this.vague = vague;
       this.body = body;
       initActivity();
     }
     
-    public Vaguelette addParticipant(VagueParticipant vp) {
-        vp.vaguelette = this;
-        vp.save();
-        participants.add(vp);
-        save();
-        return this;
+    public List<VagueParticipant> getParticipants() {
+        return vague.participants;
     }
     
     public Vaguelette setBody(String body) {
@@ -54,7 +46,7 @@ public class Vaguelette extends ActivityDate {
     }
     
     public boolean containsUser(String userid) {
-        for(VagueParticipant vp : participants)
+        for(VagueParticipant vp : vague.participants)
             if(vp.userid.equals(userid))
                 return true;
         return false;

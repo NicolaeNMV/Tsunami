@@ -31,6 +31,8 @@ GET     /browser                                Auth.browserCompatibilityPage
 
 ### Profile ###
 
+POST    /profile/password                       Profile.changePassword
+
 POST    /profile/submessage                     Profile.updateSubmessage
 
 POST    /profile/avatar                         Profile.postAvatar
@@ -69,6 +71,7 @@ GET   /vagues/?                                 Vagues.list
 GET	  /vagues/{vagueId}                         Vagues.show
 PUT	  /vagues/{vagueId}                         Vagues.edit
 POST  /vagues                                   Vagues.create
+POST  /vagues/{vagueId}/{userid}                Vagues.inviteUser
 
 ### Vaguelettes ###
 

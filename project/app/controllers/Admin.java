@@ -1,9 +1,10 @@
 package controllers;
 
-import controllers.base.Application;
+import controllers.base.*;
 import play.data.validation.*;
 import play.mvc.*;
 import models.*;
+import util.*;
 
 public class Admin extends CRUD {
     
@@ -13,8 +14,10 @@ public class Admin extends CRUD {
             User user = User.findByUserid( session.get("uid"));
             if(!user.isAdmin)
                 forbidden();
+            renderArgs.put("currentUser", user);
         }
         else
             redirect("/");
+        BaseUtil.addCurrentThemeToRenderArgs(renderArgs, session);
     }
 }

@@ -25,11 +25,23 @@ public class Vague extends ActivityDate {
     @OneToMany(mappedBy="vague", cascade=CascadeType.ALL)
     public List<Vaguelette> vaguelettes;
     
+    @OneToMany(mappedBy="vague", cascade=CascadeType.ALL)
+    public List<VagueParticipant> participants;
+    
     public Vague(String subject) {
+        participants = new ArrayList<VagueParticipant>();
         initActivity();
         this.subject = subject;
         this.vaguelettes = new ArrayList<Vaguelette>();
         updatePreview();
+    }
+    
+    public Vague addParticipant(VagueParticipant vp) {
+        vp.vague = this;
+        vp.save();
+        participants.add(vp);
+        save();
+        return this;
     }
     
     // TODO : will also update the subject (subject is the first vaguelette line)
@@ -50,7 +62,6 @@ public class Vague extends ActivityDate {
     public Vague addVaguelette(Vaguelette o, User addedBy) {
         o.vague = this;
         o.save();
-        o.addParticipant(new VagueParticipant(addedBy));
         updatePreview();
         updateActivity(); // will save too ( FIXME: not save() ) 
         // save();
@@ -63,6 +74,13 @@ public class Vague extends ActivityDate {
         return this;
     }
     
+    public boolean containsUser(String userid) {
+        for(VagueParticipant vp : participants)
+            if(vp.userid.equals(userid))
+                return true;
+        return false;
+    }
+    
     public List<Vaguelette> getVaguelettes(String userid) {
         List<Vaguelette> filteredVaguelettes = new ArrayList<Vaguelette>();
         for(Vaguelette v : vaguelettes)
@@ -73,8 +91,10 @@ public class Vague extends ActivityDate {
 
     public static List<Vague> findByUserid(String userid, String search) {
         Set<Long> vagueIds = new HashSet<Long>();
-        for(Vaguelette o : Vaguelette.findByUserid(userid))
-            vagueIds.add(o.vague.id);
+        List<Vague> all = findAll();
+        for(Vague v : all)
+            if(v.containsUser(userid))
+                vagueIds.add(v.id);
         if(vagueIds.size()==0)
             return new ArrayList<Vague>();
         if(search!=null && search.length()>0)

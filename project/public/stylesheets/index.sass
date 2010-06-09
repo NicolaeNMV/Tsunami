@@ -319,7 +319,27 @@
           :padding 0
 
 
+/// Profile ///
+#banner a.profile
+  font-weight: bold
+  padding: 4px 8px
+    :bottom 12px
+  &.folded
+    border: 1px solid black
+    +border-radius(10px 10px 0 0)
+    background: white
+    color: black
+    &:hover
+      color: black
 
+#profile
+  position: absolute
+  width: 400px
+  min-height: 100px
+  background: white
+  border: 1px solid black
+    :top none
+  +border-radius(0 0 10px 10px)
 
 /// Admin ///
 #admin

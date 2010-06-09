@@ -233,4 +233,8 @@ public class User extends ActivityDate {
     		Application.sendComet(c.user,event,data);
     	}
     }
+    
+    public String toString() {
+        return username+" "+(email!=null ? "("+email+")" : "");
+    }
 }

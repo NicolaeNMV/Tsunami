@@ -1,0 +1,32 @@
+#{extends 'layout.html' /}
+
+#{set title:'Administration' /}
+
+#{set 'head'}
+#{get 'head' /}
+#{stylesheet 'index.sass' /}
+#{/set}
+
+
+#{header currentUser: currentUser, displayIndex: true /}
+
+<div id="admin">
+  <nav>
+    <a href="@{index}">Accueil</a>
+    <a href="/admin/models/">Base de donnée</a>
+  </nav>
+
+  <div id="users">
+      <h2>Inscription en attente</h2>
+      #{if pendingRegistration?.size()>0}
+      <ul class="pendingRegistration">
+      #{list items: pendingRegistration, as: 'user'}
+          <li>user</li>
+      #{/list}
+      </ul>
+      #{/if}
+      #{else}
+          <span class="noitem">Aucune inscription en attente</span>
+      #{/else}
+  </div>
+</div>
