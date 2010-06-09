@@ -11,7 +11,7 @@ import play.db.jpa.Model;
 @Entity
 public class VagueParticipant extends Model {
     
-    public String userid;
+    public User user;
     
     @ManyToOne
     public Vague vague;
@@ -24,7 +24,7 @@ public class VagueParticipant extends Model {
     }
     
     public VagueParticipant(User user) {
-        this.userid = user.userid;
+        this.user = user;
     }
     
     public VagueParticipant assignToVague(Vague v) {

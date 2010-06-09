@@ -39,7 +39,7 @@ public class Vaguelettes extends Application {
         if(!vaguelette.containsUser(currentUser.userid))
             forbidden();
         for(VagueParticipant vp : vaguelette.vague.participants)
-          sendComet(vp.userid,"vaguelette.edit",vagueletteId);
+          sendComet(vp.user.userid,"vaguelette.edit",vagueletteId);
         
         vaguelette.setBody(content);
         renderJSON(vaguelette.toJson());
@@ -64,7 +64,7 @@ public class Vaguelettes extends Application {
         if(!vaguelette.containsUser(currentUser.userid))
             forbidden();
         for(VagueParticipant vp : vaguelette.vague.participants)
-          sendComet(vp.userid,"vaguelette.edit",vagueletteId);
+          sendComet(vp.user.userid,"vaguelette.edit",vagueletteId);
         
         vaguelette.setBody(content);
         renderJSON(vaguelette.toJson());

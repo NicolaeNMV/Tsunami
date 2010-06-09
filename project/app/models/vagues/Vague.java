@@ -76,7 +76,7 @@ public class Vague extends ActivityDate {
     
     public boolean containsUser(String userid) {
         for(VagueParticipant vp : participants)
-            if(vp.userid.equals(userid))
+            if(vp.user.userid.equals(userid))
                 return true;
         return false;
     }

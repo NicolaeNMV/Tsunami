@@ -46,10 +46,7 @@ public class Vaguelette extends ActivityDate {
     }
     
     public boolean containsUser(String userid) {
-        for(VagueParticipant vp : vague.participants)
-            if(vp.userid.equals(userid))
-                return true;
-        return false;
+        return vague.containsUser(userid);
     }
     
     public VagueletteJson toJson() {
