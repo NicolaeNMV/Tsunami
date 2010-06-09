@@ -57,5 +57,16 @@ public class Vaguelettes extends Application {
         vaguelette.addParticipant(vp);
         renderJSON("{}");
     }
-    
+    public static void editPatch(@Required Long vagueletteId, String content) {
+        User currentUser = getConnectedUser();
+        Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
+        notFoundIfNull(vaguelette);
+        if(!vaguelette.containsUser(currentUser.userid))
+            forbidden();
+        for(VagueParticipant vp : vaguelette.participants)
+          sendComet(vp.userid,"vaguelette.edit",vagueletteId);
+        
+        vaguelette.setBody(content);
+        renderJSON(vaguelette.toJson());
+    }
 }

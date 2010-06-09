@@ -66,6 +66,7 @@ tsunami.tools.namespace('tsunami.comet');
 	});
 	$(document).bind('comet.close',function() {
 		comet.connected = false;
+		comet.connectTimerWait = false;
 		comet.connect();
 	});
 	
@@ -84,13 +85,16 @@ tsunami.tools.namespace('tsunami.comet');
 		if (comet.connectTimerWait == true) return;
 		comet.connectTimerWait = true;
 		
-		if (comet.connected == true) return;
+		if (comet.connected == true) {
+			comet.connectTimerWait = false;
+			return;
+		}
 		if (comet.firstConnect == true) stomp.reset();
 		else comet.firstConnect = true;
 		
 		stomp.connect('localhost', 61613, currentUser.userid, '');
 		console.log('Try to connect to stomp');
-
+		
 		setTimeout(function(){comet.connectTimerWait=false;comet.connect()},2500);
 	}
 
@@ -100,7 +104,7 @@ tsunami.tools.namespace('tsunami.comet');
 	});
 
 	$(document).unload(function() {
-	// stomp.reset();
+		stomp.reset();
 	});
 }());
 

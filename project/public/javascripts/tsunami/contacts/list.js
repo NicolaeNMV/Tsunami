@@ -554,7 +554,7 @@ tsunami.tools.namespace('tsunami.contacts');
     // @TODO an bind that support multiple events? (separated by a comma)
     remoteBind('contacts.changes',contactListReload);
     remoteBind('user.submessage',contactListReload);
-    
+    remoteBind('user.status',contactListReload);
     
     return {
 
