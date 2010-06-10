@@ -57,7 +57,7 @@ public class Vaguelettes extends Application {
         vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
-    public static void editSync(@Required Long vagueletteId, String patch) {
+    public static void editSync(@Required Long vagueletteId, @Required String patch) {
         User currentUser = getConnectedUser();
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);

@@ -1,5 +1,6 @@
-tsunami.tools.namespace('tsunami.vagues_sync');
+tsunami.tools.namespace('tsunami.vagues.sync');
 (function() {
+    var sync = tsunami.vagues.sync;
     var dmp = (function() {
     	var dmp = new diff_match_patch();
     	dmp.Diff_Timeout = 1;
@@ -15,15 +16,14 @@ tsunami.tools.namespace('tsunami.vagues_sync');
     }
     */
     
-    tsunami.vagues_sync.bindTextarea = function(conf) {
-      textarea = conf.textarea;
-      textarea.data('before',textarea.val());
+    sync.bindTextarea = function(textarea) {
+      textarea.data('sync.before',textarea.val());
       
       textarea.keyup(function(e) {
-        if (textarea.data('before') == undefined) return;
-        var text1 = textarea.data('before');
+        if (textarea.data('sync.before') == undefined) return;
+        var text1 = textarea.data('sync.before');
         var text2 = textarea.val();
-        textarea.data('before',text2);
+        textarea.data('sync.before',text2);
         
         var diff = dmp.diff_main(text1, text2);
         dmp.diff_cleanupEfficiency(diff);
@@ -31,7 +31,33 @@ tsunami.tools.namespace('tsunami.vagues_sync');
 		patch_text = dmp.patch_toText(patch_list);
 		//      conf.vagueletteId
 		//console.log(patch_text);
-        $.post("/chat/send", { userid: extractUserId(id), msg: msg } );
+        var vaguelette = textarea.data('object');
+        return;
+        $.post("/vaguelettes/"+ vaguelette.id +"/sync", 
+            { vagueletteId: vaguelette.id, patch: patch_text,
+              windowsession: tsunami.export.loadedat }
+        );
       });
     }
+    
+    var patchArrive = function(obj) {
+        /*
+        var patches = dmp.patch_fromText(patch_text);
+var results = dmp.patch_apply(patches, text1);
+//document.getElementById('text2b').value = results[0];
+
+  results = results[1];
+  var html = '';
+  for (var x = 0; x < results.length; x++) {
+    if (results[x]) {
+      html += '<LI><FONT COLOR="#009900">Ok</' + 'FONT>';
+    } else {
+      html += '<LI><FONT COLOR="#990000">Fail</' + 'FONT>';
+    }
+  }
+        */
+    }
+    
+    //vaguelette_1
+    remoteBind('vaguelette.patch',patchArrive);
 }());

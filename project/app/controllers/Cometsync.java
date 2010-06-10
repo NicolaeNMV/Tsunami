@@ -24,8 +24,8 @@ public class Cometsync extends Base {
 	    } else {
 	    	user.imStatus = ImStatus.OFFLINE;
 	    }
-	    // @TODO, include the new status of the user
 	    user.save();
+        // @TODO, include the new status of the user
 		user.sendCometAllContacts("user.status",user.userid);
     }
 }

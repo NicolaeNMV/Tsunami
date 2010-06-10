@@ -18,12 +18,15 @@ public class VagueletteJson {
     
     public Long parentId;
     
+    public int version;
+    
     public VagueletteJson(Vaguelette v) {
         id = v.id;
         parentId = v.parentId==null ? 0 : v.parentId;
         body = v.body;
         creationDate = v.creationDate.getMillis();
         lastActivityDate = v.lastActivityDate.getMillis();
+        version = v.version;
     }
     
 }

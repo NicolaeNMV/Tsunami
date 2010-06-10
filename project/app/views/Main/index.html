@@ -25,6 +25,7 @@
       tsunami.export.currentUser = #{toJson currentUser /};
       tsunami.export.routes = #{routes /};
       tsunami.export.i18nMessages = #{i18nMessages /};
+      tsunami.export.loadedat = (new Date).getTime(); // In microseconds
     </script>
     
     #{script src:'tsunami/tools/utils.js' /}
@@ -40,6 +41,7 @@
     #{script src:'tsunami/contacts/utils.js' /}
     #{script src:'tsunami/contacts/list.js' /}
     #{script src:'tsunami/vague/vague.js' /}
+    #{script src:'tsunami/vague/vague_sync.js' /}
     #{script src:'tsunami/vagues/vagues.js' /}
     #{script src:'tsunami/gui/general.js' /}
     #{script src:'tsunami/gui/WindowManager.js' /}

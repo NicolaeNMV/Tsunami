@@ -150,9 +150,11 @@ tsunami.tools.namespace('tsunami.vagues');
     
     var appendVaguelette = function(vaguelette) {
       var node = $(tpl_vaguelette(vaguelette));
+      var textarea = $('textarea:first', node);
+      textarea.data('object',vaguelette)
       var appendTo = (vaguelette.parentId==0) ? $('.vagueContainer > .vaguelettes', vagueNode) : $('.vaguelettes:first', vagueletteId2node(vaguelette.parentId));
       $(appendTo).append(node);
-      bindVaguelette(node);
+      bindVaguelette(textarea);
     };
     
     var updateHeight = function() {
@@ -218,14 +220,9 @@ tsunami.tools.namespace('tsunami.vagues');
 
     
     // Binders //
-    var bindVaguelette = function(node) {
-      var id = string2vagueletteId($(node).attr('id'));
-      var textarea = $('textarea:first', node);
-	  bindPatchTextarea({
-	  	textarea: textarea,
-	  	vagueletteId: id
-	  });
-      textarea.autoResize().trigger('change.dynSiz');
+    var bindVaguelette = function(textarea) {
+        tsunami.vagues.sync.bindTextarea(textarea);
+        textarea.autoResize().trigger('change.dynSiz');
     };
     
     var bindCloseMode = function() {
