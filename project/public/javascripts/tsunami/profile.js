@@ -30,7 +30,7 @@
         })
         $(document).click(function(e){
           var target = $(e.target);
-          if(target.parents('#profile').size() || !target.is('#profile') && !target.is('a.profile'))
+          if(!target.parents().is('#profile') && !target.is('#profile') && !target.is('a.profile'))
             toggleProfile(false);
         });
       }

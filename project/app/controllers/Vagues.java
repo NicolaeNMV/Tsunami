@@ -55,7 +55,7 @@ public class Vagues extends Application {
         User currentUser = getConnectedUser();
         Vague vague = Vague.findById(vagueId);
         notFoundIfNull(vague);
-        if(!vague.containsUser(currentUser.userid))
+        if(!vague.containsUser(currentUser.userid) || vague.containsUser(userid))
             forbidden();
         User user = User.findByUserid(userid);
         notFoundIfNull(user);

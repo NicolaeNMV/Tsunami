@@ -319,30 +319,49 @@
           :margin 0
           :padding 0
   
-  #participants
-    padding: 2px
-    overflow: auto
-    ul
-      list-style: none
-      padding: 0
-      margin: 0
-      
-      li
-        padding: 4px
-        float: left
-        max-width: 60px
-        img
-          display: block
-        span
-          overflow: hidden
+
+.users-list
+  padding: 2px
+  overflow: auto
+  ul
+    list-style: none
+    padding: 0
+    margin: 0
     
-    .addNewParticipant
-      width: 40px
-      height: 40px
-      display: block
-      text-decoration: none
-      background: url(/public/images/addNewParticipant.png) no-repeat 8px 8px
+    li
+      padding: 4px
+      float: left
+      max-width: 60px
+      img
+        display: block
+      span
+        overflow: hidden
   
+  .addNewParticipant
+    width: 40px
+    height: 40px
+    display: block
+    text-decoration: none
+    background: url(/public/images/addNewParticipant.png) no-repeat 8px 8px
+
+
+#addNewParticipant 
+  position: absolute
+  padding: 10px
+  width: 300px
+  min-height: 100px
+  background: white
+  border: 1px solid black
+  +border-radius(10px) 
+  &:after
+    position: absolute
+    right: -30px
+    top: 15px
+    content: " "
+    width: 0px
+    height: 0px
+    border: 15px solid
+    border-color: transparent transparent transparent white
   
 
 /// Profile ///

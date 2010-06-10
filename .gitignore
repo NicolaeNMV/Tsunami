@@ -1,0 +1,9 @@
+*~
+*.pyc
+project/data/
+.sass-cache/
+orbited/*.log
+.classpath
+project/precompiled/
+project/eclipse/
+project/tmp/
