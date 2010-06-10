@@ -35,6 +35,9 @@ tsunami.tools.namespace('tsunami.vagues');
           '</li>';
         }
         
+        if(contacts.length==0)
+          ulContact = "Aucun contact ne peut être ajouté.";
+        
         $('ul',node).empty().append(ulContact);
       })
     };
