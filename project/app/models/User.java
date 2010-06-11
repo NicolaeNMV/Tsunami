@@ -55,7 +55,7 @@ public class User extends ActivityDate {
     
     public User(String login, String password) {
         this.username = login;
-        this.password = password;
+        encodePassword(password);
         this.userid = Codec.UUID();
         this.imStatus = ImStatus.OFFLINE;
         while(findByUserid(this.userid)!=null)
@@ -91,6 +91,14 @@ public class User extends ActivityDate {
         if(!f.exists())
             f.mkdirs();
         return f;
+    }
+    
+    public void encodePassword(String pass) {
+        password = pass;
+    }
+    
+    public boolean matchPassword(String pass) {
+        return password!=null && password.equals(pass);
     }
     
     public void changeStatus (ImStatus status) {

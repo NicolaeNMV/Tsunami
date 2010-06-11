@@ -46,11 +46,17 @@ public class Profile extends Application {
       (@Required String password, 
       @Required @Equals("password") String passwordRetype, 
       @Required @MinSize(4) @MaxSize(255) String newPassword) {
-        if(validation.hasErrors()) {
+        if(validation.hasErrors())
             render();
-        }
-        
-        renderText("");
+        User connected = getConnectedUser();
+        if(!connected.matchPassword(password))
+            validation.addError("password", "mot de passe invalide");
+        if(validation.hasErrors())
+            render();
+        connected.encodePassword(newPassword);
+        connected.save();
+        renderArgs.put("success",true);
+        render();
     }
     
     /*

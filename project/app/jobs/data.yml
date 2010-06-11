@@ -1,0 +1,47 @@
+
+User(master):
+  email: master@iut-fbleau.fr
+  userid: 1cde8d5e-2ab4-482b-ad68-3ae1d60db629
+  username: master
+  firstName: Master
+  lastName: MASTER
+  password: tsunami
+  isAdmin: true
+  imStatus: OFFLINE
+  
+User(toto):
+  email: toto@iut-fbleau.fr
+  userid: 12f56c55-a5dd-49bb-809f-7d81b7fbbce3
+  username: toto
+  firstName: Toto
+  lastName: TOTO
+  password: toto
+  imStatus: OFFLINE
+  
+User(titi):
+  email: titi@iut-fbleau.fr
+  userid: f8095ea1-d8d0-48d2-ab89-c83f9a5dbbac
+  username: titi
+  firstName: Titi
+  lastName: TITI
+  password: titi
+  imStatus: OFFLINE
+  
+User(tata):
+  email: tata@iut-fbleau.fr
+  userid: 44577824-185c-4729-b35c-b41902770ef4
+  username: tata
+  firstName: Tata
+  lastName: TATA
+  password: tata
+  imStatus: OFFLINE
+
+
+vagues.Vaguelette(v1_1):
+  body: test1
+
+vagues.Vaguelette(v1_2):
+  body: test2
+
+vagues.Vague(v1):
+  vaguelettes: [v1_1, v1_2]

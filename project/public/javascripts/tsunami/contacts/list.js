@@ -74,7 +74,7 @@ tsunami.tools.namespace('tsunami.contacts');
         return  ('value="'+status+'"'+(status==user.imStatus.toLowerCase()?' selected="selected"':''));
       };
       return ('<div id="'+userid2string(user.userid)+'" class="self theme theme-light level-40">'+
-        tpl_avatar(user)+
+        '<span class="profileEventClickIgnore">'+tpl_avatar(user)+'</span>'+
         '<div class="infos">'+
           '<div class="username linebreak">'+user.username+'</div> '+
           '<div class="linebreak submessageContainer">'+
@@ -579,6 +579,14 @@ tsunami.tools.namespace('tsunami.contacts');
         // Fix jqueryui bug #4163 to force the cursor change on Chrome
         document.onselectstart = function () { return false; };
         $(document).bind('WindowManager.ready', function() {
+          $('#contactList .contact .chat.action').live('click',function() {
+            var userid = string2userid($(this).parents('.contact:first').attr('id'));
+            ajax('Vagues.create', {subject: ''}, function(vague){
+              ajax('Vagues.inviteUser', {userid: userid, vagueId: vague.id}, function() {
+                $(document).trigger('vague.create', vague);
+              })
+            });
+          });
           getAllContacts();
           updateHeight();
           $(window).resize(updateHeight);

@@ -1,3 +1,9 @@
+validation.required=Ce champ est obligatoire (%s)
+validation.minSize=La taille minimum est %2$d (%s)
+validation.email=Adresse email non valide (%s)
+validation.maxSize=La taille maximum est de %2$d (%s)
+validation.invalid=Valeur incorrecte (%s)
+validation.equals=Valeur non égal
 
 ### Error messages ###
 error.contactExists=Ce contact est déjà dans votre liste.

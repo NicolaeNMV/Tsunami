@@ -25,7 +25,7 @@ tsunami.tools.namespace('tsunami.contacts');
   };
   
   contacts.SelfAvatarPopup = function() {
-    
+    /*
     // Private //
     var g_node = null;
 
@@ -56,9 +56,10 @@ tsunami.tools.namespace('tsunami.contacts');
       if(!g_up_ip)
         g_node.hide();
     };
-    
+    */
     return {
       init: function() {
+        /*
         g_node = $('#contactListSelfAvatarPopup');
         hide();
         $(document).click(function(e) {
@@ -66,12 +67,16 @@ tsunami.tools.namespace('tsunami.contacts');
             hide();
           }
         });
+        */
       },
       
       show: function(e) {
+        tsunami.profile.Main.toggleProfile(true);
+        /*
         g_posx = e.clientX;
         g_posy = e.clientY-$('#application').position().top;
         show();
+        */
       }
     };
   }();

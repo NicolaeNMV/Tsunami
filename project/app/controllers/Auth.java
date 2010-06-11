@@ -58,7 +58,7 @@ public class Auth extends Base {
         
         User u = User.findByLogin(login);
         
-        if(u==null || !u.password.equals(password) )
+        if(u==null || !u.matchPassword(password) )
             notFound();
         
         session.put("uid", u.userid);

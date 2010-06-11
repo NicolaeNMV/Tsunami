@@ -36,7 +36,6 @@
     #{script src:'tsunami/profile.js' /}
     
     #{script src:'tsunami/comet/comet.js' /}
-    #{script src:'tsunami/comet/chat.js' /}
     
     #{script src:'tsunami/contacts/utils.js' /}
     #{script src:'tsunami/contacts/list.js' /}
@@ -49,15 +48,25 @@
 
 #{header themes: themes, currentUser: currentUser, displayAdminZone: currentUser.isAdmin /}
       <div id="application"></div>
- 
 
-  <div class="theme theme-light level-60" id="contactListSelfAvatarPopup" style="display: none;">
-    <div class="imageContainer"></div>
-    #{postFile destUrl: @Profile.postAvatar(), name: 'file' /}
-  </div>
   
-  <div id="profile" style="display: none;">
+  <div id="profile" class="profileEventClickIgnore" style="display: none;">
+    <div class="changeAvatar">
+      <h3>Changer mon avatar</h3>
+      <div class="imageContainer"></div>
+      #{postFile destUrl: @Profile.postAvatar(), name: 'file' /}
+    </div>
+    
     #{include 'Profile/changePassword.html' /}
+    
+    <div id="themeSelect">
+      <h3>Changer mon thème</h3>
+      <ul>
+      #{list items:themes, as:'t'}
+        <li><a href="javascript:;" class="theme">${t}</a>#{if !t_isLast}, #{/if}</li>
+      #{/list}
+      </ul>
+    </div>
   </div>
   
   <div id="addNewParticipant" style="display: none;">
