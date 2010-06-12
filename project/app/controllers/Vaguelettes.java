@@ -4,6 +4,7 @@ import models.User;
 import models.vagues.*;
 import play.data.validation.*;
 import controllers.base.Application;
+//import util.diff_match_patch;
 
 public class Vaguelettes extends Application {
     
@@ -57,11 +58,19 @@ public class Vaguelettes extends Application {
         vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
-    public static void editSync(@Required Long vagueletteId, @Required String patch) {
+    public static void editSync(@Required Long vagueletteId, @Required Long prevVersion @Required String patch) {
         User currentUser = getConnectedUser();
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);
+        
         // TODO, check if user is allowed to edit
+        if (vaguelette.version == 0) {
+        	//Vaguelette.
+        }
+        //diff_match_patch
+        vaguelette.find('');
+        
+        
         //vaguelette.
         
         //vaguelette.setBody(content);

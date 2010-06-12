@@ -71,7 +71,7 @@ public class Vaguelette extends ActivityDate {
         return this;
     }
     
-    /*public Vaguelette patch(String patch) {
+    public Vaguelette patch(String patch) {
         
-    }*/
+    }
 }
