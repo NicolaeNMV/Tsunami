@@ -23,6 +23,7 @@
         $('#banner a.profile').removeClass('folded');
       }
       else {
+        $('#banner a.profile').addClass('folded');
         updatePosition();
         profile.show();
       } 

@@ -39,7 +39,6 @@ public class OrbitedConnection extends Job<Void>{
 	
     public void doJob() {
     	
-    	Logger.info("Starting Restq...");
     	startRestq();
     	try {
 			Thread.sleep(2000);
@@ -48,7 +47,6 @@ public class OrbitedConnection extends Job<Void>{
 		}
     	Logger.info("Restq started.");
 
-    	Logger.info("Starting Orbited...");
     	startOrbited();
     	try {
 			Thread.sleep(2000);

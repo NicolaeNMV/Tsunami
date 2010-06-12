@@ -1,7 +1,7 @@
 #{extends 'Auth/layout.html' /}
 #{set title:'Page de connection' /}
 
-<div id="loginBox" class="authBox theme theme-box level-60 radius">
+<div id="loginBox" class="authBox theme theme-box level-60 radius" style="display: none;">
   <div class="head">Saisissez vos identifiants de connexion</div>
   <div class="body">
     <form method="post">
@@ -25,3 +25,27 @@
   </div>
   <div class="footer">Projet tutoré de Namolovan Nicolae et Renaudeau Gaëtan.</div>
 </div>
+
+<div id="browserCompatibility" class="authBox theme theme-box level-60 radius">
+  <div class="head">Compatibilité</div>
+  <div class="body">
+    <h2>Votre navigateur ne peut pas lancer notre application.</h2>
+    <h3>Voici les raisons possibles :</h3>
+    <ul>
+      <li>Vous n'utilisez pas un navigateur récent qui supporte le HTML5 (conseillé: firefox 3.6 minimum).</li>
+      <li>Vous n'avez pas activé le Javascript.</li>
+    </ul>
+  </div>
+  <div class="footer">Projet tutoré de Namolovan Nicolae et Renaudeau Gaëtan.</div>
+</div>
+
+<script type="text/javascript">
+  var checkCompatibility = function() {
+    if(!document.createElement('canvas').getContext)
+      return false;
+    $("#loginBox").show();
+    $("#browserCompatibility").hide();
+    return true;
+  }
+  checkCompatibility();
+</script>
