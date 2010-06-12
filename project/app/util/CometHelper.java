@@ -23,11 +23,11 @@ public class CometHelper {
                 if(client.isConnected())
                     Logger.info("Connected to Orbited");
                 else {
-                	client = null; // force next reloading
+                	//client = null; // force next reloading
                     Logger.error("Unable to connect to Orbited.");
                 }
             } catch(Exception e) {
-            	client = null; // force next reloading
+            	//client = null; // force next reloading
                 Logger.error("Unable to connect to Orbited : %s", e.getMessage());
             }
         }
@@ -35,6 +35,6 @@ public class CometHelper {
     }
     
     public static boolean isInit() {
-      return client != null;
+    	return client != null;
     }
 }

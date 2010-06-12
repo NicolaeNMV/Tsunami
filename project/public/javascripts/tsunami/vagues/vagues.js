@@ -44,6 +44,16 @@ tsunami.tools.namespace('tsunami.vagues');
     var g_vagueListNode = null;
     var g_vagueOpenedNode = null;
     
+    var g_shiftPressed = false;
+    $(document).keydown(function(e){
+      if(e.keyCode==16 || e.keyCode==17)
+        g_shiftPressed = true;
+    })
+    $(document).keyup(function(e){
+      if(e.keyCode==16 || e.keyCode==17)
+        g_shiftPressed = false;
+    })
+    
     // Utils //
     var vagueid2string = function(vagueid) {
       return 'vague_'+vagueid;
@@ -85,9 +95,9 @@ tsunami.tools.namespace('tsunami.vagues');
       '</section>'+
       '<section>'+
         '<ul class="actions">'+
-          '<li><button class="inbox">Restaurer</button></li>'+
-          '<li><button class="archive">Archiver</button></li>'+
-          '<li><button class="trash">Supprimer</button></li>'+
+          '<li><button rel="inbox">Restaurer</button></li>'+
+          '<li><button rel="archive">Archiver</button></li>'+
+          '<li><button rel="trash">Supprimer</button></li>'+
         '</ul>'+
       '</section>'+
         '</div><div class="footer"> '+
@@ -106,8 +116,10 @@ tsunami.tools.namespace('tsunami.vagues');
           break;
         }
       }
+      if(!box) box = 'input';
+      var toBeDisplay = $('.boxes a.'+box,g_vagueListNode).is('.enabled');
       
-      return '<li style="display: none;" class="vague '+(!box?'':box.toLowerCase())+'" id="'+vagueid2string(vague.id)+'">'+
+      return '<li '+(!toBeDisplay?'':'style="display: none;"')+' class="vague '+(box.toLowerCase())+'" id="'+vagueid2string(vague.id)+'">'+
       '<div class="stats">'+
         '<span class="vagueletteCount">('+vague.vaguelettes.length+' messages)</span>'+
       '</div>'+
@@ -207,8 +219,31 @@ tsunami.tools.namespace('tsunami.vagues');
     
     var bindFilters = function() {
       $('.boxes a',g_vagueListNode).click(function(){
+        if(!g_shiftPressed)
+          $('.boxes a').removeClass('enabled');
         $(this).toggleClass('enabled');
         applyBoxFilter();
+        return false;
+      })
+    };
+    
+    var bindActions = function() {
+      $('.actions button',g_vagueListNode).click(function(){
+        var vagues = $('.vagues .vague:visible').filter(':has(input:checked)');
+        if(vagues.size()==0)
+          return false;
+        var box = $(this).attr('rel');
+        var vagueIds = [];
+        vagues.each(function(i){
+          vagueIds.push(string2vagueid($(this).attr('id')));
+        });
+        ajax('Vagues.changeBox', {vagueIds: vagueIds, box: box}, function(){
+          vagues.removeClass('input');
+          vagues.removeClass('archive');
+          vagues.removeClass('trash');
+          vagues.addClass(box);
+          applyBoxFilter();
+        });
       })
     };
     
@@ -229,6 +264,7 @@ tsunami.tools.namespace('tsunami.vagues');
         g_vagueOpenedNode = null;
       });
       bindFilters();
+      bindActions();
     };
     
     var bindVagues = function() {

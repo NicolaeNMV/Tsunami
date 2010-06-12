@@ -34,4 +34,9 @@ public class VagueParticipant extends Model {
         // version = v.version;
         return this;
     }
+    
+    public VagueParticipant setStatus(BoxStatus s) {
+    	status = s;
+    	return this;
+    }
 }

@@ -6,7 +6,9 @@ import java.util.List;
 import controllers.base.Application;
 import models.vagues.*;
 import models.*;
+import models.vagues.VagueParticipant.BoxStatus;
 import models.vagues.json.VagueJson;
+import play.Logger;
 import play.data.validation.*;
 
 /**
@@ -43,12 +45,22 @@ public class Vagues extends Application {
         render(vague);
     }
     
-    public static void edit(Long vagueId, String subject) {
-        Vague vague = Vague.findById(vagueId);
-        notFoundIfNull(vague);
-        vague.subject = subject;
-        vague.save();
-        renderJSON(new VagueJson(vague));
+    public static void changeBox(@Required Long[] vagueIds, @Required String box) {
+    	if(validation.hasErrors())
+    		error();
+    	box = box.toUpperCase();
+    	User connected = getConnectedUser();
+    	for(Long vagueId : vagueIds) {
+    		Vague vague = Vague.findById(vagueId);
+    		VagueParticipant vagueParticipant = null;
+    		for(VagueParticipant vp : vague.participants)
+    			if(connected.equals(vp.user))
+    				vagueParticipant = vp;
+    		if(vagueParticipant!=null)
+    			vagueParticipant.setStatus(BoxStatus.valueOf(box)).save();
+    	}
+    	//box.toUpperCase()
+        renderJSON("{}");
     }
     
     public static void inviteUser(@Required Long vagueId, @Required String userid) {
