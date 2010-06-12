@@ -72,7 +72,8 @@ tsunami.tools.namespace('tsunami.vagues');
     
     var tpl_formFastCreate = function() {
       return ('<form class="fastCreate">'+
-		      '<button>'+tools.i18n('vagues.button.create')+'</button>'+
+		      '<button>'+tools.i18n('vagues.button.fastCreate')+'</button>'+
+		      '<input type="text" name="subject" />'+
 	      '</form>');
     };
     
@@ -249,7 +250,7 @@ tsunami.tools.namespace('tsunami.vagues');
     
     var bindVagueList = function() {
       $('form.fastCreate', g_vagueListNode).submit(function(){
-        ajax('Vagues.create', {subject: ''}, function(data){
+        ajax('Vagues.create', {subject: $('.fastCreate input[name=subject]', g_vagueListNode).val()}, function(data){
           $(document).trigger('vague.create', data);
         });
         return false;

@@ -1,7 +1,7 @@
 @import main.sass
 
 #main, #application
-  :min-width 800px
+  :min-width 900px
 
 // windows
 
@@ -282,22 +282,24 @@
   .noItemInfo
     text-align: center
     border-top: 1px solid rgba(255,255,255,0.5)
+    :background-color rgba(255,255,255,0.3)
     :padding 4px
   
   .vague
     border-top: 1px solid rgba(255,255,255,0.5)
     :padding 4px
+    :background-color rgba(255,255,255,0.2)
     white-space: nowrap
     :cursor pointer
     :clear both
     &:hover
-      :background-color rgba(255,255,255,0.25)
+      :background-color rgba(255,255,255,0.4)
     &.opened
-      :background-color rgba(255,255,255,0.5)
+      :background-color rgba(255,255,255,0.6)
       border-left: 1px solid rgba(255,255,255,0.5)
       :border-right 1px solid rgba(255,255,255,0.5)
       &:hover
-        :background-color rgba(255,255,255,0.75)
+        :background-color rgba(255,255,255,0.8)
     input[type=checkbox]
       :margin 0
       :float left
@@ -318,9 +320,13 @@
       :font-style italic
       :color silver
 
-  .fastCreate button
-    :padding 0
-    :font-size .8em
+  .fastCreate
+    buttom
+      :padding 0
+      :width 30%
+    input
+      :width 65%
+      float: right
 
   input[name=search]
     :width 92%

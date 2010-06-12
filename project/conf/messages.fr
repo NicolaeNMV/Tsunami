@@ -57,4 +57,5 @@ contacts.moveContactToAGroup=Veuillez déplacer le contact dans un groupe.
 ### Vagues list ###
 vagues.title=Liste des vagues
 vagues.button.create=Créer une vague
+vagues.button.fastCreate=Créer
 vagues.search=Rechercher...

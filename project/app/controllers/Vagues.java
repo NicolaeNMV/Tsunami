@@ -33,7 +33,7 @@ public class Vagues extends Application {
         vp.save();
         vague.participants.add(vp);
         vague.save();
-        vague.addVaguelette(new Vaguelette("", vague), getConnectedUser());
+        vague.addVaguelette(new Vaguelette(subject, vague), getConnectedUser());
         renderJSON(new VagueJson(vague));
     }
   

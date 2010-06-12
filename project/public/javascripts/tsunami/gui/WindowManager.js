@@ -158,8 +158,8 @@ tsunami.tools.namespace('tsunami.gui');
       init: function() {
         initWindows([
           {id: 'contactList', minWidth: 250, maxWidth: 400},
-          {id: 'vagueList', minWidth: 250, maxWidth: 500},
-          {id: 'vague', minWidth: 250}
+          {id: 'vagueList', minWidth: 310, maxWidth: 500},
+          {id: 'vague', minWidth: 290}
         ]);
         
         g_handlers = $('.window-handle');
