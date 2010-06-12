@@ -74,13 +74,22 @@ tsunami.tools.namespace('tsunami.vagues');
       return ('<div class="theme theme-box level-60 radius">'+
       '<div class="head">'+tools.i18n('vagues.title')+'</div>'+
       '<div class="body">'+
+        tpl_formFastCreate()+
+      '<section>'+
         '<ul class="boxes">'+
-          '<li><a href="javascript:;" class="inbox">inbox</a></li>'+
-          '<li><a href="javascript:;" class="archive">archive</a></li>'+
-          '<li><a href="javascript:;" class="trash">trash</a></li>'+
+          '<li><a href="javascript:;" class="inbox enabled">inbox</a></li>'+
+          '<li><a href="javascript:;" class="archive enabled">archive</a></li>'+
+          '<li><a href="javascript:;" class="trash enabled">trash</a></li>'+
         '</ul>'+
         '<ul class="vagues"></ul>'+
-        tpl_formFastCreate()+
+      '</section>'+
+      '<section>'+
+        '<ul class="actions">'+
+          '<li><button class="inbox">Restaurer</button></li>'+
+          '<li><button class="archive">Archiver</button></li>'+
+          '<li><button class="trash">Supprimer</button></li>'+
+        '</ul>'+
+      '</section>'+
         '</div><div class="footer"> '+
         '<img src="/public/images/loading.gif" class="searchIndicator" style="display: none;"/>'+
           tpl_search()+
