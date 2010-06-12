@@ -27,7 +27,7 @@ tsunami.tools.namespace('tsunami.vagues');
             }
           },
           minInterval: 1000,
-          minTextLength: 3
+          minTextLength: 1
         });
         $(document).bind('searchIndicatorHide', function(){ 
           searchIndicator.hide();
@@ -74,9 +74,14 @@ tsunami.tools.namespace('tsunami.vagues');
       return ('<div class="theme theme-box level-60 radius">'+
       '<div class="head">'+tools.i18n('vagues.title')+'</div>'+
       '<div class="body">'+
+        '<ul class="boxes">'+
+          '<li><a href="javascript:;" class="inbox">inbox</a></li>'+
+          '<li><a href="javascript:;" class="archive">archive</a></li>'+
+          '<li><a href="javascript:;" class="trash">trash</a></li>'+
+        '</ul>'+
+        '<ul class="vagues"></ul>'+
         tpl_formFastCreate()+
-        '<ul class="vagues"></ul></div>'+
-        '<div class="footer"> '+
+        '</div><div class="footer"> '+
         '<img src="/public/images/loading.gif" class="searchIndicator" style="display: none;"/>'+
           tpl_search()+
         '</div>'+
@@ -92,8 +97,8 @@ tsunami.tools.namespace('tsunami.vagues');
         '<input type="checkbox" name="selection" />'+
         '<div class="movableContainer">'+
         '<div class="movable">'+
-        '<span class="subject">'+(vague.subject||'Sans titre')+'</span> - '+
-          '<span class="content">'+(vague.preview||'')+'</span>'+
+        '<span class="subject">'+esc(vague.subject||'Sans titre')+'</span> - '+
+          '<span class="content">'+esc(vague.preview||'')+'</span>'+
         '</div>'+
         '</div>'+
       '</div>'+
@@ -198,14 +203,6 @@ tsunami.tools.namespace('tsunami.vagues');
     var bindEvents = function() {
       $(document).bind('vague.create', onAddVague);
       $(document).bind('vague.get', onGetVagueEvent);
-      
-      
-      var onResize = function() {
-        $('#vagueList input[name=search]').width($('#vagueList').width()-60);
-      };
-      $('#vagueList').resize(onResize);
-      $(window).resize(onResize);
-      onResize();
     };
     
     return {

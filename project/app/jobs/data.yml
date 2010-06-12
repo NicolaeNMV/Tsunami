@@ -41,10 +41,11 @@ vagues.Vague(v1):
   subject: temp
 
 vagues.Vaguelette(v1_1):
-  body: test1
+  body: Cinema - Prince of Persia
+        Un très bon film.
   vague: v1
 
 vagues.Vaguelette(v1_2):
-  body: test2
+  body: Tout à fait d'accord.
   vague: v1
 

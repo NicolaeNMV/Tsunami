@@ -24,66 +24,6 @@ tsunami.tools.namespace('tsunami.contacts');
     }
   };
   
-  contacts.SelfAvatarPopup = function() {
-    /*
-    // Private //
-    var g_node = null;
-
-    var g_posx=0;
-    var g_posy=0;
-    
-    var g_up_ip = false;
-    
-    var tpl_avatar = function() {
-      return '<img class="avatar" src="'+tools.Router.url('Contacts.getAvatar', {size:'large', userid:tsunami.export.currentUser.userid})+'?'+contacts.Utils.getAvatarTimestamp('#'+contacts.List.userid2string(tsunami.export.currentUser.userid)+' img.avatar')+'" />';
-    };
-    
-    var updateAvatar = function() {
-      $('.imageContainer', g_node).empty().append( tpl_avatar() );
-    };
-    
-    var updatePosition = function() {
-      return g_node.css({top: g_posy, left: g_posx});
-    };
-    
-    var show = function() {
-      //updateAvatar();
-      updatePosition();
-      g_node.show();
-    };
-    
-    var hide = function() {
-      if(!g_up_ip)
-        g_node.hide();
-    };
-    */
-    return {
-      init: function() {
-        /*
-        g_node = $('#contactListSelfAvatarPopup');
-        hide();
-        $(document).click(function(e) {
-          if(!($(e.target).parents().is('#contactListSelfAvatarPopup') || $(e.target).is('#contactListSelfAvatarPopup') ) && !$(e.target).is('.imStatus')) {
-            hide();
-          }
-        });
-        */
-      },
-      
-      show: function(e) {
-        tsunami.profile.Main.toggleProfile(true);
-        /*
-        g_posx = e.clientX;
-        g_posy = e.clientY-$('#application').position().top;
-        show();
-        */
-      }
-    };
-  }();
-  
-  $(document).ready(contacts.SelfAvatarPopup.init);
-  
-  
   /**
    * Manage the Avatar on mouse over effect
    */

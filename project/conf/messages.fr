@@ -36,7 +36,7 @@ contacts.addContact=Ajouter un contact
 contacts.delete=Supprimer
 contacts.accept=Accepter
 contacts.refuse=Refuser
-contacts.chat=Chat
+contacts.chat=Inviter sur une nouvelle vague
 
 contacts.contact=Contact
 contacts.emailOrUsername=E-mail ou nom d'utilisateur

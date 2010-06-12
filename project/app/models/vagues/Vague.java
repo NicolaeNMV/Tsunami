@@ -98,7 +98,7 @@ public class Vague extends ActivityDate {
         if(vagueIds.size()==0)
             return new ArrayList<Vague>();
         if(search!=null && search.length()>0)
-            return find("id IN "+SqlQuery.inlineParam(vagueIds)+" AND (subject LIKE ?1 OR preview LIKE ?1) ORDER BY lastActivityDate DESC", "%"+search+"%").fetch();
+            return find("id IN "+SqlQuery.inlineParam(vagueIds)+" AND (lower(subject) LIKE ?1 OR lower(preview) LIKE ?1) ORDER BY lastActivityDate DESC", "%"+search.toLowerCase()+"%").fetch();
         return find("id IN "+SqlQuery.inlineParam(vagueIds)+" ORDER BY lastActivityDate DESC").fetch();
     }
     

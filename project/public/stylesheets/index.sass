@@ -85,7 +85,7 @@
       .contact
         :border 1px dashed
       input[name=contact]
-        :margin 4px
+        :margin 2px
         :width 120px
       .contactLabel
         :line-height 2.2em
@@ -214,73 +214,89 @@
 
 //// Vague list /////
 
-#vagueList > .theme-box 
-  & > .head
-    :padding 3px
-  & > .body
-    :padding 5px
-    -moz-border-radius: 0px
-    -webkit-border-radius: 0px
-  & > .footer
-    :padding 2px 20px
-    :position relative
-    .searchIndicator
-      :float left
-      :position absolute
-      left: 3px
-      :top 5px
+#vagueList
+  & > .theme-box 
+    & > .head
+      :padding 3px
+    & > .body
+      :padding 5px
+      -moz-border-radius: 0px
+      -webkit-border-radius: 0px
+    & > .footer
+      :padding 2px 20px
+      :position relative
+      .searchIndicator
+        :float left
+        :position absolute
+        left: 3px
+        :top 5px
 
-#vagueList .vagues
-  :padding 0 5px
-  :list-style none
-  :overflow hidden
+  .boxes
+    list-style: none
+    padding: 0
+    margin: 0
+    text-align: center
+    li
+      display: inline
+      padding: 0 10px
+      border-left: 1px solid rgba(0,0,0,0.2)
+      &:first-child
+        border-left: none
 
-#vagueList .vague
-  white-space: nowrap
-  :padding 4px
-  :cursor pointer
-  border-bottom: 1px solid silver
-  :clear both
-  &:hover
-    :background-color rgba(255,255,255,0.25)
-  &.opened
-    :background-color rgba(255,255,255,0.5)
-    border-left: 1px solid silver
-    :border-right 1px solid silver
-    &:hover
-      :background-color rgba(255,255,255,0.75)
-  input[type=checkbox]
-    :margin 0
-    :float left
-  .main
-    :overflow hidden
-  .stats
-    :float right
-    :padding-left 5px
-  .movable
-    :display inline
-    :position relative
-  .subject
-    :text-decoration none
+  .vagues
     :padding 0 5px
-  .content
-    :font-style italic
-    :color silver
+    :list-style none
+    :overflow hidden
 
-#vagueList .fastCreate button
-  :padding 0
-  :font-size .8em
+  .vague
+    white-space: nowrap
+    :padding 4px
+    :cursor pointer
+    border-bottom: 1px solid silver
+    :clear both
+    &:hover
+      :background-color rgba(255,255,255,0.25)
+    &.opened
+      :background-color rgba(255,255,255,0.5)
+      border-left: 1px solid silver
+      :border-right 1px solid silver
+      &:hover
+        :background-color rgba(255,255,255,0.75)
+    input[type=checkbox]
+      :margin 0
+      :float left
+    &.new .main
+      :font-weight bold
+    .main
+      :overflow hidden
+    .stats
+      :float right
+      :padding-left 5px
+    .movable
+      :display inline
+      :position relative
+    .subject
+      :text-decoration none
+      :padding 0 5px
+    .content
+      :font-style italic
+      :color silver
 
-#vagueList input[name=search]
-  :margin 2px
-  :padding-left 25px
-  +border-radius(10px)
-  :border 1px solid rgba(85,106,127,0.8)
-  :background url("/public/images/zoom.png") no-repeat scroll 3px 1px white
-  
-  &.empty
-    :color silver
-    :font-style italic
+  .fastCreate button
+    :padding 0
+    :font-size .8em
+
+  input[name=search]
+    :width 92%
+    :margin 2px
+    :padding-left 25px
+    +border-radius(10px)
+    :border 1px solid rgba(85,106,127,0.8)
+    :background url("/public/images/zoom.png") no-repeat scroll 3px 1px white
+    
+    &.empty
+      :color silver
+      :font-style italic
 
 
 

@@ -471,7 +471,9 @@ tsunami.tools.namespace('tsunami.contacts');
         changeStatus($(this).val());
       });
       // TODO : bind the change
-      $('#contactList .self .imStatus').click(contacts.SelfAvatarPopup.show);
+      $('#contactList .self .imStatus').click(function(){
+        tsunami.profile.Main.toggleProfile(true);
+      });
     };
     
     var bindContact = function(selector, containment) {
