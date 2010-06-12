@@ -22,9 +22,12 @@ public class CometHelper {
                         Play.configuration.getProperty("stomp.pass") );
                 if(client.isConnected())
                     Logger.info("Connected to Orbited");
-                else
+                else {
+                	client = null; // force next reloading
                     Logger.error("Unable to connect to Orbited.");
+                }
             } catch(Exception e) {
+            	client = null; // force next reloading
                 Logger.error("Unable to connect to Orbited : %s", e.getMessage());
             }
         }

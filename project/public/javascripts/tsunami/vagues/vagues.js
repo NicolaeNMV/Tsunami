@@ -204,6 +204,7 @@ tsunami.tools.namespace('tsunami.vagues');
         $('#vagueList input[name=search]').width($('#vagueList').width()-60);
       };
       $('#vagueList').resize(onResize);
+      $(window).resize(onResize);
       onResize();
     };
     

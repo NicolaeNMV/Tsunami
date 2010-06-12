@@ -17,8 +17,8 @@ if [ ! -d $play ]; then
   fi
 fi
 
-$here/orbited/start.sh restq &
-$here/orbited/start.sh orbited &
+$here/project/orbited/start.sh restq &
+$here/project/orbited/start.sh orbited &
 $play/play run $here/project/
 
 killall python # TODO: find better to stop restq and orbited...

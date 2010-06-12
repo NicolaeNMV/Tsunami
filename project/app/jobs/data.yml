@@ -37,11 +37,14 @@ User(tata):
   imStatus: OFFLINE
 
 
+vagues.Vague(v1):
+  subject: temp
+
 vagues.Vaguelette(v1_1):
   body: test1
+  vague: v1
 
 vagues.Vaguelette(v1_2):
   body: test2
+  vague: v1
 
-vagues.Vague(v1):
-  vaguelettes: [v1_1, v1_2]

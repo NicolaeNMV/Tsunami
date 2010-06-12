@@ -27,11 +27,9 @@ fi;
 # Launch morbid_restq or orbited
 # #
 if [ "$1" = "restq" ]; then
-	echo "Restq starts..."
 	python $SCRIPT_PATH/lib/morbid/sample_restq/restq_tsunami_daemon.py --port 5001 --tsunami http://127.0.0.1:9000
 else
 	if [ "$1" = "orbited" ]; then
-		echo "Orbited starts..."
 		python $SCRIPT_PATH/lib/orbited/start.py --config $SCRIPT_PATH/orbited.cfg
 	else 
 		echo "Usage: 'start restq' or 'start orbited' (restq required to be started first)"
