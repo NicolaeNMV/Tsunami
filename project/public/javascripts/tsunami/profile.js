@@ -5,7 +5,17 @@
   var tools = tsunami.tools;
   
   profile.Main = function() {
-  
+    
+    var updatePosition = function() {
+      var profile = $('#profile');
+      var profilelink = $('#banner a.profile');
+      if(profile.size())
+        profile.css({
+          top: $("#application").offset().top, 
+          left: profilelink.offset().left + profilelink.width() - profile.width() - 4
+        });
+    };
+    
     var toggleProfile = function(override){
       var profile = $('#profile');
       if(typeof(override)!="undefined" && !override || typeof(override)=="undefined" && profile.is(':visible')) {
@@ -13,11 +23,7 @@
         $('#banner a.profile').removeClass('folded');
       }
       else {
-        var profileLink = $('#banner a.profile').addClass('folded');
-        profile.css({
-          top: $("#application").offset().top, 
-          left: profileLink.offset().left + profileLink.width() - profile.width() - 4
-        });
+        updatePosition();
         profile.show();
       } 
     };
@@ -26,6 +32,7 @@
       toggleProfile: toggleProfile,
  
       init: function() {
+        $(window).resize(updatePosition);
         $('#changePassword form').live('submit', function(){
           $(this).ajaxSubmit({
             success: function(html, status, form){
