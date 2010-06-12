@@ -25,6 +25,8 @@ public class VagueParticipant extends Model {
     
     public VagueParticipant(User user) {
         this.user = user;
+        this.version = 1L;
+        this.status = BoxStatus.INBOX;
     }
     
     public VagueParticipant assignToVague(Vague v) {

@@ -33,4 +33,8 @@ public class CometHelper {
         }
         return client;
     }
+    
+    public static boolean isInit() {
+      return client != null;
+    }
 }

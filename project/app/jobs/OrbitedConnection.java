@@ -38,24 +38,26 @@ public class OrbitedConnection extends Job<Void>{
 	}
 	
     public void doJob() {
-    	
-    	startRestq();
-    	try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    	Logger.info("Restq started.");
+        if(!CometHelper.isInit()) {
+        
+            startRestq();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Logger.info("Restq started.");
 
-    	startOrbited();
-    	try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-    	Logger.info("Orbited started.");
-    	
-        CometHelper.getCometClient();
+            startOrbited();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Logger.info("Orbited started.");
+            
+            CometHelper.getCometClient();
+        }
     }
 
 }

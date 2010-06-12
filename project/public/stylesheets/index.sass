@@ -254,24 +254,40 @@
     list-style: none
     padding: 0
     margin: 0
+      :bottom 10px
     text-align: center
     li
       display: inline
-      padding: 0 10px
+      padding: 0 5px
       border-left: 1px solid rgba(0,0,0,0.2)
       &:first-child
         border-left: none
+    
+    a
+      color: black
+      padding: 2px 4px
+      +border-radius(5px)
+      &.enabled
+        color: white
+        background: rgba(0,0,0,0.6)
+        
 
   .vagues
     :padding 0 2px
+    :margin 0
     :list-style none
     :overflow hidden
-
-  .vague
-    white-space: nowrap
-    :padding 4px
-    :cursor pointer
+  
+  .noItemInfo
+    text-align: center
     border-top: 1px solid rgba(255,255,255,0.5)
+    :padding 4px
+  
+  .vague
+    border-top: 1px solid rgba(255,255,255,0.5)
+    :padding 4px
+    white-space: nowrap
+    :cursor pointer
     :clear both
     &:hover
       :background-color rgba(255,255,255,0.25)

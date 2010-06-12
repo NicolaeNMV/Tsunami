@@ -77,9 +77,9 @@ tsunami.tools.namespace('tsunami.vagues');
         tpl_formFastCreate()+
       '<section>'+
         '<ul class="boxes">'+
-          '<li><a href="javascript:;" class="inbox enabled">inbox</a></li>'+
-          '<li><a href="javascript:;" class="archive enabled">archive</a></li>'+
-          '<li><a href="javascript:;" class="trash enabled">trash</a></li>'+
+          '<li><a rel="inbox" href="javascript:;" class="inbox enabled">inbox</a></li>'+
+          '<li><a rel="archive" href="javascript:;" class="archive">archive</a></li>'+
+          '<li><a rel="trash" href="javascript:;" class="trash">trash</a></li>'+
         '</ul>'+
         '<ul class="vagues"></ul>'+
       '</section>'+
@@ -98,7 +98,16 @@ tsunami.tools.namespace('tsunami.vagues');
     };
     
     var tpl_vague = function(vague) {
-      return '<li class="vague" id="'+vagueid2string(vague.id)+'">'+
+      var box = null;
+      for(var p in vague.participants) {
+        var user = vague.participants[p];
+        if(user.userid == tsunami.export.currentUser.userid) {
+          box = user.status;
+          break;
+        }
+      }
+      
+      return '<li style="display: none;" class="vague '+(!box?'':box.toLowerCase())+'" id="'+vagueid2string(vague.id)+'">'+
       '<div class="stats">'+
         '<span class="vagueletteCount">('+vague.vaguelettes.length+' messages)</span>'+
       '</div>'+
@@ -116,13 +125,31 @@ tsunami.tools.namespace('tsunami.vagues');
     
     // Dynamic updates : touch //
     
+    var updateNoItemInfo = function(){
+      if($('.vagues .vague:visible', g_vagueListNode).size()==0)
+        $('.vagues .noItemInfo', g_vagueListNode).show();
+      else
+        $('.vagues .noItemInfo', g_vagueListNode).hide();
+    }
+    
+    var applyBoxFilter = function() { // refresh all vagues applying boxes filter
+      $('.boxes a', g_vagueListNode).each(function(){
+        var vagues = $('.vagues .vague.'+$(this).attr('rel'),g_vagueListNode);
+        if($(this).hasClass('enabled')) 
+          vagues.show();
+        else
+          vagues.hide();
+      });
+      updateNoItemInfo();
+    };
+    
     // EVENTS //
     
     var onGetVagues = function(vagues) {
       var html = "";
       for(var v in vagues)
         html += tpl_vague(vagues[v]);
-      $('.vagues', g_vagueListNode).empty().append(html);
+      $('.vagues', g_vagueListNode).empty().append('<li class="noItemInfo">Aucune vague trouvée</li>').append(html);
       bindVagues();
     };
     
@@ -178,6 +205,13 @@ tsunami.tools.namespace('tsunami.vagues');
     
     // Binders //
     
+    var bindFilters = function() {
+      $('.boxes a',g_vagueListNode).click(function(){
+        $(this).toggleClass('enabled');
+        applyBoxFilter();
+      })
+    };
+    
     var bindVagueList = function() {
       $('form.fastCreate', g_vagueListNode).submit(function(){
         ajax('Vagues.create', {subject: ''}, function(data){
@@ -194,11 +228,13 @@ tsunami.tools.namespace('tsunami.vagues');
         g_vagueOpenedNode.removeClass('opened');
         g_vagueOpenedNode = null;
       });
+      bindFilters();
     };
     
     var bindVagues = function() {
       var vaguesNode = $('.vagues .vague', g_vagueListNode);
       bindVague(vaguesNode);
+      applyBoxFilter();
     };
     
     var bindVague = function(vagueNode) {
