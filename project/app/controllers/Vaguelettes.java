@@ -58,7 +58,7 @@ public class Vaguelettes extends Application {
         vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
-    public static void editSync(@Required Long vagueletteId, @Required Long prevVersion @Required String patch) {
+    public static void editSync(@Required Long vagueletteId, @Required Long prevVersion, @Required String patch) {
         User currentUser = getConnectedUser();
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);
@@ -68,7 +68,7 @@ public class Vaguelettes extends Application {
         	//Vaguelette.
         }
         //diff_match_patch
-        vaguelette.find('');
+        vaguelette.find("");
         
         
         //vaguelette.
