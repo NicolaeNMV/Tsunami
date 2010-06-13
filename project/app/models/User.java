@@ -13,6 +13,7 @@ import play.Play;
 import play.data.validation.Validation;
 import play.db.jpa.JPASupport;
 import play.libs.Codec;
+import play.libs.Crypto;
 import play.mvc.Scope.Session;
 
 import models.contacts.Contact;
@@ -52,6 +53,8 @@ public class User extends ActivityDate {
     public boolean avatar;
     
     public boolean isAdmin;
+
+	public String resetToken;
     
     public User(String login, String password) {
         this.username = login;
@@ -94,11 +97,11 @@ public class User extends ActivityDate {
     }
     
     public void encodePassword(String pass) {
-        password = pass;
+        password = Crypto.passwordHash(pass);
     }
     
     public boolean matchPassword(String pass) {
-        return password!=null && password.equals(pass);
+        return password!=null && password.equals(Crypto.passwordHash(pass));
     }
     
     public void changeStatus (ImStatus status) {

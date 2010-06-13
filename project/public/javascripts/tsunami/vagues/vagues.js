@@ -187,12 +187,11 @@ tsunami.tools.namespace('tsunami.vagues');
       var i = 0;
       var vague = vagueNodeHover = $(this);
       var maxWidth = Math.floor($('.movable', vague).width()-$('.movableContainer', vague).width());
-      log(maxWidth)
       if(maxWidth>0) {
         var cycle = function() {
           if(vague==vagueNodeHover) {
             setTimeout(cycle, 50);
-            var xPosAnimation = -Math.floor((maxWidth*(1+Math.cos(Math.PI+i/20)))/2);
+            var xPosAnimation = -Math.floor((maxWidth*(1+Math.cos(Math.PI+i/30)))/2);
             
             $('.movable', vague).css('left', xPosAnimation+'px');
             ++i;
@@ -200,12 +199,21 @@ tsunami.tools.namespace('tsunami.vagues');
         };
         cycle();
       }
-      
     };
     
-    var onVagueHoverOut = function(vague) {
-      $('.movable', vagueNodeHover).css('left', '0px');
+    var onVagueHoverOut = function() {
+      var vague = vagueNodeHover;
+      if(vague==null) return;
       vagueNodeHover = null;
+      var speed = 10;
+      var left = parseInt($('.movable', vague).css('left').split('px')[0]);
+      var cycle = function() {
+        left += speed;
+        if(left>0) left=0;
+        $('.movable', vague).css('left', left+'px');
+        if(left) setTimeout(cycle, 50);
+      }
+      cycle();
     };
     
     // AJAX //

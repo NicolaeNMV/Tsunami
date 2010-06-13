@@ -19,14 +19,15 @@ public class Bootstrap extends Job<Object> {
           Fixtures.load("jobs/data.yml");
           Logger.info("...success.");
           
-          
           // make users all friends
           List<User> users = new ArrayList<User>();
           users.add(User.findByUsername("master"));
           users.add(User.findByUsername("titi"));
           users.add(User.findByUsername("toto"));
           users.add(User.findByUsername("tata"));
-          for (User u : users)
+          for (User u : users) {
+            u.encodePassword(u.password);
+            
             for (User user : users)
               if (!u.equals(user)) {
                 if(u.contacts==null) {
@@ -37,6 +38,7 @@ public class Bootstrap extends Job<Object> {
                 u.contacts.save();
                 u.save();
               }
+          }
           
           List<Vague> vagues = Vague.findAll();
           for(Vague v : vagues) {

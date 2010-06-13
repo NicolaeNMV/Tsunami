@@ -1,0 +1,28 @@
+#{extends 'Auth/layout.html' /}
+#{set title:'Récupération du mot de passe' /}
+
+<div id="rescuePassword" class="authBox theme theme-box level-60 radius">
+  <div class="head">Mot de passe oublié</div>
+  <div class="body">
+  
+  #{if !flash['password']}
+  
+  <h2>La demande de réinitialisation du mot de passe a expirée.</h2>
+  <a href="@{Auth.forgottenPassword}">Nouvelle demande</a>
+  
+  #{/if}
+  #{else}
+  
+    <h3>Vos nouveaux identifiants ont été générés :</h3>
+    <dl>
+      <dt>Identifiant</dt> <dd>${user.username}</dd> ou <dd>${user.email}</dd>
+      <dt>Mot de passe</dt> <dd>${flash['password']}</dd>
+    </dl>
+    
+    <a href="/">Se connecter</a>
+  
+  #{/else}
+    
+  </div>
+  <div class="footer">Projet tutoré de Namolovan Nicolae et Renaudeau Gaëtan.</div>
+</div> 
