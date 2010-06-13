@@ -300,9 +300,12 @@
       :border-right 1px solid rgba(255,255,255,0.5)
       &:hover
         :background-color rgba(255,255,255,0.8)
-    input[type=checkbox]
-      :margin 0
+    .inboxes
       :float left
+      padding-right: 5px
+      input
+        margin: 0
+        padding: 0
     &.new .main
       :font-weight bold
     .main
@@ -310,7 +313,11 @@
     .stats
       :float right
       :padding-left 5px
+    .movableContainer
+      :z-index 1
+      :display block
     .movable
+      :z-index 1
       :display inline
       :position relative
     .subject
