@@ -2,6 +2,8 @@ from twisted.web import server, resource
 from twisted.internet import reactor
 import time
 import urllib
+import socket
+import threading
 try:
     try:
         import cjson as json
@@ -25,6 +27,27 @@ else:
     raise ImportError, 'Fatal Error: loaded unknown json module: "%s".'%(json.__file__,)
 
 cbUrls = None
+
+# timeout in seconds
+# By default the socket module has no timeout and can hang.
+# timeout in seconds
+socket.setdefaulttimeout(2)
+
+class urlThreadOpener ( threading.Thread ):
+    def __init__ ( self, url, params ):
+        self.url = url
+        self.params = params
+        threading.Thread.__init__ ( self )
+
+    def run ( self ):
+        print "Restq, trying to open %s " % self.url
+        try:
+            params = urllib.urlencode(self.params)
+            f = urllib.urlopen(self.url, params)
+            print f.read()
+        except IOError:
+            print 'Cannot open URL %s for reading' % self.url
+
 
 class DummyLeaf(object):
     def __init__(self, data):
@@ -52,16 +75,11 @@ class RestQDummyResource(resource.Resource):
                 if username == "ser": # the tsunami's user
                     return wrap({"allow":"yes"})
                 print 'Connect to %s for the event connect'%(tsunamiUrl,)
-                params = urllib.urlencode({'userid': username, 'event': 'connect'})
-                f = urllib.urlopen(tsunamiUrl+"/cometsync/userStatus", params)
-                print f.read()
+                urlThreadOpener(tsunamiUrl+"/cometsync/userStatus",{'userid': username, 'event': 'connect'}).start()
             if path == "disconnect":
                 if username == "ser": # the tsunami's user
                     return wrap({"allow":"yes"})
-                print "Connect to %s for the disconnect"%tsunamiUrl
-                params = urllib.urlencode({'userid': username, 'event': 'disconnect'})
-                f = urllib.urlopen(tsunamiUrl+"/cometsync/userStatus", params)
-                print f.read()
+                urlThreadOpener(tsunamiUrl+"/cometsync/userStatus",{'userid': username, 'event': 'disconnect'}).start()
             elif path == "send":
                 newBody = headers['body'].replace("apples","bananas")
                 if username == 'nosend':

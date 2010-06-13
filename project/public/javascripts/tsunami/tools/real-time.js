@@ -12,6 +12,7 @@ tsunami.tools.namespace('tsunami.tools');
    *  update (function): called callback
    *  textChange (function): same as update ignoring the time interval
    *  minInterval : min time interval between each update (ms)
+   *  maxInterval : max time interval, used when user write something, and minInterva is ignored
    *  minTextLength : if text length < minTextLength, considering no text changed except the empty update
    * 
    * @author Gaetan Renaudeau <pro@grenlibre.fr>

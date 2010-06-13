@@ -38,8 +38,8 @@ tsunami.tools.namespace('tsunami.vagues.sync');
       new tsunami.tools.RealTimeUpdate({
           node: textarea,
           update: keyup,
-          minInterval: 200,
-          maxInterval: 1000
+          minInterval: 100,
+          maxInterval: 300
         });
      
     }

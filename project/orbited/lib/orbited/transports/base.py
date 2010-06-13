@@ -15,7 +15,7 @@ class CometTransport(resource.Resource):
         self.packets = []
         self.request = request
         self.opened()
-        self.request.notifyFinish().addCallback(self.finished)
+#        self.request.notifiyFinish().addCallback(self.finished)
         self.resetHeartbeat()
         self.closeDeferred = defer.Deferred()
         self.conn.transportOpened(self)
@@ -67,7 +67,7 @@ class CometTransport(resource.Resource):
         self.heartbeatTimer.cancel()
         self.heartbeatTimer = None
         self.open = False
-        if self.request:
+        if self.request and not self.request._disconnected:
             logger.debug('calling finish')
             self.request.finish()
         self.request = None

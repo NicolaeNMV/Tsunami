@@ -297,10 +297,6 @@ class TCPConnectionResource(resource.Resource):
         if transport is self.cometTransport:
             self.cometTransport= None
 
-    def connectionAborted(self, x):
-        self.cometTransport = None
-        self.close(reason="Connection lost. Browser quit?", now=True) 
-
     # Called by transports.CometTransport.render
     def transportOpened(self, transport):
         self.resetPingTimer()
@@ -311,8 +307,6 @@ class TCPConnectionResource(resource.Resource):
         self.cometTransport = transport
         transport.CONNECTION = self
         transport.onClose().addCallback(self.transportClosed)
-        self.cometTransport.request.notifyFinish().addErrback(self.connectionAborted) 
-        
         ack = transport.request.args.get('ack', [None])[0]
         if ack:
             try:

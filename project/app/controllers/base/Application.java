@@ -99,7 +99,7 @@ public class Application extends Base {
         for(User u : users) {
           //if(u.isConnected())
           c.send("/events/"+u.userid, jsonData);
-          Logger.info("sendComet /events/%s : %s", u.userid, jsonData);
+          //Logger.info("sendComet /events/%s : %s", u.userid, jsonData);
         }
         return true;
     }
