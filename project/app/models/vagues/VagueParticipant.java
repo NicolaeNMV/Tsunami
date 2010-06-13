@@ -8,6 +8,10 @@ import com.google.gson.annotations.Expose;
 import models.*;
 import play.db.jpa.Model;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
+
 @Entity
 public class VagueParticipant extends Model {
     
@@ -16,7 +20,9 @@ public class VagueParticipant extends Model {
     @ManyToOne
     public Vague vague;
     
-    public Long version;
+    @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+    public DateTime lastSeenDate;
+    
     public BoxStatus status;
     
     public enum BoxStatus {
@@ -25,7 +31,7 @@ public class VagueParticipant extends Model {
     
     public VagueParticipant(User user) {
         this.user = user;
-        this.version = 1L;
+        this.lastSeenDate = new DateTime();
         this.status = BoxStatus.INBOX;
     }
     
@@ -38,5 +44,10 @@ public class VagueParticipant extends Model {
     public VagueParticipant setStatus(BoxStatus s) {
     	status = s;
     	return this;
+    }
+    
+    public void updateSeen() {
+        lastSeenDate = new DateTime();
+        save();
     }
 }

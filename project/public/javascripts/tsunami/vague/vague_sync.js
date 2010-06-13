@@ -58,19 +58,8 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         var patches = dmp.patch_fromText(data.patch);
         
         var results = dmp.patch_apply(patches, textarea.val());
-        //console.log( ' now ' + results[0]);
-        //console.log( ' now ' + results);
         
         textarea.val(results[0]);
-        /*answer.put("code","200");
-        answer.put("codeText","OK");
-        answer.put("version",vaguelette.version);
-        answer.put("body",patch);
-        answer.put("userId",currentUser.id);
-        answer.put("senderWindowId",userWindowId);*/
-        //if (obj.code == "200") {
-            //obj.body
-        //}
     }
         /*
 var patches = dmp.patch_fromText(patch_text);

@@ -22,7 +22,7 @@ public class Vagues extends Application {
         List<Vague> vagues = Vague.findByUserid(getConnectedUser().userid, search);
         List<VagueJson> vaguesJson = new ArrayList<VagueJson>();
         for(Vague v : vagues)
-            vaguesJson.add(new VagueJson(v));
+            vaguesJson.add(new VagueJson(v,getConnectedUser().userid));
         renderJSON(vaguesJson);
     }
   
@@ -40,8 +40,10 @@ public class Vagues extends Application {
     public static void show(Long vagueId) {
         Vague vague = Vague.findById(vagueId);
         notFoundIfNull(vague);
+        vague.updateParticipantSeen( getConnectedUser().userid );
         if(request.format.equals("json"))
             renderJSON(new VagueJson(vague));
+        
         render(vague);
     }
     

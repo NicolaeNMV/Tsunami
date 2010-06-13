@@ -78,15 +78,11 @@ public class Vaguelette extends ActivityDate {
 
     public boolean patch(String patch, User user) {
         diff_match_patch dmp = new diff_match_patch();
-        //LinkedList<Patch> patches = new LinkedList<Patch>();
         
         LinkedList<Patch> patches = new LinkedList<Patch>(dmp.patch_fromText(patch));
         if (patches.isEmpty()) {
             return true;
         }
-        //Patch p = dmp.patch_fromText(patch).get(0);
-        //isEmpty()
-        //patches.add(p);
         
         Object[] results = dmp.patch_apply(patches, this.body);
         boolean[] boolArray = (boolean[]) results[1];
@@ -105,6 +101,8 @@ public class Vaguelette extends ActivityDate {
         this.setBody(results[0].toString()); // new patched text
         this.version++;
         this.addHistory(patch, user);
+        
+        this.vague.updateActivity();
         
         return true;
     }

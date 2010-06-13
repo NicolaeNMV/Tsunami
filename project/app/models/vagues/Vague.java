@@ -76,12 +76,25 @@ public class Vague extends ActivityDate {
         return this;
     }
     
-    public boolean containsUser(String userid) {
+    public Object getParticipant(String userid) {
         for(VagueParticipant vp : participants)
             if(vp.user.userid.equals(userid))
-                return true;
-        return false;
+                return vp;
+        return new Object();
     }
+
+    public boolean containsUser(String userid) {
+        return this.getParticipant(userid) instanceof VagueParticipant;
+    }
+    
+    public void updateParticipantSeen(String userid) {
+        Object participant = getParticipant(userid);
+        if (participant instanceof VagueParticipant) {
+            ((VagueParticipant)participant).updateSeen();
+        }
+    }
+    
+
     
     public List<Vaguelette> getVaguelettes(String userid) {
         List<Vaguelette> filteredVaguelettes = new ArrayList<Vaguelette>();

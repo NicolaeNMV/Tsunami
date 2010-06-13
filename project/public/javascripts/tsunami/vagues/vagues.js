@@ -120,7 +120,9 @@ tsunami.tools.namespace('tsunami.vagues');
       if(!box) box = 'input';
       var toBeDisplay = $('.boxes a.'+box,g_vagueListNode).is('.enabled');
       
-      return '<li '+(!toBeDisplay?'':'style="display: none;"')+' class="vague '+(box.toLowerCase())+'" id="'+vagueid2string(vague.id)+'">'+
+      return '<li '+(!toBeDisplay?'':'style="display: none;"')+' class="vague '+(box.toLowerCase())
+          +((vague.bold)?' new':'')+
+          '" id="'+vagueid2string(vague.id)+'">'+
       '<div class="stats">'+
         '<span class="vagueletteCount">('+vague.vaguelettes.length+' messages)</span>'+
       '</div>'+

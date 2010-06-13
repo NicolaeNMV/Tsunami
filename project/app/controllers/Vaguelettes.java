@@ -71,6 +71,7 @@ public class Vaguelettes extends Application {
         
         Map<String,Object> answer = new HashMap<String, Object>();
         answer.put("vagueletteId",vagueletteId);
+        answer.put("vagueId",vaguelette.vague.id);
         
         if (vaguelette.patch(patch, currentUser) == false) {
             answer.put("code","500");
