@@ -130,13 +130,13 @@ tsunami.tools.namespace('tsunami.vagues');
       ulParticipants+
       '</div>'+
       '<ul class="vaguelettes"></ul>'+
-      '<a href="javascript:;" class="createVaguelette">Ajouter une vaguelette</a>');
+      '<span class="createVaguelette lnk">Ajouter une vaguelette</span>');
     };
     
     var tpl_vaguelette = function(v) {
       return ('<li class="vaguelette" id="'+vagueletteId2string(v.id)+'"><textarea rows="1">'+(v.body||"")+'</textarea>'+
           '<ul class="vaguelettes"></ul>'+
-          '<a href="javascript:;" class="createVaguelette">Répondre</a>'+
+          '<span class="createVaguelette lnk">Répondre</span>'+
           '</li>');
     };
         

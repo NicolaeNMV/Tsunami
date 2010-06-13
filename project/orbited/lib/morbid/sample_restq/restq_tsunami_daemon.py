@@ -56,6 +56,8 @@ class RestQDummyResource(resource.Resource):
                 f = urllib.urlopen(tsunamiUrl+"/cometsync/userStatus", params)
                 print f.read()
             if path == "disconnect":
+                if username == "ser": # the tsunami's user
+                    return wrap({"allow":"yes"})
                 print "Connect to %s for the disconnect"%tsunamiUrl
                 params = urllib.urlencode({'userid': username, 'event': 'disconnect'})
                 f = urllib.urlopen(tsunamiUrl+"/cometsync/userStatus", params)

@@ -2,12 +2,15 @@ package models.vagues;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedList;
 import javax.persistence.*;
 import models.vagues.json.*;
 
 import models.ActivityDate;
 
 import util.diff_match_patch;
+import util.diff_match_patch.Patch;
+
 
 
 @Entity
@@ -62,7 +65,7 @@ public class Vaguelette extends ActivityDate {
       return new VagueletteJson(this);
     }
     
-    public Vaguelette addHistory(String patch, int version) {
+    public Vaguelette addHistory(String patch) {
         VagueletteHistory vh = new VagueletteHistory(patch, version);
         vh.vaguelette = this;
         vh.save();
@@ -71,7 +74,37 @@ public class Vaguelette extends ActivityDate {
         return this;
     }
     
-    public Vaguelette patch(String patch) {
-        return this;
+
+    public boolean patch(String patch) {
+        diff_match_patch dmp = new diff_match_patch();
+        //LinkedList<Patch> patches = new LinkedList<Patch>();
+        
+        LinkedList<Patch> patches = new LinkedList<Patch>(dmp.patch_fromText(patch));
+        if (patches.isEmpty()) {
+            return true;
+        }
+        //Patch p = dmp.patch_fromText(patch).get(0);
+        //isEmpty()
+        //patches.add(p);
+        
+        Object[] results = dmp.patch_apply(patches, this.body);
+        boolean[] boolArray = (boolean[]) results[1];
+        // Look if all the patches were applied cleanly
+        boolean appliedCleanly = true;
+        for (boolean bool : boolArray) {
+            if (bool == false) {
+                appliedCleanly = false;
+                break;
+            }
+        }
+        
+        // Unable to apply the patch
+        if (appliedCleanly == false) return false;
+        
+        this.setBody(results[0].toString()); // new patched text
+        this.version++;
+        this.addHistory(patch);
+        
+        return true;
     }
 }

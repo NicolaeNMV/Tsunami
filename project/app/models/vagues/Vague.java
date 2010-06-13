@@ -12,6 +12,8 @@ import play.db.jpa.Model;
 import models.ActivityDate;
 import models.User;
 
+import controllers.base.Application;
+
 @Entity
 public class Vague extends ActivityDate {
     /** The subject of the vague
@@ -102,4 +104,10 @@ public class Vague extends ActivityDate {
         return find("id IN "+SqlQuery.inlineParam(vagueIds)+" ORDER BY lastActivityDate DESC").fetch();
     }
     
+    // Send an event to all contacts of the user
+    public void sendCometAllParticipants(String event,Object data) {
+    	for (VagueParticipant vp : participants) {
+    		Application.sendComet(vp.user,event,data);
+    	}
+    }
 }

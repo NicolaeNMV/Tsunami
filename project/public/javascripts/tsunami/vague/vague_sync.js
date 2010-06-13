@@ -18,8 +18,7 @@ tsunami.tools.namespace('tsunami.vagues.sync');
     
     sync.bindTextarea = function(textarea) {
       textarea.data('sync.before',textarea.val());
-      
-      textarea.keyup(function(e) {
+      var keyup = function(e) {
         if (textarea.data('sync.before') == undefined) return;
         var text1 = textarea.data('sync.before');
         var text2 = textarea.val();
@@ -32,17 +31,49 @@ tsunami.tools.namespace('tsunami.vagues.sync');
 		//      conf.vagueletteId
 		//console.log(patch_text);
         var vaguelette = textarea.data('object');
-        return;
         $.post("/vaguelettes/"+ vaguelette.id +"/sync", 
-            { vagueletteId: vaguelette.id, patch: patch_text,
-              windowsession: tsunami.export.loadedat }
+            { vagueletteId: vaguelette.id, patch: patch_text, userWindowId: tsunami.export.loadedat }
         );
-      });
+      };
+      new tsunami.tools.RealTimeUpdate({
+          node: textarea,
+          update: keyup,
+          minInterval: 200,
+          maxInterval: 1000
+        });
+     
     }
     
-    var patchArrive = function(obj) {
+    var patchArrive = function(e,data) {
+        var exp = tsunami.export;
+        if (data.code != "200") return;
+        // Check if this is my patch
+        if (data.userId == exp.currentUser.userid && data.senderWindowId == exp.loadedat) {
+            console.log('My update, do nothing');
+            return;
+        }
+        var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
+        //console.log(textarea);
+        //console.log('Apply '+data.patch + ' was '+ textarea.val());
+        var patches = dmp.patch_fromText(data.patch);
+        
+        var results = dmp.patch_apply(patches, textarea.val());
+        //console.log( ' now ' + results[0]);
+        //console.log( ' now ' + results);
+        
+        textarea.val(results[0]);
+        /*answer.put("code","200");
+        answer.put("codeText","OK");
+        answer.put("version",vaguelette.version);
+        answer.put("body",patch);
+        answer.put("userId",currentUser.id);
+        answer.put("senderWindowId",userWindowId);*/
+        //if (obj.code == "200") {
+            //obj.body
+        //}
+    }
         /*
-        var patches = dmp.patch_fromText(patch_text);
+var patches = dmp.patch_fromText(patch_text);
 var results = dmp.patch_apply(patches, text1);
 //document.getElementById('text2b').value = results[0];
 
@@ -56,7 +87,6 @@ var results = dmp.patch_apply(patches, text1);
     }
   }
         */
-    }
     
     //vaguelette_1
     remoteBind('vaguelette.patch',patchArrive);

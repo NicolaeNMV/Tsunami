@@ -4,7 +4,8 @@ import models.User;
 import models.vagues.*;
 import play.data.validation.*;
 import controllers.base.Application;
-//import util.diff_match_patch;
+
+import java.util.HashMap;
 
 public class Vaguelettes extends Application {
     
@@ -58,22 +59,32 @@ public class Vaguelettes extends Application {
         vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
-    public static void editSync(@Required Long vagueletteId, @Required Long prevVersion, @Required String patch) {
+    public static void editSync(@Required Long vagueletteId, @Required String patch, @Required Long userWindowId) {
         User currentUser = getConnectedUser();
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);
         
         // TODO, check if user is allowed to edit
-        if (vaguelette.version == 0) {
-        	//Vaguelette.
+        
+        HashMap answer = new HashMap();
+        answer.put("vagueletteId",vagueletteId);
+        
+        if (vaguelette.patch(patch) == false) {
+            answer.put("code","500");
+            answer.put("codeText","Cannot apply patch, reload your vagulette");
+            renderJSON(toJson(answer));
         }
-        //diff_match_patch
-        vaguelette.find("");
         
+        answer.put("code","200");
+        answer.put("codeText","OK");
+        answer.put("version",vaguelette.version);
+        answer.put("patch",patch);
+        answer.put("userId",currentUser.userid);
+        answer.put("senderWindowId",userWindowId);
         
-        //vaguelette.
+        vaguelette.vague.sendCometAllParticipants("vaguelette.patch",answer);
         
-        //vaguelette.setBody(content);
-        //renderJSON(vaguelette.toJson());
+        // Send the patch to every member of the vague
+        // renderJSON(vaguelette.toJson());
     }
 }

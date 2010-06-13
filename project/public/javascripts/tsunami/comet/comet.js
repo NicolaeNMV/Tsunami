@@ -101,10 +101,10 @@ tsunami.tools.namespace('tsunami.comet');
 		comet.setup();
 		comet.connect();
 	});
-
-	$(document).unload(function() {
+    window.onbeforeunload = function() {stomp.reset();return;}
+	/*$(document).unload(function() {
 		stomp.reset();
-	});
+	});*/
 }());
 
 // debug

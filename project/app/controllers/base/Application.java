@@ -92,7 +92,7 @@ public class Application extends Base {
     	Map map = new HashMap();
     	map.put("event", event);
     	map.put("data", data);
-    	String jsonData = new Gson().toJson(map);
+        String jsonData = toJson(map);
         Client c = CometHelper.getCometClient();
         if(c==null)
             return false;
@@ -102,5 +102,16 @@ public class Application extends Base {
           Logger.info("sendComet /events/%s : %s", u.userid, jsonData);
         }
         return true;
+    }
+    
+    /**
+     * Convert an object to json string
+     * @param object : Object
+     * @return String, json string
+    */
+    private static Gson GsonSingleton = null;
+    public static String toJson(Object object) {
+        if (GsonSingleton == null) GsonSingleton = new Gson();
+        return GsonSingleton.toJson(object);
     }
 }
