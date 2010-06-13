@@ -50,6 +50,9 @@
           if(!target.parents().is('.profileEventClickIgnore') && !target.is('.profileEventClickIgnore'))
             toggleProfile(false);
         });
+        $('#profile .changeAvatar form').bind('filePosted', function(){
+          tsunami.contacts.List.touchAvatar(tsunami.export.currentUser.userid);
+        })
       }
     }
   }();

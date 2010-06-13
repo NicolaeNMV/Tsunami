@@ -2,7 +2,7 @@
 *.pyc
 project/data/
 .sass-cache/
-orbited/*.log
+project/orbited/*.log
 .classpath
 project/precompiled/
 project/eclipse/

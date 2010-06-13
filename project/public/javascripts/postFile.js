@@ -37,6 +37,7 @@
       };
       var onSuccessUpload = function(responseText, readyState){
         if(readyState===4 || readyState==="success"/* for $.ajaxSubmit */ ) {
+          $(form).trigger('filePosted');
           $('input',form).val('');
           $('.hideWhenUploadingEnd', form).hide();
           $('.message', form).empty().append(responseText);
