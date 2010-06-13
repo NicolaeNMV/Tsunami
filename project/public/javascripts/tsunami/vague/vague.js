@@ -130,14 +130,26 @@ tsunami.tools.namespace('tsunami.vagues');
       ulParticipants+
       '</div>'+
       '<ul class="vaguelettes"></ul>'+
-      '<span class="createVaguelette lnk">Ajouter une vaguelette</span>');
+      '<a href="javascript:;" class="createVaguelette">Ajouter une vaguelette</a>');
     };
     
     var tpl_vaguelette = function(v) {
-      return ('<li class="vaguelette" id="'+vagueletteId2string(v.id)+'"><textarea rows="1">'+(v.body||"")+'</textarea>'+
-          '<ul class="vaguelettes"></ul>'+
-          '<span class="createVaguelette lnk">Répondre</span>'+
-          '</li>');
+      var liParticipants = '';
+      var now = new Date().getTime();
+      for(var p in v.participants) {
+        var participant = v.participants[p];
+        var isRecent = (now-participant.timestamp)<10*60*1000;
+        liParticipants += '<li class="'+(isRecent ?'recent':'')+'">'+participant.username+'</li>';
+      }
+      
+      return ('<li class="vaguelette" id="'+vagueletteId2string(v.id)+'">'+
+        '<ul class="participants">'+
+          liParticipants+
+        '</ul>'+
+        '<textarea rows="1">'+(v.body||"")+'</textarea>'+
+        '<ul class="vaguelettes"></ul>'+
+        '<a href="javascript:;" class="createVaguelette">Répondre ici</a>'+
+      '</li>');
     };
         
     // Dynamic actions
@@ -170,6 +182,7 @@ tsunami.tools.namespace('tsunami.vagues');
       var vagueletteContext = $(this).parents().filter('.vaguelettes').size();
       var nodeToAppend = vagueletteContext ? string2vagueletteId($($(this).parents('.vaguelette')[0]).attr('id')) : 0;
       createVaguelette(g_vague.id, "", nodeToAppend);
+      return false;
     };
     
     // from ajax

@@ -1,6 +1,10 @@
 package models.vagues;
 
+import java.util.Date;
+
 import javax.persistence.*;
+
+import models.User;
 
 import com.google.gson.annotations.Expose;
 
@@ -17,8 +21,14 @@ public class VagueletteHistory extends Model {
     
     public int version;
     
-    public VagueletteHistory(String body, int version) {
+    public User user;
+    
+    public Long timestamp;
+    
+    public VagueletteHistory(String body, User user, int version) {
         this.body = body;
+        this.user = user;
         this.version = version;
+        timestamp = new Date().getTime();
     }
 }

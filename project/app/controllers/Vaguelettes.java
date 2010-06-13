@@ -6,6 +6,7 @@ import play.data.validation.*;
 import controllers.base.Application;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Vaguelettes extends Application {
     
@@ -64,12 +65,14 @@ public class Vaguelettes extends Application {
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);
         
-        // TODO, check if user is allowed to edit
+        // check if user is allowed to edit
+        if(!vaguelette.vague.containsUser(currentUser.userid))
+        	forbidden();
         
-        HashMap answer = new HashMap();
+        Map<String,Object> answer = new HashMap<String, Object>();
         answer.put("vagueletteId",vagueletteId);
         
-        if (vaguelette.patch(patch) == false) {
+        if (vaguelette.patch(patch, currentUser) == false) {
             answer.put("code","500");
             answer.put("codeText","Cannot apply patch, reload your vagulette");
             renderJSON(toJson(answer));

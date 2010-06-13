@@ -361,27 +361,60 @@
     :padding 20px
     :text-align center
   .vagueContainer
-    :padding 5px 0
+    :padding 0
     :margin 0
     :width 100%
     :overflow auto
     ul.vaguelettes
       :clear left
-      :padding 2px
+      :padding 2px 0
+      :margin-bottom 2px
       :list-style none
       li.vaguelette
         :background-color rgba(255,255,255,.5)
-        :border 1px solid
+        :border 1px solid rgba(0,0,0,0.2)
         :padding 4px
-        :margin -1px 0 0 10px
+        :margin 4px
+        +border-radius(8px)
         button
           :text-align center
         textarea
           :width 100%
-          :border 0 none
+          :border 2px solid
+          :border-color rgba(0,0,0,0.1) rgba(0,0,0,0.05) rgba(0,0,0,0.05) rgba(0,0,0,0.1)
           :margin 0
           :padding 0
-  
+          +box-sizing(border-box)
+          :background-color rgba(255,255,255,0.5)
+      ul.participants
+        display: inline
+        padding: 2px
+        color: rgba(0,0,0,0.6)
+        margin: 0
+        list-style: none
+        &:after
+          content: ' : '
+        li
+          display: inline
+          &.recent
+            font-weight: bold
+          &:before
+            content: ', '
+          &:first-child:before
+            content: ''
+      
+  .createVaguelette
+    display: block
+    text-align: center
+    color: white
+    font-weight: bold
+    background: rgba(0,0,0,0.2)
+    +border-radius(8px)
+    text-decoration: none
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5)
+    &:hover
+      background: rgba(0,0,0,0.4)
+      
 
 .users-list
   padding: 2px
