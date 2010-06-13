@@ -386,6 +386,20 @@
           :padding 0
           +box-sizing(border-box)
           :background-color rgba(255,255,255,0.5)
+        .folder
+          width: 16px
+          height: 16px
+          display: block
+          float: right
+          background: url(/public/images/fold.png)
+          text-decoration: none
+          
+        &.folded
+          .folder
+            background: url(/public/images/unfold.png)
+          textarea, ul.vaguelettes, .createVaguelette
+            display: none
+        
       ul.participants
         display: inline
         padding: 2px
@@ -400,6 +414,7 @@
             font-weight: bold
           &:before
             content: ', '
+            font-weight: normal
           &:first-child:before
             content: ''
       

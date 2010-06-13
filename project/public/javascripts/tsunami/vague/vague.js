@@ -143,6 +143,7 @@ tsunami.tools.namespace('tsunami.vagues');
       }
       
       return ('<li class="vaguelette" id="'+vagueletteId2string(v.id)+'">'+
+        '<a class="folder" href="javascript:;">&nbsp;</a>'+
         '<ul class="participants">'+
           liParticipants+
         '</ul>'+
@@ -250,6 +251,10 @@ tsunami.tools.namespace('tsunami.vagues');
     var bindEvents = function() {
       $(document).bind('vague.create', onAddVague);
       $(window).resize(updateHeight);
+      $('#vague .vaguelette .folder').live('click', function(){
+        $(this).parents('.vaguelette:first').toggleClass('folded');
+        console.log($(this).parents('.vaguelette:first'))
+      });
     };
     
     var bindOpenMode = function() {
