@@ -12,7 +12,6 @@
 
 GET     /?                                      Main.index
 
-GET     /test                                   Main.test
 
 ### Admin ###
 
@@ -26,7 +25,9 @@ GET     /logout                                 Auth.logout
 GET     /register                               Auth.registerPage
 POST    /login                                  Auth.login
 POST    /register                               Auth.register
-GET     /browser                                Auth.browserCompatibilityPage
+GET     /reset                                  Auth.forgottenPassword
+POST    /reset                                  Auth.requestPasswordReset
+GET     /reset/{login}/{resetToken}             Auth.applyResetToken
 
 
 ### Profile ###
