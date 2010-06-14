@@ -25,7 +25,7 @@
       tsunami.export.currentUser = #{toJson currentUser /};
       tsunami.export.routes = #{routes /};
       tsunami.export.i18nMessages = #{i18nMessages /};
-      tsunami.export.loadedat = (new Date).getTime(); // In microseconds
+      tsunami.export.loadedat = (new Date).getTime(); // In microseconds, used to distingue different windows of the same user
     </script>
     
     #{script src:'tsunami/tools/utils.js' /}

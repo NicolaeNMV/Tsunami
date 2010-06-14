@@ -48,13 +48,9 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         var exp = tsunami.export;
         if (data.code != "200") return;
         // Check if this is my patch
-        if (data.userId == exp.currentUser.userid && data.senderWindowId == exp.loadedat) {
-            console.log('My update, do nothing');
-            return;
-        }
+        if (data.userId == exp.currentUser.userid && data.senderWindowId == exp.loadedat) return;
         var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
-        //console.log(textarea);
-        //console.log('Apply '+data.patch + ' was '+ textarea.val());
+        
         var patches = dmp.patch_fromText(data.patch);
         
         var results = dmp.patch_apply(patches, textarea.val());
@@ -68,14 +64,11 @@ var results = dmp.patch_apply(patches, text1);
 
   results = results[1];
   var html = '';
+  results = results[1];
   for (var x = 0; x < results.length; x++) {
-    if (results[x]) {
-      html += '<LI><FONT COLOR="#009900">Ok</' + 'FONT>';
-    } else {
-      html += '<LI><FONT COLOR="#990000">Fail</' + 'FONT>';
-    }
-  }
-        */
+    if (!results[x]) 
+  }*/
+        
     
     //vaguelette_1
     remoteBind('vaguelette.patch',patchArrive);
