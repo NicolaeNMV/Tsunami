@@ -295,9 +295,11 @@ tsunami.tools.namespace('tsunami.vagues');
       $('.createVaguelette', vagueNode).live('click', onVagueletteAddClick);
     };
     
-    var touchVaguelette = function(idVagulette) {
-      // To implement
-    }
+    var touchVagueletteParticipants = function(vagueletteId) {
+      getVagueletteParticipants(vagueletteId, function(participants) {
+        updateVagueletteParticipants(participants, vagueletteId2node(vagueletteId));
+      });
+    };
     
     return {
 
