@@ -117,6 +117,7 @@ tsunami.tools.namespace('tsunami.vagues');
     var tpl_vague = function(vague) {
       var ulParticipants = "<ul>";
       ulParticipants += '<li title="Ajouter"><a href="javascript:;" class="addNewParticipant" alt="Ajouter">&nbsp;</a></li>';
+      vague.participants = vague.participants.reverse();
       for(var p in vague.participants) {
         var participant = vague.participants[p];
         ulParticipants += '<li rel="'+participant.userid+'" class="user" title="'+participant.username+'">'+
@@ -133,20 +134,29 @@ tsunami.tools.namespace('tsunami.vagues');
       '<a href="javascript:;" class="createVaguelette">Ajouter une vaguelette</a>');
     };
     
-    var tpl_vaguelette = function(v) {
-      var liParticipants = '';
+    var updateParticipants = function(participants, vagueletteNode) {
+      var node = $('ul.participants:first', vagueletteNode);
+      var recentTime = 10*1000;
+      node.empty();
       var now = new Date().getTime();
-      for(var p in v.participants) {
-        var participant = v.participants[p];
-        var isRecent = (now-participant.timestamp)<10*60*1000;
-        liParticipants += '<li class="'+(isRecent ?'recent':'')+'">'+participant.username+'</li>';
+      for(var p in participants) {
+        var participant = participants[p];
+        var isRecent = (now-participant.timestamp)<recentTime;
+        var li = $('<li '+(!isRecent?'':'class="recent"')+'>'+participant.username+'</li>');
+        if(isRecent) {
+          setTimeout(function(node){
+            node.removeClass('recent');
+          }, recentTime-(now-participant.timestamp), li);
+        }
+        node.append(li);
       }
+    }
+    
+    var tpl_vaguelette = function(v) {
       
       return ('<li class="vaguelette" id="'+vagueletteId2string(v.id)+'">'+
         '<a class="folder" href="javascript:;">&nbsp;</a>'+
-        '<ul class="participants">'+
-          liParticipants+
-        '</ul>'+
+        '<ul class="participants"> </ul>'+
         '<textarea rows="1">'+(v.body||"")+'</textarea>'+
         '<ul class="vaguelettes"></ul>'+
         '<a href="javascript:;" class="createVaguelette">Répondre ici</a>'+
@@ -163,6 +173,7 @@ tsunami.tools.namespace('tsunami.vagues');
     
     var appendVaguelette = function(vaguelette) {
       var node = $(tpl_vaguelette(vaguelette));
+      updateParticipants(vaguelette.participants,node);
       var textarea = $('textarea:first', node);
       textarea.data('object',vaguelette)
       var appendTo = (vaguelette.parentId==0) ? $('.vagueContainer > .vaguelettes', vagueNode) : $('.vaguelettes:first', vagueletteId2node(vaguelette.parentId));
@@ -230,6 +241,15 @@ tsunami.tools.namespace('tsunami.vagues');
       var data = {vagueletteId:vagueletteid};
       if(body) data.content = body;
       ajax('Vaguelettes.edit', data, onEditVaguelette);
+    };
+    
+    var getVagueletteParticipant = function(vagueletteId, callback) {
+      getVaguelette(vagueletteId, function(v){
+        callback(v.participants);
+      });
+    };
+    var getVaguelette = function(vagueletteId, callback) {
+      ajax('Vaguelettes.view', {vagueletteId: vagueletteId}, callback);
     };
 
     
