@@ -16,6 +16,7 @@ tsunami.tools.namespace('tsunami.tools');
    *  minTextLength : if text length < minTextLength, considering no text changed except the empty update
    * 
    * @author Gaetan Renaudeau <pro@grenlibre.fr>
+   * @contributor Namolovan Nicolae <n.i.c.o.l.a.e.namolovan@gmail.com>
    */
   tools.RealTimeUpdate = function(options) {
     var self = this;

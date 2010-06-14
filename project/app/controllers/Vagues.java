@@ -11,6 +11,9 @@ import models.vagues.json.VagueJson;
 import play.Logger;
 import play.data.validation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Controller for vagues
  * @author Adren
@@ -47,6 +50,14 @@ public class Vagues extends Application {
         render(vague);
     }
     
+    /* User have saw the last changes of the vague, update participant seen date */
+    public static void saw(Long vagueId) {
+        Vague vague = Vague.findById(vagueId);
+        notFoundIfNull(vague);
+        vague.updateParticipantSeen( getConnectedUser().userid );
+        renderText("{code:200}");
+    }
+    
     public static void changeBox(@Required Long[] vagueIds, @Required String box) {
     	if(validation.hasErrors())
     		error();
@@ -75,6 +86,12 @@ public class Vagues extends Application {
         notFoundIfNull(user);
         VagueParticipant vp = new VagueParticipant(user);
         vague.addParticipant(vp);
+        
+        Map<String,Object> answer = new HashMap<String, Object>();
+        answer.put("vagueId",vague.id);
+        answer.put("userId",user.userid);
+        vague.sendCometAllParticipants("vague.newParticipant",answer);
+        
         renderJSON("{}");
     }
 }

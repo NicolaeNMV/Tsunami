@@ -39,6 +39,10 @@
   // Validation de formulaires et gestion d'erreur //
   tsunami.tools.validation = function(){
 
+  tsunami.tools.isMyUserId = function(userid) {
+  	  return userid == tsunami.export.currentUser.userid;
+  }
+
     // Private //
 
     var playValidationMessageToString = function(message, variables) {

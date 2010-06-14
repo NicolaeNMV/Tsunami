@@ -73,6 +73,7 @@ GET   /vagues/?                                 Vagues.list
 GET	  /vagues/{vagueId}                         Vagues.show
 POST  /vagues                                   Vagues.create
 POST  /vagues/{vagueId}/{userid}                Vagues.inviteUser
+GET  /vagues/{vagueId}/saw                     Vagues.saw
 
 
 ### Vaguelettes ###

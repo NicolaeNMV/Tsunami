@@ -218,6 +218,19 @@ tsunami.tools.namespace('tsunami.vagues');
       cycle();
     };
     
+    // Tools //
+    vagues.tools = (function() {
+    	var g_openedVagueId = null;
+    		return {
+    			setOpenedVagueId : function(vagueId) {
+    				g_openedVagueId = vagueId;
+    			},
+    			getOpenedVagueId : function() {
+    				return g_openedVagueId;
+    			}
+    		}
+    }());
+    
     // AJAX //
     
     var getVagues = function(search, trigger) {
@@ -270,10 +283,12 @@ tsunami.tools.namespace('tsunami.vagues');
         if(g_vagueOpenedNode)
           g_vagueOpenedNode.removeClass('opened');
         g_vagueOpenedNode = vagueid2node(id).addClass('opened');
+        vagues.tools.setOpenedVagueId(id);
       });
       $(document).bind('vague.closed', function(e, id) {
         g_vagueOpenedNode.removeClass('opened');
         g_vagueOpenedNode = null;
+        vagues.tools.setOpenedVagueId(null);
       });
       bindFilters();
       bindActions();
@@ -313,6 +328,10 @@ tsunami.tools.namespace('tsunami.vagues');
           vagues.AutocompleteSearch.init(getVagues, $('input[name=search]', g_vagueListNode));
           $(document).trigger('window.vagueList.ready');
         });
+      },
+      
+      reloadVagues: function() {
+      	  getVagues();
       }
     }
   }();
