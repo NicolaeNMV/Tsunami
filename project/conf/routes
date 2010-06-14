@@ -68,13 +68,13 @@ GET    /contacts/{userid}/avatar/{size}.png     Contacts.getAvatar
 
 ### Vagues ###
 
-PUT  /vagues/{<inbox|archive|trash>box}         Vagues.changeBox
+PUT   /vagues/{<inbox|archive|trash>box}        Vagues.changeBox
 GET   /vagues/?                                 Vagues.list
-GET	  /vagues/{vagueId}                         Vagues.show
+GET   /vagues/{vagueId}                         Vagues.show
 POST  /vagues                                   Vagues.create
 POST  /vagues/{vagueId}/{userid}                Vagues.inviteUser
-GET  /vagues/{vagueId}/saw                     Vagues.saw
-
+GET   /vagues/{vagueId}/saw                     Vagues.saw
+GET   /vagues/{vagueId}/participants            Vagues.getParticipants
 
 ### Vaguelettes ###
 

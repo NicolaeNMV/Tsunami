@@ -26,6 +26,7 @@ public class Vaguelettes extends Application {
     }
     
     public static void create(@Required Long vagueId, String content, Long vagueletteParentId) {
+        User currentUser = getConnectedUser();
         Vague vague = Vague.findById(vagueId);
         notFoundIfNull(vague);
         Vaguelette vaguelette = new Vaguelette("",vague);

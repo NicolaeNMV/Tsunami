@@ -8,6 +8,8 @@ import models.vagues.*;
 import models.*;
 import models.vagues.VagueParticipant.BoxStatus;
 import models.vagues.json.VagueJson;
+import models.vagues.json.VagueParticipantJson;
+import models.vagues.json.VagueletteParticipantJson;
 import play.Logger;
 import play.data.validation.*;
 
@@ -37,17 +39,32 @@ public class Vagues extends Application {
         vague.participants.add(vp);
         vague.save();
         vague.addVaguelette(new Vaguelette(subject, vague), getConnectedUser());
+        vague.updateParticipantSeen( currentUser.userid );
         renderJSON(new VagueJson(vague));
     }
-  
+
     public static void show(Long vagueId) {
         Vague vague = Vague.findById(vagueId);
+        User currentUser = getConnectedUser();
         notFoundIfNull(vague);
-        vague.updateParticipantSeen( getConnectedUser().userid );
+        if(!vague.containsUser(currentUser))
+        	forbidden();
+        vague.updateParticipantSeen( currentUser.userid );
         if(request.format.equals("json"))
             renderJSON(new VagueJson(vague));
-        
         render(vague);
+    }
+    
+    public static void getParticipants(Long vagueId) {
+        Vague vague = Vague.findById(vagueId);
+        User currentUser = getConnectedUser();
+        notFoundIfNull(vague);
+        if(!vague.containsUser(currentUser))
+        	forbidden();
+        List<VagueParticipantJson> participants = new ArrayList<VagueParticipantJson>();
+        for(VagueParticipant vp : vague.participants)
+            participants.add(new VagueParticipantJson(vp));
+        renderJSON(participants);
     }
     
     /* User have saw the last changes of the vague, update participant seen date */
@@ -59,7 +76,7 @@ public class Vagues extends Application {
     }
     
     public static void changeBox(@Required Long[] vagueIds, @Required String box) {
-    	if(validation.hasErrors())
+    	if(Validation.hasErrors())
     		error();
     	box = box.toUpperCase();
     	User connected = getConnectedUser();
@@ -72,7 +89,6 @@ public class Vagues extends Application {
     		if(vagueParticipant!=null)
     			vagueParticipant.setStatus(BoxStatus.valueOf(box)).save();
     	}
-    	//box.toUpperCase()
         renderJSON("{}");
     }
     

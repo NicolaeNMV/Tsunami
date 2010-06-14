@@ -33,17 +33,7 @@ public class VagueletteJson {
         creationDate = v.creationDate.getMillis();
         lastActivityDate = v.lastActivityDate.getMillis();
         version = v.version;
-
-        Map<User, Long> lastUserMessage = new HashMap<User, Long>();
-        for(VagueletteHistory vh : v.histories) {
-        	Long last = lastUserMessage.get(vh.user);
-        	if(last==null || vh.timestamp>last)
-        		lastUserMessage.put(vh.user, vh.timestamp);
-        }
-        
-        participants = new ArrayList<VagueletteParticipantJson>();
-        for(User user : lastUserMessage.keySet()) 
-        	participants.add(new VagueletteParticipantJson(user, lastUserMessage.get(user)));
+        participants = VagueletteParticipantJson.getParticipants(v);
     }
     
 }

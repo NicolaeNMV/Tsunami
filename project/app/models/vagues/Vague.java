@@ -87,14 +87,16 @@ public class Vague extends ActivityDate {
         return this.getParticipant(userid) instanceof VagueParticipant;
     }
     
+    public boolean containsUser(User user) {
+    	return containsUser(user.userid);
+    }
+    
     public void updateParticipantSeen(String userid) {
         Object participant = getParticipant(userid);
         if (participant instanceof VagueParticipant) {
             ((VagueParticipant)participant).updateSeen();
         }
     }
-    
-
     
     public List<Vaguelette> getVaguelettes(String userid) {
         List<Vaguelette> filteredVaguelettes = new ArrayList<Vaguelette>();
