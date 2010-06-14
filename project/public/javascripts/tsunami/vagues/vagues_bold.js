@@ -10,6 +10,7 @@ tsunami.tools.namespace('tsunami.vagues.bold');
     var onVagueOpen = function(e, vagueId) {
         $('#vague_'+vagueId).removeClass("new");
         currentOpenedVagueId = vagueId;
+        console.log("onVagueOpen: "+currentOpenedVagueId);
     }
     
     var onVagueClose = function(e, vagueId) {
@@ -22,7 +23,7 @@ tsunami.tools.namespace('tsunami.vagues.bold');
     }
     
     var onVagueChangePatch = function(e, data) {
-        if (currentOpenedVagueId != data.vagueletteId) {
+        if (currentOpenedVagueId != data.vagueId) {
             $('#vague_'+data.vagueId+':not(.new)').addClass("new");
         }
     }
