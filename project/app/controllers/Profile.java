@@ -29,9 +29,9 @@ public class Profile extends Application {
     
     public static void updateSubmessage(String submessage) {
         User connectedUser = getConnectedUser();
-        connectedUser.setSubmessage(submessage);
+        connectedUser.setSubmessage(submessage).save();
         connectedUser.refresh();
-        connectedUser.sendCometAllContacts("user.submessage",connectedUser.userid); // @TODO, include the submessage in the data
+        connectedUser.sendCometAllContacts("user.submessage",connectedUser.userid);
         renderJSON( connectedUser.toJson() );
     }
     

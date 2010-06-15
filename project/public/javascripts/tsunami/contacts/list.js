@@ -470,7 +470,7 @@ tsunami.tools.namespace('tsunami.contacts');
       $('#contactList .self select.status').change(function() {
         changeStatus($(this).val());
       });
-      // TODO : bind the change
+      
       $('#contactList .self .imStatus').click(function(){
         tsunami.profile.Main.toggleProfile(true);
       });
@@ -554,7 +554,7 @@ tsunami.tools.namespace('tsunami.contacts');
     var contactListReload = function(e,data) {
     	tsunami.contacts.List.getAllContacts();
     };
-    // @TODO an bind that support multiple events? (separated by a comma)
+    // TODO a bind which support multiple events? (separated by a comma)
     remoteBind('contacts.changes',contactListReload);
     remoteBind('user.submessage',contactListReload);
     remoteBind('user.status',contactListReload);

@@ -85,7 +85,6 @@ public class User extends ActivityDate {
     
     public User setSubmessage(String str) {
         submessage = str;
-        save(); // todo remove this...
         return this;
     }
     
@@ -131,7 +130,6 @@ public class User extends ActivityDate {
     /**
      * Refresh the user status with lastActivityDate and timeout.
      * @return the ImStatus.
-     * TODO : replace the current logout by timeout by the comet logout  
      */
     public ImStatus updateStatusTimeOut() {
         if(imStatus.equals(ImStatus.OFFLINE))
@@ -139,7 +137,7 @@ public class User extends ActivityDate {
         
         Long msDiff = (new DateTime()).getMillis() - lastActivityDate.getMillis();
         if(msDiff>LogOutTimeOut)
-            imStatus = ImStatus.OFFLINE;
+            imStatus = ImStatus.OFFLINE; // force logout with long inactivity
         else if(msDiff>InactiveTimeOut && !imStatus.equals(ImStatus.INACTIVE) )
             imStatus = ImStatus.INACTIVE;
         else 
@@ -202,7 +200,7 @@ public class User extends ActivityDate {
      * @see userA.isFriend(userB)
      */
     public static boolean areFriend(User userA, User userB) {
-        return userA.isFriend(userB); // TODO
+        return userA.isFriend(userB);
     }
     
     /**
@@ -217,12 +215,10 @@ public class User extends ActivityDate {
     }
 
     /**
-     * TODO : si les intéractions sont assez complexes avec comet, 
-     *        ajouter des méthodes dans CometHelper.
      * @return true if user is comet connected
      */
     public boolean isConnected() {
-        return true;
+        return imStatus!=null && !imStatus.equals(ImStatus.OFFLINE);
     }
     
     

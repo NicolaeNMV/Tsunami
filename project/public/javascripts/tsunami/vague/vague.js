@@ -335,12 +335,8 @@ tsunami.tools.namespace('tsunami.vagues');
         getVague(vagueid);
         setCloseVisibility(true);
       },
-      reloadVagueletteParticipants: function(vagueletteId) {
-          return reloadVagueletteParticipants(vagueletteId);
-      },
-      reloadVagueParticipants: function() {
-          return reloadVagueParticipants();
-      },
+      reloadVagueletteParticipants: reloadVagueletteParticipants,
+      reloadVagueParticipants: reloadVagueParticipants,
     }
   }();
 

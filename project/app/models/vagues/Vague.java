@@ -45,8 +45,7 @@ public class Vague extends ActivityDate {
         save();
         return this;
     }
-    
-    // TODO : will also update the subject (subject is the first vaguelette line)
+
     public Vague updatePreview() {
         String body = (vaguelettes==null||vaguelettes.isEmpty()) ? "" : vaguelettes.get(0).body;
         int i = body.indexOf("\n");

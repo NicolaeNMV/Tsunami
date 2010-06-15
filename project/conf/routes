@@ -89,7 +89,7 @@ POST   /vaguelettes/{vagueletteId}/sync         Vaguelettes.editSync
 POST    /chat/send                              Profile.chatSend
 
 ### Comet-RestQ syncronizer ###
-POST   /cometsync/userStatus                        Cometsync.userStatus
+POST   /cometsync/userStatus                        CometSync.userStatus
 
 ### static ressources ###
 

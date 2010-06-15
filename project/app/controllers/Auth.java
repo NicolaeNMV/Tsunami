@@ -8,9 +8,9 @@ import models.User;
 import models.contacts.ImStatus;
 import play.Logger;
 import play.data.validation.*;
+import play.i18n.Messages;
 
 /**
- * TODO @ gren : will be improved 
  * @author gren
  */
 public class Auth extends Base {
@@ -116,19 +116,17 @@ public class Auth extends Base {
         notFoundIfNotJSON();
         
         if( Validation.hasErrors() ) {
-            response.status = 400;
             renderJSON( Validation.errors() );
         }
+
+        if( !User.isValidUsername(username) )
+            Validation.addError("username", Messages.get("validation.username.alnum"));
+        else if (User.findByUsername(username) != null)
+            Validation.addError("username", Messages.get("validation.username.exists"));
         
-        if( !User.isValidUsername(username) ) {
+        if(Validation.hasErrors()) {
             response.status = 400;
-            renderJSON("[{ message:'Le nom d\\'utilisateur doit être alpha-numérique.'" + /* TODO : with I18n, this will be in conf/messages.fr file */
-                    ",key:'username' }]");
-        }
-        
-        if (User.findByUsername(username) != null) {
-            response.status = 400;
-            renderJSON("[{ message:'Ce nom d\\'utilisateur existe déjà.',key:'username' }]");
+            renderJSON( Validation.errors() );
         }
         
         User u = new User(username, password);

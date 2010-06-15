@@ -177,6 +177,7 @@ tsunami.tools.namespace('tsunami.auth');
 			return {
 				init: function() {
           h1 = $('h1');
+          h1.css('position','absolute');
 					h1.before('<div id="bannerCanvas"><canvas></canvas></div>');
 					canvas = $('#bannerCanvas canvas')[0];
 					if(!canvas || !canvas.getContext)

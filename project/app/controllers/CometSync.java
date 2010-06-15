@@ -12,20 +12,14 @@ import controllers.base.Base;
 
 import models.contacts.ImStatus;
 
-public class Cometsync extends Base {
+public class CometSync extends Base {
     public static void userStatus(String userid, String event) {
 	    User user = User.findByUserid(userid);
-	    
 	    if (user == null)
             error("userNotFound");
-	    
-	    if (event.equals("connect")) {
-	    	user.imStatus = ImStatus.AVAILABLE;
-	    } else {
-	    	user.imStatus = ImStatus.OFFLINE;
-	    }
+	    user.imStatus = "connect".equals(event) ? ImStatus.AVAILABLE : ImStatus.OFFLINE;
 	    user.save();
-        // @TODO, include the new status of the user
+        // TODO, include the new status of the user
 		user.sendCometAllContacts("user.status",user.userid);
     }
 }

@@ -1,17 +1,5 @@
 tsunami.tools.namespace('tsunami.gui');
 
-/* TODO
- * * find a hack to bugfix the resizable bug on chrome when double click
- *
- * * Refactoring window manager idea :
- * * Propaging resizing :
- *    when a window is resizing :
- *    - if a window is min size and have left neighboor, resizing left neighboor (how to manage that ?)
- *    - same rule with max size and right neighboor
- *    when the global window is resizing :
- *    - resize all window (begin to right) to the min size (but the maximize will not un min size them)
- */
-
 (function() {
   
   var contacts = tsunami.contacts;
@@ -207,9 +195,9 @@ tsunami.tools.namespace('tsunami.gui');
         }, 500);
         
         $('#windows .window').hide();
-        gui.StatusBar.showLoad('Chargement de comet...');
+        gui.StatusBar.showLoad('Chargement de comet', 4000);
         $(document).one('comet.connect', function() {
-            gui.StatusBar.showLoad('Chargement des fenêtres...');
+            gui.StatusBar.showLoad('Chargement des fenêtres', 4000);
             $('#windows .window').show();
             $(document).trigger('WindowManager.ready');
         });

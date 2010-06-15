@@ -279,7 +279,7 @@ public class Contacts extends Application {
         
         User currentUser = getConnectedUser();
         currentUser.changeStatus(newStatus);
-        currentUser.sendCometAllContacts("user.status",currentUser.userid); // @TODO send the new status
+        currentUser.sendCometAllContacts("user.status",currentUser.userid); // TODO send the new status
         
         renderJSON(currentUser.toJson());
     }
@@ -298,11 +298,6 @@ public class Contacts extends Application {
         User user = User.findByUserid(userid);
         if(user==null || !Avatar.isAuthorizedSize(size))
             notFound();
-        /*
-        User me = getConnectedUser();
-        if(!me.equals(user) && !me.isFriend(user)) // not me and not my friend
-            error("notFriend");
-        */
         File defaultAvatar = Play.getFile("/public/images/avatar/"+size+".png");
         File avatar;
         if (user.avatar) {

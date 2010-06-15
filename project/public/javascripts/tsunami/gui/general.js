@@ -36,15 +36,27 @@ tsunami.tools.namespace('tsunami.gui');
   
   
   /**
-   * TODO @gren : loading timeout.
    * display an error message if timeout is reaches and no other show or hide function was called.
    */
   gui.StatusBar = function() {
 	var node = null;
-		
-	var showLoad = function(message) {
-		node.show();
-		$('.message', node).text(message);
+    var g_timeout = false;
+    
+	var showLoad = function(message, timeout) {
+        g_timeout = false;
+		node.removeClass('fail').show();
+		$('.message', node).text(message+'...');
+        
+        if(timeout) {
+          g_timeout = true;
+          setTimeout(function(){
+            if(g_timeout) {
+              g_timeout = false;
+              node.addClass('fail').show();
+              $('.message', node).text('Echec: '+message);
+            }
+          }, timeout);
+        }
 	}
 
 	return {
@@ -55,6 +67,7 @@ tsunami.tools.namespace('tsunami.gui');
 		
 		showLoad: showLoad,
 		hide: function() {
+          g_timeout = false;
 		  node.hide();
 		}
 	}
