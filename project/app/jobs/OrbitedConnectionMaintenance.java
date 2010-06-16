@@ -6,6 +6,7 @@ import play.Logger;
 import play.Play;
 import play.jobs.*;
 import play.libs.WS;
+import play.libs.WS.WSRequest;
 import util.CometHelper;
 
 @Every("10s")
@@ -21,7 +22,7 @@ public class OrbitedConnectionMaintenance extends Job<Void> {
 	public void run() {
 		if(OrbitedConnection.isStarted()) {
 			try {
-				Integer status = WS.url("http://localhost:5001/").get().getStatus();
+				Integer status = WS.url("http://localhost:5001/").timeout("2s").get().getStatus();
 				if(status!=200) {
 					resetOrbitedConnection();
 					return;
