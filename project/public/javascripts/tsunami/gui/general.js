@@ -43,15 +43,15 @@ tsunami.tools.namespace('tsunami.gui');
     var g_timeout = false;
     
 	var showLoad = function(message, timeout) {
-        g_timeout = false;
+        g_timeout = null;
 		node.removeClass('fail').show();
 		$('.message', node).text(message+'...');
         
         if(timeout) {
-          g_timeout = true;
+          g_timeout = message;
           setTimeout(function(){
-            if(g_timeout) {
-              g_timeout = false;
+            if(g_timeout==message) {
+              g_timeout = null;
               node.addClass('fail').show();
               $('.message', node).text('Echec: '+message);
             }
