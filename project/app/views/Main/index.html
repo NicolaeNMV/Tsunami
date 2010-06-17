@@ -56,7 +56,7 @@
     <div class="changeAvatar">
       <h3>Changer mon avatar</h3>
       <div class="imageContainer"></div>
-      #{postFile destUrl: @Profile.postAvatar(), name: 'file' /}
+      #{postFile destUrl: @Profile.postAvatar(), name: 'file', dropzoneText: 'ou déposez un fichier içi.' /}
     </div>
     
     #{include 'Profile/changePassword.html' /}

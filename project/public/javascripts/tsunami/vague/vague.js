@@ -8,6 +8,53 @@ tsunami.tools.namespace('tsunami.vagues');
   var esc = tools.escapeHtml;
   var log = tsunami.tools.log;
   
+  
+  vagues.History = function() {
+    
+    var tpl_history = function() {
+      return '<header>'+
+        '<a href="javascript:;" class="editMode" title="Editer la vaguelette">Editer la vaguelette</a>'+
+        '<a class="folder" href="javascript:;">&nbsp;</a>'+
+      '</header>';
+    };
+    
+    var createHistory = function(node) {
+      /*
+      firstly, append loading
+      second, do ajax request to get all histories and render vaguelette history
+      */
+      $('> .viewing', node).append(tpl_history());
+    };
+    
+    var setMode = function(vaguelette, on) {
+      vaguelette = $(vaguelette);
+      if(on) {
+        $(vaguelette).addClass('historyOn');
+        $('> .viewing', vaguelette).empty().show();
+        $('> .editing', vaguelette).hide();
+        createHistory(vaguelette);
+      }
+      else {
+        $(vaguelette).removeClass('historyOn');
+        $('> .viewing', vaguelette).hide();
+        $('> .editing', vaguelette).show();
+      }
+    }
+    
+    return {
+      init: function() {
+        $('#vague .vaguelette .viewHistory').live('click', function(){
+          setMode($(this).parents('.vaguelette:first'), true);
+        });
+        $('#vague .vaguelette .editMode').live('click', function(){
+          setMode($(this).parents('.vaguelette:first'), false);
+        });
+      }
+    }
+  }();
+  $(document).ready(vagues.History.init);
+  
+  
   vagues.Participants = function() {
     
     var onAddNewParticipantClick = function() {
@@ -155,11 +202,18 @@ tsunami.tools.namespace('tsunami.vagues');
     }
     
     var tpl_vaguelette = function(v) {
-      
+      var view = tools.i18n('vaguelette.history.view');
       return ('<li class="vaguelette" id="'+vagueletteId2string(v.id)+'">'+
+        '<div class="editing">'+
+          '<header>'+
+        '<a href="javascript:;" class="viewHistory" title="'+view+'">'+view+'</a>'+
         '<a class="folder" href="javascript:;">&nbsp;</a>'+
-        '<ul class="participants"> </ul>'+
-        '<textarea rows="1">'+(v.body||"")+'</textarea>'+
+      '</header>'+
+          '<ul class="participants"> </ul>'+
+          '<textarea rows="1">'+(v.body||"")+'</textarea>'+
+        '</div>'+
+        '<div class="viewing" style="display:none;">'+
+        '</div>'+
         '<ul class="vaguelettes"></ul>'+
         '<a href="javascript:;" class="createVaguelette">Répondre ici</a>'+
       '</li>');
@@ -287,7 +341,6 @@ tsunami.tools.namespace('tsunami.vagues');
       $(window).resize(updateHeight);
       $('#vague .vaguelette .folder').live('click', function(){
         $(this).parents('.vaguelette:first').toggleClass('folded');
-        console.log($(this).parents('.vaguelette:first'))
       });
     };
     

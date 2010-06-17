@@ -62,3 +62,6 @@ vagues.title=Liste des vagues
 vagues.button.create=Créer une vague
 vagues.button.fastCreate=Créer
 vagues.search=Rechercher...
+
+
+vaguelette.history.view=Voir l'historique

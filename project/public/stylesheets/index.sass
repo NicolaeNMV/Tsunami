@@ -370,12 +370,26 @@
       :padding 2px 0
       :margin-bottom 2px
       :list-style none
+      header
+        border-bottom: 1px solid rgba(0,0,0,0.1)
+        padding-bottom: 5px
+        margin-bottom: 2px
+      .editMode
+        background: url(/public/images/editVaguelette.png) no-repeat
+        text-decoration: none
+        padding-left: 20px
+      .viewHistory
+        background: url(/public/images/history.png) no-repeat
+        text-decoration: none
+        padding-left: 20px
       li.vaguelette
         :background-color rgba(255,255,255,.5)
         :border 1px solid rgba(0,0,0,0.2)
         :padding 4px
         :margin 4px
         +border-radius(8px)
+        &.historyOn
+          :background-color rgba(230,255,240,.5)
         button
           :text-align center
         textarea
@@ -403,10 +417,12 @@
       ul.participants
         display: inline
         padding: 2px
+          :left 20px
+        background: url(/public/images/group.png) no-repeat
         color: rgba(0,0,0,0.6)
         margin: 0
         list-style: none
-        &:after
+        &:before
           content: ' : '
         li
           display: inline
