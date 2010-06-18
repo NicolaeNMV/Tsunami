@@ -67,6 +67,12 @@ public class Vaguelette extends ActivityDate {
       return new VagueletteJson(this);
     }
     
+    public void initHistory(User user) {
+        VagueletteHistory vh = new VagueletteHistory("", user, version);
+        vh.vaguelette = this;
+        vh.save();
+    }
+    
     public Vaguelette addHistory(String patch, User user) {
         VagueletteHistory vh = new VagueletteHistory(patch, user, version);
         vh.vaguelette = this;

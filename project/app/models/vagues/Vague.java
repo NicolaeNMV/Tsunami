@@ -62,6 +62,7 @@ public class Vague extends ActivityDate {
     
     public Vague addVaguelette(Vaguelette o, User addedBy) {
         o.vague = this;
+        o.initHistory(addedBy);
         o.save();
         updatePreview();
         updateActivity(); // will save too ( FIXME: not save() ) 
