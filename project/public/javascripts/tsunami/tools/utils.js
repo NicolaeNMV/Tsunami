@@ -28,6 +28,43 @@
     console.log(obj);
   };
   
+  tsunami.tools.Period = function() {
+    var twoDigits = function(n) {
+      return (n>=0&&n<=9) ? '0'+n : n;
+    };
+    var withZeroDayMillis = function(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    };
+    var tpl_day_classic = function(date) {
+      return twoDigits(date.getDate())+'/'+twoDigits(date.getMonth()+1)+'/'+date.getFullYear();
+    };
+    
+    return {
+      tpl_day: function(ms) {
+        var date = new Date(ms);
+        var date0 = withZeroDayMillis(date);
+        var now0 = withZeroDayMillis(new Date());
+        var day = 86400000;
+        if(now0.getTime()==date0.getTime())
+          return "Aujourd'hui";
+        else if((now0.getTime()-day)==date0.getTime())
+          return "Hier";
+        else if((now0.getTime()+day)==date0.getTime())
+          return "Demain";
+        return "Le "+tpl_day_classic(date);
+      },
+      
+      tpl_hour: function(ms) {
+        var date = new Date(ms);
+        return twoDigits(date.getHours())+":"+twoDigits(date.getMinutes());
+      },
+      
+      tpl_dayAndHour: function(ms) {
+        return (!ms)?"":(this.tpl_day(ms)+" à "+this.tpl_hour(ms));
+      }
+    }
+  }();
+  
   /**
     This function look for the underscore character(_) and return the string after it
     Useful in the something_id construction, id is returned.

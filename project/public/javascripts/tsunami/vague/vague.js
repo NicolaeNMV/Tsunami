@@ -8,27 +8,94 @@ tsunami.tools.namespace('tsunami.vagues');
   var esc = tools.escapeHtml;
   var log = tsunami.tools.log;
   
+  var Period = tsunami.tools.Period;
+  
+  var dmp = (function() {
+  	var dmp = new diff_match_patch();
+  	dmp.Diff_Timeout = 1;
+	  dmp.Diff_EditCost = 4;
+	  return dmp;
+  }());
   
   vagues.History = function() {
     
-    var tpl_history = function() {
+    var node2vagueletteId = function(node) {
+      return $(node).attr('id').substring(11);
+    };
+    
+    var tpl_viewing = function() {
       return '<header>'+
         '<a href="javascript:;" class="editMode" title="Editer la vaguelette">Editer la vaguelette</a>'+
         '<a class="folder" href="javascript:;">&nbsp;</a>'+
       '</header>'+
-      '<ul class="participants"> </ul>'+
+      '<div class="participant"> </div>'+
+      '<img class="loading" src="/public/images/loadingVaguelette.gif" />'+
       '<nav>'+
+        '<div class="sliderContainer"><div class="slider"> </div></div>'+
+        '<div class="infos">'+
+          '<span class="time"> </span>'+
+          '<span class="step"> </span>'+
+        '</div>'+
       '</nav>'+
       '<div class="content">'+
       '</div>';
     };
     
+    var getHistoryIndexByVersion = function(histories, version) {
+      for(var h in histories)
+        if(histories[h].version == version)
+          return h;
+      return -1;
+    }
+    
+    var onListVagueletteHistories = function(vagueletteNode, vaguelette) {
+      if(!vaguelette.histories)
+        vaguelette.histories = [];
+      
+      computeHistories(vaguelette.histories);
+      $(vagueletteNode).data('vaguelette', vaguelette);
+      $('> .viewing .loading', vagueletteNode).remove();
+      
+      var onSlide = function(e, ui) {
+        var vagueletteNode = $(this).parents('.vaguelette');
+        var vaguelette = $(vagueletteNode).data('vaguelette');
+        var h = getHistoryIndexByVersion(vaguelette.histories, ui.value);
+        if(h==-1) return;
+        var history = vaguelette.histories[h];
+        var historyBefore = h==0 ? {text: ""} : vaguelette.histories[h-1];
+        var date = new Date(history.timestamp);
+        $('> .viewing .participant', vagueletteNode).text(history.username);
+        $('> .viewing .time', vagueletteNode).text(Period.tpl_dayAndHour(date));
+        $('> .viewing .step', vagueletteNode).text((1+ui.value)+' sur '+vaguelette.histories.length);
+        $('> .viewing .content', vagueletteNode).empty().html(boldDiff(history.text, historyBefore.text));
+     };
+    
+      var slider = $('> .viewing .slider', vagueletteNode).slider({
+        max: vaguelette.histories.length-1,
+        slide: onSlide
+      });
+      onSlide.call(slider, null, {value: slider.slider('value'), handle: $('.ui-slider-handle', slider)});
+    };
+    
     var createHistory = function(node) {
-      /*
-      firstly, append loading
-      second, do ajax request to get all histories and render vaguelette history
-      */
-      $('> .viewing', node).append(tpl_history());
+      $('> .viewing', node).append(tpl_viewing());
+      ajax('VagueletteHistories.list', {vagueletteId: node2vagueletteId(node)}, function(vaguelette) {
+        onListVagueletteHistories(node, vaguelette);
+      });
+    };
+    
+    var computeHistories = function(histories) {
+      for(var h=0; h<histories.length; ++h)
+        histories[h].text = dmp.patch_apply(dmp.patch_fromText(histories[h].body), h==0 ? "" : histories[h-1].text)[0];
+    };
+    
+    var boldDiff = function(currentText, oldText) {
+      if(!currentText) return "";
+      if(!oldText) oldText = "";
+      var d = dmp.diff_main(currentText, oldText);
+      dmp.diff_cleanupSemantic(d);
+      var ds = dmp.diff_prettyHtml(d);
+      return ds;
     };
     
     var setMode = function(vaguelette, on) {

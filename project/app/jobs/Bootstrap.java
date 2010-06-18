@@ -48,6 +48,7 @@ public class Bootstrap extends Job<Object> {
             for(Vaguelette vl: v.vaguelettes) {
               vl.vague = v;
               vl.initActivity();
+              vl.initHistory(users.get(0));
               vl.save();
             }
             v.updatePreview();

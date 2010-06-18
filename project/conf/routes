@@ -1,13 +1,5 @@
 # Keep routes clean to read !
 
-### How to use REST and CRUD : http://en.wikipedia.org/wiki/REST#RESTful_web_services
-# GET    /resources/?                             .list
-# GET    /resources/{id}                          .retrieve
-# POST   /resources                               .create
-# PUT    /resources/{id}                          .update
-# DELETE /resources/{id}                          .delete
-
-
 ### Main ###
 
 GET     /?                                      Main.index
@@ -76,20 +68,26 @@ POST  /vagues/{vagueId}/{userid}                Vagues.inviteUser
 GET   /vagues/{vagueId}/saw                     Vagues.saw
 GET   /vagues/{vagueId}/participants            Vagues.getParticipants
 
+
 ### Vaguelettes ###
 
 GET    /vagues/{vagueId}/vaguelettes            Vaguelettes.list
 GET    /vaguelettes/{vagueletteId}              Vaguelettes.view
 POST   /vagues/{vagueId}                        Vaguelettes.create
 PUT    /vaguelettes/{vagueletteId}              Vaguelettes.edit
-# DELETE /vaguelettes/{vagueletteId}            Vaguelettes.delete
 POST   /vaguelettes/{vagueletteId}/sync         Vaguelettes.editSync
+POST   /vaguelettes/{vagueletteId}/histories    VagueletteHistories.list
+
 
 ### Chat ###
+
 POST    /chat/send                              Profile.chatSend
 
+
 ### Comet-RestQ syncronizer ###
-POST   /cometsync/userStatus                        CometSync.userStatus
+
+POST   /cometsync/userStatus                    CometSync.userStatus
+
 
 ### static ressources ###
 
