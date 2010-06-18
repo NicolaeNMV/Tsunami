@@ -374,25 +374,36 @@
         border-bottom: 1px solid rgba(0,0,0,0.1)
         padding-bottom: 5px
         margin-bottom: 2px
+      .editMode, .viewHistory
+        text-decoration: none
+        padding-left: 20px
+        display: inline-block
+        min-height: 16px
       .editMode
         background: url(/public/images/editVaguelette.png) no-repeat
-        text-decoration: none
-        padding-left: 20px
       .viewHistory
         background: url(/public/images/history.png) no-repeat
-        text-decoration: none
-        padding-left: 20px
       li.vaguelette
         :background-color rgba(255,255,255,.5)
         :border 1px solid rgba(0,0,0,0.2)
         :padding 4px
         :margin 4px
         +border-radius(8px)
+        > .editing
+          :display block
+        > .viewing
+          :display none
+          .content
+            min-height: 20px
         &.historyOn
-          :background-color rgba(230,255,240,.5)
+          :background-color rgba(230,230,230,.8)
+          > .editing
+            :display none
+          > .viewing
+            :display block
         button
           :text-align center
-        textarea
+        textarea, &.historyOn .viewing .content
           :width 100%
           :border 2px solid
           :border-color rgba(0,0,0,0.1) rgba(0,0,0,0.05) rgba(0,0,0,0.05) rgba(0,0,0,0.1)

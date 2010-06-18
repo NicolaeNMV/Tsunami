@@ -23,7 +23,7 @@ public class VagueletteParticipantJson {
 		List<VagueletteParticipantJson> participants;
 		Map<User, Long> lastUserMessage = new HashMap<User, Long>();
         for(VagueletteHistory vh : v.histories) {
-        	Long last = lastUserMessage.get(vh.user);
+            Long last = lastUserMessage.get(vh.user);
         	if(last==null || vh.timestamp>last)
         		lastUserMessage.put(vh.user, vh.timestamp);
         }

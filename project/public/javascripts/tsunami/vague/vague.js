@@ -15,7 +15,12 @@ tsunami.tools.namespace('tsunami.vagues');
       return '<header>'+
         '<a href="javascript:;" class="editMode" title="Editer la vaguelette">Editer la vaguelette</a>'+
         '<a class="folder" href="javascript:;">&nbsp;</a>'+
-      '</header>';
+      '</header>'+
+      '<ul class="participants"> </ul>'+
+      '<nav>'+
+      '</nav>'+
+      '<div class="content">'+
+      '</div>';
     };
     
     var createHistory = function(node) {
@@ -30,14 +35,11 @@ tsunami.tools.namespace('tsunami.vagues');
       vaguelette = $(vaguelette);
       if(on) {
         $(vaguelette).addClass('historyOn');
-        $('> .viewing', vaguelette).empty().show();
-        $('> .editing', vaguelette).hide();
+        $('> .viewing', vaguelette).empty();
         createHistory(vaguelette);
       }
       else {
         $(vaguelette).removeClass('historyOn');
-        $('> .viewing', vaguelette).hide();
-        $('> .editing', vaguelette).show();
       }
     }
     
@@ -212,7 +214,7 @@ tsunami.tools.namespace('tsunami.vagues');
           '<ul class="participants"> </ul>'+
           '<textarea rows="1">'+(v.body||"")+'</textarea>'+
         '</div>'+
-        '<div class="viewing" style="display:none;">'+
+        '<div class="viewing">'+
         '</div>'+
         '<ul class="vaguelettes"></ul>'+
         '<a href="javascript:;" class="createVaguelette">Répondre ici</a>'+
