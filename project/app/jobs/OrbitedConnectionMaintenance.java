@@ -27,6 +27,11 @@ public class OrbitedConnectionMaintenance extends Job<Void> {
 					resetOrbitedConnection();
 					return;
 				}
+				status = WS.url("http://localhost:8001/tcp").timeout("2s").get().getStatus();
+                if(status!=200) {
+                    resetOrbitedConnection();
+                    return;
+                }
 			}
 			catch(Exception e) {
 				resetOrbitedConnection();

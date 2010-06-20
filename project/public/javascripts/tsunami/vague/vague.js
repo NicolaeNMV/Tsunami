@@ -67,7 +67,7 @@ tsunami.tools.namespace('tsunami.vagues');
         $('> .viewing .participant', vagueletteNode).text(history.username);
         $('> .viewing .time', vagueletteNode).text(Period.tpl_dayAndHour(date));
         $('> .viewing .step', vagueletteNode).text((1+ui.value)+' sur '+vaguelette.histories.length);
-        $('> .viewing .content', vagueletteNode).empty().html(boldDiff(history.text, historyBefore.text));
+        $('> .viewing .content', vagueletteNode).empty().html(boldDiff(historyBefore.text, history.text));
      };
     
       var slider = $('> .viewing .slider', vagueletteNode).slider({
