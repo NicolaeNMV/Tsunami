@@ -47,7 +47,7 @@ jQuery.each( ("drag dragenter dragleave dragover dragend drop dragstart").split(
 // Live draggable's && droppable's
 jQuery.fn.extend({
 
-    draggable: function(start, end) {
+    ndd_draggable: function(start, end) {
     
         this.live('dragstart dragend', function(e) {
             
@@ -71,7 +71,7 @@ jQuery.fn.extend({
         });
     },
 
-    droppable: function(accept, enter, leave, drop) {
+    ndd_droppable: function(accept, enter, leave, drop) {
         var currents = {}, uuid = 0;
             
         this.live('dragenter dragleave dragover drop', function(e) {

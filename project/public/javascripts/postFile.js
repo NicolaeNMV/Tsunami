@@ -86,7 +86,7 @@
         $('.dropzone', form).each(function(){
             
             //$(this).droppable( // THERE IS A BUG, TEMPORARY COMMENT AND REPLACED BY .dropzone selector
-            $('.dropzone', form).droppable(
+            $('.dropzone', form).ndd_droppable(
                 $(this).attr('accept'),
                 // Drag enter
                 function() {
