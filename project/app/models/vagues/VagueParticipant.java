@@ -15,6 +15,7 @@ import org.joda.time.DateTime;
 @Entity
 public class VagueParticipant extends Model {
     
+    @ManyToOne
     public User user;
     
     @ManyToOne

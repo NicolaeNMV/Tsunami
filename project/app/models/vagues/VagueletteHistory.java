@@ -21,6 +21,7 @@ public class VagueletteHistory extends Model {
     
     public int version;
     
+    @ManyToOne
     public User user;
     
     public Long timestamp;
