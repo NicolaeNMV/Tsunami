@@ -385,14 +385,6 @@ tsunami.tools.namespace('tsunami.contacts');
       $('#contactList > .self .submessage').empty().text( tsunami.export.currentUser.submessage||"" ).attr('title',esc(tsunami.export.currentUser.submessage));
     };
 
-/*
-    var onSuccess = function(o) {
-      $('#messagesAjaxResult').removeClass('err').addClass('success').empty().append( '[DEBUG] requète ajax sur "'+o.action+'" réalisé avec succès.' );
-    };
-    var onError = function(o) {
-      $('#messagesAjaxResult').addClass('err').removeClass('success').empty().append( '[DEBUG] requète ajax sur "'+o.action+'" a échoué.' );
-    };
-*/
     // AJAX : identical as server-side method //
 
     var getAllContacts = function() {

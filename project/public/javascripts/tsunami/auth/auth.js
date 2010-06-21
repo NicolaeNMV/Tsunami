@@ -41,6 +41,8 @@ tsunami.tools.namespace('tsunami.auth');
   }();
   $().ready(auth.login.init);
   
+  
+  /*
   auth.register = function() {
     
     // Ajax //
@@ -87,6 +89,7 @@ tsunami.tools.namespace('tsunami.auth');
     }
   }();
   $().ready(auth.register.init);
+  */
   
   auth.logoutMessage = function() {
     return {

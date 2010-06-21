@@ -112,11 +112,13 @@ public class Auth extends Base {
     public static void register(
             @Required @MinSize(4) @MaxSize(32) String username,
             @Required @MinSize(4) @MaxSize(255) String password,
+            @Required @Equals("password") String passwordAgain,
             @Email String email) {
-        notFoundIfNotJSON();
+        params.flash();
         
         if( Validation.hasErrors() ) {
-            renderJSON( Validation.errors() );
+            Validation.keep();
+            registerPage();
         }
 
         if( !User.isValidUsername(username) )
@@ -124,24 +126,27 @@ public class Auth extends Base {
         else if (User.findByUsername(username) != null)
             Validation.addError("username", Messages.get("validation.username.exists"));
         
-        if(Validation.hasErrors()) {
-            response.status = 400;
-            renderJSON( Validation.errors() );
+        if( Validation.hasErrors() ) {
+            Validation.keep();
+            registerPage();
         }
         
         User u = new User(username, password);
         
         if(email!=null && email.length()!=0) {
             if( User.findByEmail(email) != null ) {
-                response.status = 400;
-                renderJSON("[{ message:'Cet email est déjà utilisé par un utilisateur.',key:'email' }]");
+                Validation.addError("email", "Cet email est déjà utilisé par un utilisateur.");
+            }
+            if( Validation.hasErrors() ) {
+                Validation.keep();
+                registerPage();
             }
             u.email = email;
         }
 
         u.save();
         
-        renderJSON("{}");
+        redirect("/");
     }
 
 }

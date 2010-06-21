@@ -4,27 +4,31 @@
 <div id="registerBox" class="authBox theme theme-box level-60 radius">
   <div class="head">Inscription</div>
   <div class="body">
-    <form method="post">
+    #{form @Auth.register()}
         <div class="formline">
             <label for="username">Nom d'utilisateur*</label>
-            <input id="username" type="text" name="username" maxlength="32" />
+            <input id="username" type="text" name="username" maxlength="32" value="${flash['username']}" />
+            <span class="error right">#{error 'username' /}</span>
         </div>
         <div class="formline">
             <label for="password">Mot de passe*</label>
             <input id="password" type="password" name="password" />
+            <span class="error">#{error 'password' /}</span>
         </div>
         <div class="formline">
             <label for="passwordAgain">Retapez-le*</label>
             <input id="passwordAgain" type="password" name="passwordAgain" />
+            <span class="error">#{error 'passwordAgain' /}</span>
         </div>
         <div class="formline">
             <label for="email">E-mail</label>
-            <input id="email" type="text" name="email" />
+            <input id="email" type="text" name="email" value="${flash['email']}" />
+            <span class="error">#{error 'email' /}</span>
         </div>
         <div class="formline">
             <button class="register">S'inscrire</button>
         </div>
-    </form>
+    #{/form}
     <div class="infos">* Ces champs sont requis.</div>
     <div class="actions">
         <a href="@{Auth.loginPage}">retour</a>
