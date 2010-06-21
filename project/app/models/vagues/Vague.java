@@ -65,8 +65,7 @@ public class Vague extends ActivityDate {
         o.initHistory(addedBy);
         o.save();
         updatePreview();
-        updateActivity(); // will save too ( FIXME: not save() ) 
-        // save();
+        updateActivity();
         return this;
     }
     

@@ -32,7 +32,8 @@ public class Vaguelettes extends Application {
         Vaguelette vaguelette = new Vaguelette("",vague);
         vague.addVaguelette(vaguelette, getConnectedUser());
         vaguelette.parentId = vagueletteParentId;
-        vaguelette.setBody(content);
+        if(content!=null)
+          vaguelette.setBody(content);
         renderJSON(vaguelette.toJson());
     }
     

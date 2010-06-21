@@ -29,7 +29,6 @@ tsunami.tools.namespace('tsunami.vagues.sync');
 		var patch_list = dmp.patch_make(text1, text2, diff);
 		patch_text = dmp.patch_toText(patch_list);
 		//      conf.vagueletteId
-		//console.log(patch_text);
         var vaguelette = textarea.data('object');
         $.post("/vaguelettes/"+ vaguelette.id +"/sync", 
             { vagueletteId: vaguelette.id, patch: patch_text, userWindowId: tsunami.export.loadedat }
@@ -57,18 +56,6 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         
         textarea.val(results[0]);
     }
-        /*
-var patches = dmp.patch_fromText(patch_text);
-var results = dmp.patch_apply(patches, text1);
-//document.getElementById('text2b').value = results[0];
-
-  results = results[1];
-  var html = '';
-  results = results[1];
-  for (var x = 0; x < results.length; x++) {
-    if (!results[x]) 
-  }*/
-        
     
     //vaguelette_1
     remoteBind('vaguelette.patch',patchArrive);

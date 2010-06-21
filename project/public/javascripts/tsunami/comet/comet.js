@@ -50,7 +50,6 @@ tsunami.tools.namespace('tsunami.comet');
 			throw "Invalid JSON: " + data;
 		}
 		
-		console.log('comet.event.'+data.event + " data: " + data.data)
 	    // Event name construction,
 	    $(document).trigger('comet.event.'+data.event, data.data);
 	};
@@ -92,7 +91,6 @@ tsunami.tools.namespace('tsunami.comet');
 		else comet.firstConnect = true;
 		
 		stomp.connect('localhost', 61613, currentUser.userid, '');
-		console.log('Try to connect to stomp');
 		
 		setTimeout(function(){comet.connectTimerWait=false;comet.connect()},2500);
 	}
@@ -106,14 +104,6 @@ tsunami.tools.namespace('tsunami.comet');
 		stomp.reset();
 	});*/
 }());
-
-// debug
-$(document).bind('comet.connect',function() {
-	console.log('comet.connected');
-});
-$(document).bind('comet.close',function() {
-	console.log('comet.close');
-});
 
 // A global function
 function remoteBind(event,func) {
