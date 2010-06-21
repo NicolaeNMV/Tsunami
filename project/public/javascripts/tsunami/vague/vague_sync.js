@@ -57,6 +57,13 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         textarea.val(results[0]);
     }
     
-    //vaguelette_1
+    var onCreateVaguelette = function(e,data) {
+        // Look if the vagueltte was not created by us
+        if (false == tsunami.tools.isMyWindowId(data.senderWindowId)) {
+            tsunami.vagues.Vague.onCreateVaguelette(data);
+        }
+    }
+    
     remoteBind('vaguelette.patch',patchArrive);
+    remoteBind('vaguelette.create',onCreateVaguelette);
 }());

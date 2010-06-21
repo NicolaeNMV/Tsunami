@@ -457,6 +457,11 @@ tsunami.tools.namespace('tsunami.vagues');
         getVague(vagueid);
         setCloseVisibility(true);
       },
+      
+      onCreateVaguelette: function(vaguelette) {
+          onCreateVaguelette(vaguelette);
+      },
+      
       reloadVagueletteParticipants: reloadVagueletteParticipants,
       reloadVagueParticipants: reloadVagueParticipants,
     }

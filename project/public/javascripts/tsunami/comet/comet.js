@@ -5,6 +5,8 @@ tsunami.tools.namespace('tsunami.comet');
 	var comet = tsunami.comet;
 	var stomp = comet.stomp = new STOMPClient();
 	comet.connected = false;
+    comet.unloadingPage = false;
+    var debug = false;
     
 	/**
 		Trigger custom jQuery events from stomp events
@@ -50,7 +52,12 @@ tsunami.tools.namespace('tsunami.comet');
 			throw "Invalid JSON: " + data;
 		}
 		
-	    // Event name construction,
+	    
+        if (debug) {
+            console.log("comet.event."+data.event);
+            console.log(data.data);
+        }
+        // Event name construction
 	    $(document).trigger('comet.event.'+data.event, data.data);
 	};
 
@@ -64,6 +71,7 @@ tsunami.tools.namespace('tsunami.comet');
 		comet.connected = true;
 	});
 	$(document).bind('comet.close',function() {
+        if (comet.unloadingPage) return;
 		comet.connected = false;
 		comet.connect();
 	});
@@ -99,7 +107,11 @@ tsunami.tools.namespace('tsunami.comet');
 		comet.setup();
 		comet.connect();
 	});
-    window.onbeforeunload = function() {stomp.reset();return;}
+    window.onbeforeunload = function() {
+        comet.unloadingPage = true;
+        //stomp.reset();
+        return;
+    }
 	/*$(document).unload(function() {
 		stomp.reset();
 	});*/

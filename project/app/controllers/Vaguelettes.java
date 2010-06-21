@@ -25,7 +25,7 @@ public class Vaguelettes extends Application {
         renderJSON(vaguelette.toJson());
     }
     
-    public static void create(@Required Long vagueId, String content, Long vagueletteParentId) {
+    public static void create(@Required Long vagueId, String content, Long vagueletteParentId, Long userWindowId) {
         User currentUser = getConnectedUser();
         Vague vague = Vague.findById(vagueId);
         notFoundIfNull(vague);
@@ -34,7 +34,12 @@ public class Vaguelettes extends Application {
         vaguelette.parentId = vagueletteParentId;
         if(content!=null)
           vaguelette.setBody(content);
-        renderJSON(vaguelette.toJson());
+        
+        Map<String,Object> answer = vaguelette.toJson().getMap();
+        answer.put("senderWindowId",userWindowId);
+        vaguelette.vague.sendCometAllParticipants("vaguelette.create",answer);
+        
+        renderJSON(answer);
     }
     
     public static void edit(@Required Long vagueletteId, String content) {
@@ -43,8 +48,6 @@ public class Vaguelettes extends Application {
         notFoundIfNull(vaguelette);
         if(!vaguelette.containsUser(currentUser.userid))
             forbidden();
-        for(VagueParticipant vp : vaguelette.vague.participants)
-          sendComet(vp.user.userid,"vaguelette.edit",vagueletteId);
         
         vaguelette.setBody(content);
         renderJSON(vaguelette.toJson());

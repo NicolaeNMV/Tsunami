@@ -65,6 +65,7 @@ tsunami.tools.namespace('tsunami.tools');
         var compute = computeUrl(route.p, cleanArgs(args) );
         if(!compute)
           return true;
+        compute.args['userWindowId'] = tsunami.export.loadedat; // Sometimes we need to the window which send the request
         
         var options = {
           type: route.m,

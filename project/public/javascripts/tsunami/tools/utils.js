@@ -79,6 +79,10 @@
   tsunami.tools.isMyUserId = function(userid) {
   	  return userid == tsunami.export.currentUser.userid;
   }
+  
+  tsunami.tools.isMyWindowId = function(windowId) {
+      return tsunami.export.loadedat == windowId;
+  }
 
     // Private //
 
