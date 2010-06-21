@@ -38,7 +38,7 @@ div#footer {font-size: 0.5em; background: #005 repeat; font-weight: bold; paddin
 
 #header h1 {display: block; padding: 0 1em;}
 
-img.logo { position: fixed; bottom: 10%; right: 25%; z-index: -1; max-height: 50%; width: 50%; }
+img.logo { position: fixed; bottom: 15%; left: 35%; z-index: -1; width: 30%; }
 
 div.long {font-size: 0.75em;}
 .slide h1 {position: absolute; top: 0.7em; left: 87px; z-index: 1;
