@@ -5,8 +5,10 @@ tsunami.tools.namespace('tsunami.comet');
 	var comet = tsunami.comet;
 	var stomp = comet.stomp = new STOMPClient();
 	comet.connected = false;
+    comet.reconnect = true;
     comet.unloadingPage = false;
     var debug = false;
+    
     
 	/**
 		Trigger custom jQuery events from stomp events
@@ -51,7 +53,6 @@ tsunami.tools.namespace('tsunami.comet');
 		} else {
 			throw "Invalid JSON: " + data;
 		}
-		
 	    
         if (debug) {
             console.log("comet.event."+data.event);
@@ -69,10 +70,13 @@ tsunami.tools.namespace('tsunami.comet');
 	$(document).bind('comet.connect',function() {
 		stomp.subscribe('/events/'+currentUser.userid, {exchange:''});
 		comet.connected = true;
+        if (comet.reconnect == true) tsunami.gui.StatusBar.hide();
 	});
 	$(document).bind('comet.close',function() {
         if (comet.unloadingPage) return;
 		comet.connected = false;
+        comet.reconnect = true;
+        tsunami.gui.StatusBar.showLoad('Chargement de comet');
 		comet.connect();
 	});
 	
