@@ -24,6 +24,7 @@ public class Profile extends Application {
             error(e.toString());
         }
         connectedUser.setAvatar(true);
+        connectedUser.sendCometAllContacts("user.avatar",connectedUser.userid);
         render();
     }
     

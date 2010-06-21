@@ -558,6 +558,7 @@ tsunami.tools.namespace('tsunami.contacts');
     remoteBind('contacts.changes',contactListReload);
     remoteBind('user.submessage',contactListReload);
     remoteBind('user.status',contactListReload);
+    remoteBind('user.avatar',contactListReload);
     
     return {
 
