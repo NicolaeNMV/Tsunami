@@ -65,7 +65,7 @@ public class Vaguelettes extends Application {
         vaguelette.vague.addParticipant(vp);
         renderJSON("{}");
     }
-    public static void editSync(@Required Long vagueletteId, @Required String patch, @Required Long userWindowId) {
+    public static void editSync(@Required Long vagueletteId, @Required String patch, @Required Long userWindowId, Long patchTime, Boolean getVagulette) {
         User currentUser = getConnectedUser();
         Vaguelette vaguelette = Vaguelette.findById(vagueletteId);
         notFoundIfNull(vaguelette);
@@ -84,16 +84,21 @@ public class Vaguelettes extends Application {
             renderJSON(toJson(answer));
         }
         
-        answer.put("code","200");
-        answer.put("codeText","OK");
         answer.put("version",vaguelette.version);
         answer.put("patch",patch);
         answer.put("userId",currentUser.userid);
         answer.put("senderWindowId",userWindowId);
+        answer.put("patchTime",patchTime);
         
+         // Send the patch to every member of the vague
         vaguelette.vague.sendCometAllParticipants("vaguelette.patch",answer);
-        
-        // Send the patch to every member of the vague
-        // renderJSON(vaguelette.toJson());
+        try {
+            if (getVagulette) {
+                answer.put("body",vaguelette.body);
+                renderJSON(answer);
+            }
+        } catch (NullPointerException e) {
+            
+        }
     }
 }

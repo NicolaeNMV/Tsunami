@@ -1,7 +1,28 @@
 1. Modifcam ceva
 2. Are loc generarea patch-ului, se trimite la server
 3. Serverul:
-- aplica patchul la copia sa
+- aplica patchul la copia sa (12:40 - 13:40)
+    - daca nu se primeste, spunem la user sa fara reload
 - inregistreaza p/u istorie
 - face +1 la versiune
 - trimite la toti patchul, si versiunea la care ea corespunde
+
+
+Pe client:
+- Trimit patchuri
+- Primesc patchuri
+    Aplicam patchul 
+        - daca nu e patchul meu
+        - daca versiunea anterioara e cea care trebuie
+
+Fiecare vagulette client side, trebuie sa aiba versiune, ultima versiune care de pe server.
+
+
+---------
+Sync
+
+Trimitem patchul:
+- la fiecare patch animanim un Id (timpul)
+- stocam versiunea care o avem, cind trimitem patchul
+- Avem o versiune locala, reprezentarea de pe server, si aplicam patchurile care le primim
+- Dupa ce primim de la server patchul care noi l-am trimis, controlam daca corespunde

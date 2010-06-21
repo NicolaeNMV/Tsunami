@@ -304,6 +304,7 @@ tsunami.tools.namespace('tsunami.vagues');
       var appendTo = (vaguelette.parentId==0) ? $('.vagueContainer > .vaguelettes', vagueNode) : $('.vaguelettes:first', vagueletteId2node(vaguelette.parentId));
       $(appendTo).append(node);
       bindVaguelette(textarea);
+      return textarea;
     };
     
     var updateHeight = function() {
@@ -342,8 +343,10 @@ tsunami.tools.namespace('tsunami.vagues');
       updateVagueParticipants(vague.participants);
       bindOpenMode();
       
-      for( var v in vague.vaguelettes )
-        appendVaguelette(vague.vaguelettes[v]);
+      for( var v in vague.vaguelettes ) {
+        var textarea = appendVaguelette(vague.vaguelettes[v]);
+        $(document).trigger('vaguelette.opened', textarea); // The textarea contain .data('object') with vagulette object
+      }
       
       updateHeight();
       $(document).trigger('vague.opened', g_vague.id);
