@@ -37,7 +37,7 @@ tsunami.tools.namespace('tsunami.tools');
           /// UPDATE
           inputValue = newInputValue;
           $(self.node).data('inputValue', inputValue);
-          self.callback(inputValue);
+          self.callback(inputValue,$(self.node));
           self.lastCall = getTime();
           self.timer = false;
         }

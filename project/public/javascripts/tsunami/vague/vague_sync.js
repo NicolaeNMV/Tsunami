@@ -47,31 +47,40 @@ tsunami.tools.namespace('tsunami.vagues.sync');
     
     sync.bindTextarea = function(textarea) {
       textarea.data('sync.before',textarea.val());
-      var keyup = function(e) {
-        if (textarea.data('sync.before') == undefined) return;
-        var text1 = textarea.data('sync.before');
-        var text2 = textarea.val();
-        textarea.data('sync.before',text2);
-        
-        patch_text = computePatch(text1, text2);
-		//      conf.vagueletteId
-        var vaguelette = textarea.data('object');
-        
-        var patchTime = (new Date).getTime();
-        textarea.data('sync.history_'+patchTime, text2);
-        
-        $.post("/vaguelettes/"+ vaguelette.id +"/sync", 
-            { vagueletteId: vaguelette.id, patch: patch_text, userWindowId: tsunami.export.loadedat, patchTime: patchTime },
-            function(e,data) {
-                if (data.code != "200") {
-                    // Patch was not applyed
-                }
+      
+        sync.syncNowTextarea = function(e,textarea,serverUpdated) {
+            if (serverUpdated == true) textarea.data('sync.before',textarea.val());
+            if (textarea.data('sync.before') == undefined) return;
+            var text1 = textarea.data('sync.before');
+            var text2 = textarea.val();
+            
+            // Nothing to do
+            if (text1 == text2) {
+                return;
             }
-        );
-      };
+            
+            textarea.data('sync.before',text2);
+            
+            patch_text = computePatch(text1, text2);
+    		//      conf.vagueletteId
+            var vaguelette = textarea.data('object');
+            
+            var patchTime = (new Date).getTime();
+            textarea.data('sync.history_'+patchTime, text2);
+            
+            $.post("/vaguelettes/"+ vaguelette.id +"/sync", 
+                { vagueletteId: vaguelette.id, patch: patch_text, userWindowId: tsunami.export.loadedat, patchTime: patchTime },
+                function(e,data) {
+                    if (data.code != "200") {
+                        // Patch was not applyed
+                    }
+                }
+            );
+          };
+      
       new tools.RealTimeUpdate({
           node: textarea,
-          update: keyup,
+          update: sync.syncNowTextarea,
           minInterval: 100,
           maxInterval: 300
         });
@@ -145,6 +154,8 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         
         if (textarea == false) return;
         
+        sync.syncNowTextarea("",textarea);
+        
         var patches = dmp.patch_fromText(data.patch);
         
         var results = dmp.patch_apply(patches, textarea.val());
@@ -160,7 +171,8 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         }
         
         textarea.val(new_text);
-        $(self.node).data('inputValue',new_text);
+        sync.syncNowTextarea("",textarea,true);
+        textarea.data('inputValue',new_text); // For real-time.js
     }
     
     var onCreateVaguelette = function(e,data) {
