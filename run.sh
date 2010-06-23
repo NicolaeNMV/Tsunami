@@ -2,10 +2,10 @@
 #
 
 
-here=`dirname $0`
+here=$(dirname $0)
 cd $here;
 
-type -t play;
+type -t play > /dev/null;
 
 if [ $? == 1 ]; then
   play_version="play-1.0.3"
