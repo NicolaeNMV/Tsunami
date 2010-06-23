@@ -12,18 +12,16 @@ tsunami.tools.namespace('tsunami.vagues.sync');
     // This will try to have a local copy of the server vagulette
     sync.mirrorServerVagulette = (function() {
         var reloadServerCopyVagulette = function(vaguletteTextarea) {
-            
+            console.log("Reload");
         }
-        
-        /*$(document).bind('vaguelette.opened', function(e, textarea) {
-            textarea.data('serverCopy',textarea.data('object').body);
-        });*/
         var patchArrive = function(e,data) {
             var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
+
+            if (textarea.length == 0) return;
             
             if (data.version != (textarea.data('object').version + 1) ) {
                 console.log("Not the good version");
-                reloadServerCopyVagulette(vaguletteTextarea);
+                reloadServerCopyVagulette(textarea);
                 return;
             }
             
@@ -38,7 +36,7 @@ tsunami.tools.namespace('tsunami.vagues.sync');
             $(document).trigger('vaguelette.patchApplied', data);
         }
         
-        //remoteBind('vaguelette.patch',patchArrive);
+        remoteBind('vaguelette.patch',patchArrive);
     }());
     
     var computePatch = function(text1,text2) {
@@ -159,6 +157,7 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         }
         
         textarea.val(new_text);
+        $(self.node).data('inputValue',new_text);
     }
     
     var onCreateVaguelette = function(e,data) {
