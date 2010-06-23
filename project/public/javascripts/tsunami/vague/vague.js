@@ -310,7 +310,7 @@ tsunami.tools.namespace('tsunami.vagues');
     var updateHeight = function() {
       var node = $('.vagueContainer', vagueNode);
       if(!node[0] || !g_vague) return;
-      var height = Math.floor($(window).height()-node.offset().top);
+      var height = Math.floor($(window).height()-node.offset().top-10);
       node.css('height', height+'px');
     };
     

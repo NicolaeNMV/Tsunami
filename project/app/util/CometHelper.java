@@ -13,6 +13,11 @@ public class CometHelper {
     
     private static Client client = null;
     
+    public static void reset() {
+      client = null;
+      getCometClient();
+    }
+    
     public static Client getCometClient() {
         if(client==null || client.isClosed()) {
             try {
