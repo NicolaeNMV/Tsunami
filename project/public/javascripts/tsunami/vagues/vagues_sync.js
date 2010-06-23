@@ -24,4 +24,12 @@ tsunami.tools.namespace('tsunami.vagues_sync');
     
     remoteBind('vague.newParticipant',onVagueNewParticipant);
     
+    
+    var onVagueSubjectUpdate = function(e,data) {
+      vagues.List.reloadVague(data.vagueId);
+    }
+    
+    remoteBind('vague.previewUpdated',onVagueSubjectUpdate);
+    
+    
 }());
