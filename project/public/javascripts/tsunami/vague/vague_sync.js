@@ -11,15 +11,18 @@ tsunami.tools.namespace('tsunami.vagues.sync');
     
     // This will try to have a local copy of the server vagulette
     sync.mirrorServerVagulette = (function() {
-        /*var reloadServerCopyVagulette = function(vaguletteTextarea) {
-            console.log("Reload");
-        }*/
+        var reloadServerCopyVagulette = function(textarea) {
+            tsunami.vagues.Vague.getVaguelette(textarea.data('object').id,function(v){
+                textarea.data('object',v);
+                textarea.val(v.body);
+            });
+        }
+
         var patchArrive = function(e,data) {
             var textarea = tools.getVaguletteTextarea(data.vagueletteId);
             if (textarea == false) return;
             
             if (data.version != (textarea.data('object').version + 1) ) {
-                //console.log("Not the good version");
                 reloadServerCopyVagulette(textarea);
                 return;
             }
@@ -31,7 +34,6 @@ tsunami.tools.namespace('tsunami.vagues.sync');
             serverObject.version = data.version;
             
             textarea.data('object', serverObject );
-            //console.log("Server history "+serverObject.body);
             $(document).trigger('vaguelette.patchApplied', data);
         }
         
@@ -92,7 +94,7 @@ tsunami.tools.namespace('tsunami.vagues.sync');
      @param data, the patch */
     var syncConflictDetected = function(textarea,data) {
         /* Conflict resolution plan
-            - Diff current server copy with our copy.
+            - (NOT)Diff current server copy with our copy.
             - Send the patch to the server
             - Reload conflicted vagulette
         */
@@ -101,28 +103,11 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         // lock the textarea
         textarea.attr('readonly','readonly');
         
-        var vagulette = textarea.data('object');
-        
-        var patch_text = computePatch(textarea.val(),""+vagulette.body);
-        //console.log(patch_text);
-        $.post("/vaguelettes/"+ vagulette.id +"/sync", 
-            { vagueletteId: vaguelette.id, patch: patch_text, userWindowId: tsunami.export.loadedat, patchTime: (new Date).getTime(),
-              getVagulette: true },
-            function(e,data) {
-                //if (data.code != "200") {
-                    // Patch was not applyed
-                //    return;
-                //}
-                var vagulette = textarea.data('object');
-                vagulette.body = data.body;
-                vagulette.version = data.version;
-                
-                //console.log("resync complete");
-                textarea.val(data.body);
-                textarea.data('sync.before',data.body);
-            }
-        );
-        
+        tsunami.vagues.Vague.getVaguelette(textarea.data('object').id,function(v){
+            textarea.data('object',v);
+            textarea.removeAttr('readonly');
+            textarea.val(v.body)
+        });
     }
     
     var myPatchArrived = function(data) {
@@ -132,13 +117,9 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         var h = textarea.data('sync.history_'+data.patchTime);
         if (h == null) return;
         // If the historical copy doesnt correspond to our copy, then we need to resync
-        /*if (textarea.data('object').body !== h) {
-            console.log("Conflict detected");
-            console.log("server copy: " + textarea.data('object').body + " != " + h);
-            //syncConflictDetected(textarea,data);
-        } else {
-            console.log("No nonflict, cool");
-        }*/
+        if (textarea.data('object').body !== h) {
+            syncConflictDetected(textarea,data);
+        }
     }
     
     $(document).bind('vaguelette.patchApplied', function(e, data) {
@@ -162,13 +143,12 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         
         var new_text = results[0];
         results = results[1];
-        /*for (var x = 0; x < results.length; x++) {
+        for (var x = 0; x < results.length; x++) {
            if (!results[x]) {
-               console.log("Cannot apply patch");
-               //syncConflictDetected(textarea);
+               syncConflictDetected(textarea,data);
                return;
            }
-        }*/
+        }
         
         textarea.val(new_text);
         sync.syncNowTextarea("",textarea,true);

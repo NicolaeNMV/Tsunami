@@ -16,7 +16,6 @@ public class OrbitedConnectionMaintenance extends Job<Void> {
 		Logger.info("Orbited connection maintenance");
 		OrbitedConnection.stopAll();
 		OrbitedConnection.startAll();
-        // CometHelper.reset();
 	}
 	
 	@Override
