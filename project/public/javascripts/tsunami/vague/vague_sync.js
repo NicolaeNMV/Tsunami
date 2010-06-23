@@ -15,9 +15,9 @@ tsunami.tools.namespace('tsunami.vagues.sync');
             
         }
         
-        $(document).bind('vaguelette.opened', function(e, textarea) {
+        /*$(document).bind('vaguelette.opened', function(e, textarea) {
             textarea.data('serverCopy',textarea.data('object').body);
-        });
+        });*/
         var patchArrive = function(e,data) {
             var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
             
