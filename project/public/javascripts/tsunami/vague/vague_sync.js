@@ -180,7 +180,6 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         // Check if participant is in the list
         for(var p in vaguelette.participants) {
             var participant = vaguelette.participants[p];
-            console.log(participant.userid +"=="+data.userId);
             if (participant.userid == data.userId) {
                 vaguelette.participants[p].timestamp = new Date().getTime();
                 isNew = false;
