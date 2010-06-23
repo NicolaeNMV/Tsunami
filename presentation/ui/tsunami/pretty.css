@@ -18,6 +18,11 @@ blockquote b i {font-style: italic;}
 kbd {font-weight: bold; font-size: 1em;}
 sup {font-size: smaller; line-height: 1px;}
 
+.slide {
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   user-select: none;
+}
 .slide code {padding: 2px 0.25em; font-weight: bold; color: #533;}
 .slide code.bad, code del {color: red;}
 .slide code.old {color: silver;}

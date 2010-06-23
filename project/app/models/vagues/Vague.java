@@ -47,6 +47,8 @@ public class Vague extends ActivityDate {
     }
 
     public Vague updatePreview() {
+        String oldSubject = this.subject;
+        String oldPreview = this.preview;
         String body = (vaguelettes==null||vaguelettes.isEmpty()) ? "" : vaguelettes.get(0).body;
         int i = body.indexOf("\n");
         if(i==-1) {
@@ -57,6 +59,11 @@ public class Vague extends ActivityDate {
           subject = body.substring(0,i);
           preview = body.substring(i, body.length());
         }
+        if(!subject.equals(oldSubject) || !preview.equals(oldPreview)) {
+          Map<String,Object> answer = new HashMap<String, Object>();
+          answer.put("vagueId", this.id);
+          sendCometAllParticipants("vague.previewUpdated", answer);
+          }
         return this;
     }
     

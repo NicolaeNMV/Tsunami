@@ -160,6 +160,12 @@ tsunami.tools.namespace('tsunami.vagues');
       updateNoItemInfo();
     };
     
+    var reloadVague = function(vagueid) {
+      ajax("Vagues.show", {vagueId: vagueid}, function(vague){
+        onGetVagueEvent(null,vague);
+      });
+    };
+    
     // EVENTS //
     
     var onGetVagues = function(vagues) {
@@ -316,7 +322,8 @@ tsunami.tools.namespace('tsunami.vagues');
     return {
 
       // Public //
-
+      reloadVague: reloadVague,
+      
       init: function() {
         
         $(document).bind('WindowManager.ready', function() {
