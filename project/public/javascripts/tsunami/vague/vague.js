@@ -467,6 +467,8 @@ tsunami.tools.namespace('tsunami.vagues');
       
       reloadVagueletteParticipants: reloadVagueletteParticipants,
       reloadVagueParticipants: reloadVagueParticipants,
+      vagueletteId2node: vagueletteId2node,
+      updateVagueletteParticipants: updateVagueletteParticipants,
     }
   }();
 

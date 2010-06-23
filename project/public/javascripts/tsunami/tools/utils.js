@@ -83,6 +83,14 @@
   tsunami.tools.isMyWindowId = function(windowId) {
       return tsunami.export.loadedat == windowId;
   }
+  
+  tsunami.tools.getVaguletteTextarea = function(vaguletteId) {
+        var textarea = $('#vaguelette_'+vaguletteId+' textarea[tabindex!=-1]:first');
+        
+        if (textarea.length == 0) return false;
+        
+        return textarea;
+  }
 
     // Private //
 

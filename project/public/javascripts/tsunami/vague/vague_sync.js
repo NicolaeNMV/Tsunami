@@ -15,9 +15,8 @@ tsunami.tools.namespace('tsunami.vagues.sync');
             console.log("Reload");
         }
         var patchArrive = function(e,data) {
-            var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
-
-            if (textarea.length == 0) return;
+            var textarea = tools.getVaguletteTextarea(data.vagueletteId);
+            if (textarea == false) return;
             
             if (data.version != (textarea.data('object').version + 1) ) {
                 console.log("Not the good version");
@@ -118,7 +117,9 @@ tsunami.tools.namespace('tsunami.vagues.sync');
     }
     
     var myPatchArrived = function(data) {
-        var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
+        var textarea = tools.getVaguletteTextarea(data.vagueletteId);
+        if (textarea == false) return;
+        
         var h = textarea.data('sync.history_'+data.patchTime);
         if (h == null) return;
         // If the historical copy doesnt correspond to our copy, then we need to resync
@@ -140,7 +141,9 @@ tsunami.tools.namespace('tsunami.vagues.sync');
     var patchArrive = function(e,data) {
         // Check if this is my patch
         if (tools.isMyUserId(data.userId) && tools.isMyWindowId(data.senderWindowId)) return;
-        var textarea = $('#vaguelette_'+data.vagueletteId+' textarea[tabindex!=-1]:first');
+        var textarea = tools.getVaguletteTextarea(data.vagueletteId);
+        
+        if (textarea == false) return;
         
         var patches = dmp.patch_fromText(data.patch);
         
@@ -167,6 +170,34 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         }
     }
     
+    var updateParticipants = function(e,data) {
+        var textarea = tools.getVaguletteTextarea(data.vagueletteId);
+        if (textarea == false) return;
+        
+        vaguelette = textarea.data('object');
+        
+        var isNew = true;
+        // Check if participant is in the list
+        for(var p in vaguelette.participants) {
+            var participant = vaguelette.participants[p];
+            console.log(participant.userid +"=="+data.userId);
+            if (participant.userid == data.userId) {
+                vaguelette.participants[p].timestamp = new Date().getTime();
+                isNew = false;
+            }
+        }
+        
+        var Vague = tsunami.vagues.Vague;
+        // New participant that we don't have in our list
+        if (isNew) {
+            Vague.reloadVagueletteParticipants(data.vagueletteId);
+            Vague.reloadVagueParticipants(data.vagueId);
+            return;
+        }
+        Vague.updateVagueletteParticipants(vaguelette.participants, Vague.vagueletteId2node(data.vagueletteId));
+    }
+    
     remoteBind('vaguelette.patch',patchArrive);
+    remoteBind('vaguelette.patch',updateParticipants);
     remoteBind('vaguelette.create',onCreateVaguelette);
 }());
