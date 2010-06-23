@@ -1,24 +1,31 @@
 #!/bin/bash
 #
 
-mode="dev"
-
-play=$HOME/play-1.1;
 
 here=`dirname $0`
+cd $here;
 
-if [ ! -d $play ]; then
-  play_version="play-1.1-unstable-r836"
-  play=$here"/"$play_version
-  $here/download-play.sh $play_version
+type -t play;
+
+if [ $? == 1 ]; then
+  play_version="play-1.0.3"
+  playdir=$here"/"$play_version
   
-  if [ ! -d $play"/modules/sass-head" ]; then
-    $play/play install sass-head
+  if [ ! -d $playdir ]; then
+    echo "Téléchargement de Play! framework ("$play_version")...";
+    wget "http://download.playframework.org/releases/"$play_version".zip" -O $play_version".zip";
+    echo "Téléchargé.";
+
+    echo "Extraction des sources...";
+    unzip $play_version".zip";
+    echo "Extrait.";
+  fi
+  
+  PATH=$PATH":"$playdir;
+  
+  if [ ! -d $playdir"/modules/sass-head" ]; then
+    play install sass-head
   fi
 fi
 
-$here/project/orbited/start.sh restq &
-$here/project/orbited/start.sh orbited &
-$play/play run $here/project/
-
-killall python # TODO: find better to stop restq and orbited...
+play run $here/project/
