@@ -538,7 +538,7 @@ tsunami.tools.namespace('tsunami.contacts');
       var node = $('#contactList .dragContactContainment');
       if(!node[0])
         return;
-      var height = Math.floor($(window).height()-node.offset().top-10);
+      var height = Math.floor($(window).height()-node.offset().top);
       node.css('height', height+'px');
     };
     
