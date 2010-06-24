@@ -1,0 +1,8 @@
+Tsunami is a real time collaboration web application, inspired from Google Wave made by Namolovan Nicolae et Renaudeau Gaëtan for an university project.
+
+To run the application, just run the ./run.sh command a UNIX system.
+
+You need Java JDK 6 to run the application.
+You need a recent browser to test the application (we recommand Firefox 3.5+ or Chrome).
+
+For more info, please see the rapport_fin_de_projet.pdf file (in french)
