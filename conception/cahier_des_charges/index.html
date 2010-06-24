@@ -1,0 +1,1060 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<base target="_top">
+<style type="text/css">
+  
+
+/* default css */
+
+table {
+  font-size: 1em;
+  line-height: inherit;
+  border-collapse: collapse;
+}
+
+
+tr {
+  
+  text-align: left;
+  
+}
+
+
+div, address, ol, ul, li, option, select {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p {
+  margin: 0px;
+}
+
+
+pre {
+  font-family: Courier New;
+  white-space: pre-wrap;
+  margin:0;
+}
+
+body {
+  margin: 6px;
+  padding: 0px;
+  font-family: Verdana, sans-serif;
+  font-size: 10pt;
+  background-color: #ffffff;
+  color: #000;
+}
+
+
+img {
+  -moz-force-broken-image-icon: 1;
+}
+
+@media screen {
+  html.pageview {
+    background-color: #f3f3f3 !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  
+
+  body {
+    min-height: 1100px;
+    
+    counter-reset: __goog_page__;
+  }
+  
+  * html body {
+    height: 1100px;
+  }
+  /* Prevent repaint errors when scrolling in Safari. This "Star-7" css hack
+     targets Safari 3.1, but not WebKit nightlies and presumably Safari 4.
+     That's OK because this bug is fixed in WebKit nightlies/Safari 4 :-). */
+  html*#wys_frame::before {
+    content: '\A0';
+    position: fixed;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+  }
+  
+  .pageview body {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 2px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    width: 648px !important;
+    margin: 15px auto 25px;
+    padding: 40px 50px;
+  }
+  /* IE6 */
+  * html {
+    overflow-y: scroll;
+  }
+  * html.pageview body {
+    overflow-x: auto;
+  }
+  
+
+  
+    
+    .writely-callout-data {
+      display: none;
+    }
+    
+
+    .writely-footnote-marker {
+      background-image: url('MISSING');
+      background-color: transparent;
+      background-repeat: no-repeat;
+      width: 7px;
+      overflow: hidden;
+      height: 16px;
+      vertical-align: top;
+
+      
+      -moz-user-select: none;
+    }
+    .editor .writely-footnote-marker {
+      cursor: move;
+    }
+    .writely-footnote-marker-highlight {
+      background-position: -15px 0;
+      -moz-user-select: text;
+    }
+    .writely-footnote-hide-selection ::-moz-selection, .writely-footnote-hide-selection::-moz-selection {
+      background: transparent;
+    }
+    .writely-footnote-hide-selection ::selection, .writely-footnote-hide-selection::selection {
+      background: transparent;
+    }
+    .writely-footnote-hide-selection {
+      cursor: move;
+    }
+
+    /* Comments */
+    .writely-comment-yellow {
+      background-color: #ffffd7;
+    }
+    .writely-comment-orange {
+      background-color: #ffe3c0;
+    }
+    .writely-comment-pink {
+      background-color: #ffd7ff;
+    }
+    .writely-comment-green {
+      background-color: #d7ffd7;
+    }
+    .writely-comment-blue {
+      background-color: #d7ffff;
+    }
+    .writely-comment-purple {
+      background-color: #eed7ff;
+    }
+
+  
+
+
+  
+  .br_fix span+br:not(:-moz-last-node) {
+    
+    position:relative;
+    
+    left: -1ex
+    
+  }
+
+  
+  #cb-p-tgt {
+    font-size: 8pt;
+    padding: .4em;
+    background-color: #ddd;
+    color: #333;
+  }
+  #cb-p-tgt-can {
+    text-decoration: underline;
+    color: #36c;
+    font-weight: bold;
+    margin-left: 2em;
+  }
+  #cb-p-tgt .spin {
+    width: 16px;
+    height: 16px;
+    background: url(//ssl.gstatic.com/docs/clipboard/spin_16o.gif) no-repeat;
+  }
+}
+
+h6 { font-size: 8pt }
+h5 { font-size: 8pt }
+h4 { font-size: 10pt }
+h3 { font-size: 12pt }
+h2 { font-size: 14pt }
+h1 { font-size: 18pt }
+
+blockquote {padding: 10px; border: 1px #DDD dashed }
+
+.webkit-indent-blockquote { border: none; }
+
+a img {border: 0}
+
+.pb {
+  border-width: 0;
+  page-break-after: always;
+  /* We don't want this to be resizeable, so enforce a width and height
+     using !important */
+  height: 1px !important;
+  width: 100% !important;
+}
+
+.editor .pb {
+  border-top: 1px dashed #C0C0C0;
+  border-bottom: 1px dashed #C0C0C0;
+}
+
+div.google_header, div.google_footer {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+
+/* Table of contents */
+.editor div.writely-toc {
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+}
+.writely-toc > ol {
+  padding-left: 3em;
+  font-weight: bold;
+}
+ol.writely-toc-subheading {
+  padding-left: 1em;
+  font-weight: normal;
+}
+/* IE6 only */
+* html writely-toc ol {
+  list-style-position: inside;
+}
+.writely-toc-none {
+  list-style-type: none;
+}
+.writely-toc-decimal {
+  list-style-type: decimal;
+}
+.writely-toc-upper-alpha {
+  list-style-type: upper-alpha;
+}
+.writely-toc-lower-alpha {
+  list-style-type: lower-alpha;
+}
+.writely-toc-upper-roman {
+  list-style-type: upper-roman;
+}
+.writely-toc-lower-roman {
+  list-style-type: lower-roman;
+}
+.writely-toc-disc {
+  list-style-type: disc;
+}
+
+/* Ordered lists converted to numbered lists can preserve ordered types, and
+   vice versa. This is confusing, so disallow it */
+ul[type="i"], ul[type="I"], ul[type="1"], ul[type="a"], ul[type="A"] {
+  list-style-type: disc;
+}
+
+ol[type="disc"], ol[type="circle"], ol[type="square"] {
+  list-style-type: decimal;
+}
+
+/* end default css */
+
+
+  /* default print css */
+  @media print {
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    div.google_header, div.google_footer {
+      display: block;
+      min-height: 0;
+      border: none;
+    }
+
+    div.google_header {
+      flow: static(header);
+    }
+
+    /* used to insert page numbers */
+    div.google_header::before, div.google_footer::before {
+      position: absolute;
+      top: 0;
+    }
+
+    div.google_footer {
+      flow: static(footer);
+    }
+
+    /* always consider this element at the start of the doc */
+    div#google_footer {
+      flow: static(footer, start);
+    }
+
+    span.google_pagenumber {
+      content: counter(page);
+    }
+
+    span.google_pagecount {
+      content: counter(pages);
+    }
+
+    .endnotes {
+      page: endnote;
+    }
+
+    /* MLA specifies that endnotes title should be 1" margin from the top of the page. */
+    @page endnote {
+      margin-top: 1in;
+    }
+
+    callout.google_footnote {
+      
+      display: prince-footnote;
+      footnote-style-position: inside;
+      /* These styles keep the footnote from taking on the style of the text
+         surrounding the footnote marker. They can be overridden in the
+         document CSS. */
+      color: #000;
+      font-family: Verdana;
+      font-size: 10.0pt;
+      font-weight: normal;
+    }
+
+    /* Table of contents */
+    #WritelyTableOfContents a::after {
+      content: leader('.') target-counter(attr(href), page);
+    }
+
+    #WritelyTableOfContents a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* Comments */
+    .writely-comment-yellow {
+      background-color: #ffffd7;
+    }
+    .writely-comment-orange {
+      background-color: #ffe3c0;
+    }
+    .writely-comment-pink {
+      background-color: #ffd7ff;
+    }
+    .writely-comment-green {
+      background-color: #d7ffd7;
+    }
+    .writely-comment-blue {
+      background-color: #d7ffff;
+    }
+    .writely-comment-purple {
+      background-color: #eed7ff;
+    }
+  }
+
+  @page {
+    @top {
+      content: flow(header);
+    }
+    @bottom {
+      content: flow(footer);
+    }
+    @footnotes {
+      border-top: solid black thin;
+      padding-top: 8pt;
+    }
+  }
+  /* end default print css */
+
+
+/* custom css */
+
+h1 {
+  color: #a31818;
+}
+h2 {
+  color: #7318a3;
+  margin-left: 20px;
+}
+h3 {
+  color: #183fa3;
+  margin-left: 40px;
+}
+h4 {
+  color: #189ca3;
+  margin-left: 60px;
+}
+a:link, a:visited {
+  color: #651f1c;
+}
+a:hover {
+  color: #b02b26;
+}
+
+/* end custom css */
+
+/* ui edited css */
+
+body {
+  font-family: Verdana;
+  
+  font-size: 10.0pt;
+  line-height: normal;
+  background-color: #ffffff;
+}
+/* end ui edited css */
+
+
+/* editor CSS */
+.editor a:visited {color: #551A8B}
+.editor table.zeroBorder {border: 1px dotted gray}
+.editor table.zeroBorder td {border: 1px dotted gray}
+.editor table.zeroBorder th {border: 1px dotted gray}
+
+
+.editor div.google_header, .editor div.google_footer {
+  border: 2px #DDDDDD dashed;
+  position: static;
+  width: 100%;
+  min-height: 2em;
+}
+
+.editor .misspell {background-color: yellow}
+
+.editor .writely-comment {
+  font-size: 9pt;
+  line-height: 1.4;
+  padding: 1px;
+  border: 1px dashed #C0C0C0
+}
+
+
+/* end editor CSS */
+
+</style>
+
+  
+  <title>Tsunami - cahier des charges</title>
+
+</head>
+
+<body 
+    
+    >
+    
+    
+    
+<div class=google_header id=google_header style=TEXT-ALIGN:center>
+  <p>
+    <font size=5><b>Tsunami</b> </font>
+  </p>
+  <div style=TEXT-ALIGN:center>
+    réalisé par Nicolae et Gaëtan<br>
+  </div>
+</div>
+<div class=writely-toc id=WritelyTableOfContents toctype=decimal+decimal>
+  <ol class=writely-toc-decimal>
+    <li>
+      <a href=#Le_projet_1867102312543385_756_796982155912106 target=_self>Le projet</a>
+    </li>
+    <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+      <li>
+        <a href=#R_sum_9723584055185931_9745557 target=_self>Résumé</a>
+      </li>
+      <li>
+        <a href=#Description_pr_cise_et_concise target=_self>Description</a>
+      </li>
+    </ol>
+    <li>
+      <a href=#Cahier_des_charges_fonctionnel_8991387444186126 target=_self>Cahier des charges</a>
+    </li>
+    <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+      <li>
+        <a href=#Glossaire_de_Tsunami_553599638_9032784307420987 target=_self>Glossaire de Tsunami</a>
+      </li>
+      <li>
+        <a href=#Pr_sentation_g_n_rale_du_probl target=_self>Présentation générale du projet</a>
+      </li>
+      <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+        <li>
+          <a href=#Expression_du_besoin_why_21816_6832051021625779 target=_self>Expression du besoin</a>
+        </li>
+        <li>
+          <a href=#Finalit_s_but_what_59465565834_9153706467447712 target=_self>Finalités (but)</a>
+        </li>
+        <li>
+          <a href=#Contexte_05938758352119067_379 target=_self>Contexte</a>
+        </li>
+        <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+          <li>
+            <a href=#_Situation_du_projet_where_014_26203082952195966 target=_self>Situation du projet</a>
+          </li>
+          <li>
+            <a href=#D_cisions_techniques_929505043_7806290489107321 target=_self>Décisions techniques</a>
+          </li>
+          <li>
+            <a href=#Suites_pr_vues_118333414437564_7709921842124473 target=_self>Suites prévues</a>
+          </li>
+        </ol>
+      </ol>
+      <li>
+        <a href=#Fonctionnalit_s_48387865056669_1363251440840686 target=_self>Fonctionnalités</a>
+      </li>
+      <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+        <li>
+          <a href=#Diagramme_de_cas_d_utilisation_8371606543436452 target=_self>Diagramme de cas d'utilisation</a>
+        </li>
+        <li>
+          <a href=#Modules_diff_rents_composants__7346325875948186 target=_self>Modules (différents composants)</a>
+        </li>
+      </ol>
+      <li>
+        <a href=#Analyse_des_risques_et_des_dif_565129235156128 target=_self>Analyse des risques et des difficultés à rencontrer</a>
+      </li>
+      <li>
+        <a href=#Distribution_des_t_ches_et_ord_7682717253177467 target=_self>Organisation : planification initiale</a>
+      </li>
+      <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+        <li>
+          <a href=#Diagramme_de_PERT_476775604520_9131555977229915 target=_self>Diagramme de PERT</a>
+        </li>
+        <li>
+          <a href=#Diagramme_de_GANT_when_9232324_7999911740727196 target=_self>Diagramme de GANTT</a>
+        </li>
+      </ol>
+    </ol>
+    <li>
+      <a href=#Fonctionnalit_s_et_r_flexions__6881565255193043 target=_self>Fonctionnalités et réflexions approfondies</a>
+    </li>
+    <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+      <li>
+        <a href=#Principales_les_indispensables_7328042641281851 target=_self>Principales</a>
+      </li>
+      <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+        <li>
+          <a href=#Gestion_du_profil_130072817782_8075802177289965 target=_self>Gestion du profil</a>
+        </li>
+      </ol>
+      <li>
+        <a href=#Secondaires_40478402631081434_ target=_self>Secondaires</a>
+      </li>
+      <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+        <li>
+          <a href=#G_rer_l_envoi_de_fichiers_pi_c target=_self>Gérer l'envoi de fichiers (pièce jointe)</a>
+        </li>
+        <li>
+          <a href=#Insertion_de_vid_os_dans_les_m_7533026309613831 target=_self>Insertion de vidéos dans les messages</a>
+        </li>
+        <li>
+          <a href=#Mini_jeux_et_gadgets_105270905_29011659361750974 target=_self>Mini-jeux et gadgets</a>
+        </li>
+      </ol>
+    </ol>
+    <li>
+      <a href=#Organisation_du_projet_7568166 target=_self>Organisation du projet</a>
+    </li>
+    <li>
+      <a href=#Liens_utiles_Usefull_links_509_5859896305099568 target=_self>Liens utiles - Useful links</a>
+    </li>
+    <ol class="writely-toc-decimal writely-toc-subheading" style=MARGIN-LEFT:0pt>
+      <li>
+        <a href=#Operational_transformation_alg target=_self>Operational transformation (algo de sync):</a>
+      </li>
+      <li>
+        <a href=#Jetty_Serveur_Comet_9660959967 target=_self>Jetty- Serveur Comet</a>
+      </li>
+    </ol>
+  </ol>
+</div>
+<br>
+<h1>
+  <a id=Le_projet_1867102312543385_756_796982155912106 name=Le_projet_1867102312543385_756_796982155912106></a> Le projet
+</h1>
+<h2>
+  <a id=R_sum_9723584055185931_9745557 name=R_sum_9723584055185931_9745557></a> Résumé
+</h2>
+<p>
+  Application collaborative web en temps réel inspirée par <i>Google Wave</i>.
+</p>
+<h2>
+  <a id=Description_pr_cise_et_concise name=Description_pr_cise_et_concise></a> Description
+</h2>
+Tsunami sera une application réunissant les concepts du mail, du forum et de la messagerie en temps réel.<br>
+Elle permet basiquement de suivre des discussions à plusieurs personnes en temps réel (au caractère près), et d'inviter de nouveaux participants au fil de ces discussions.<br>
+Un utilisateur détient sa propre liste de contacts qui lui permet d'inviter ses amis sur une discussion.<br>
+Une discussion est très dynamique :<br>
+-La succession des messages d'une discussion n'est pas linéaire : Il est possible de créer des sous discussions au sein des messages d'une discussion de tel sorte qu'on peux plus ou moins la caractériser comme un arbre de messages.<br>
+-N'importe qui est libre d'éditer/supprimer le message de n'importe qui (du moment qu'il appartient à la discussion) ce qui en fait un outil très collaboratif.<br>
+-Il est possible de voir l'évolution des messages au cours du temps.<br>
+-Deux utilisateurs peuvent éditer le même message simultanément, les mises à jour sont réalisé en temps réel (technologie Ajax).<br>
+<br>
+<h1>
+  <a id=Cahier_des_charges_fonctionnel_8991387444186126 name=Cahier_des_charges_fonctionnel_8991387444186126></a> Cahier des charges
+</h1>
+<h2>
+  <a id=Glossaire_de_Tsunami_553599638_9032784307420987 name=Glossaire_de_Tsunami_553599638_9032784307420987></a>Glossaire de Tsunami
+</h2>
+<b>Vague</b> : Fil de discussion dans lequel il est possible d'éditer, de poster ou de supprimer des <b>vaguelette</b> et d'inviter d'autres utilisateurs à participer à ce fil.<br>
+<b>Vaguelette</b> : C'est un message posté sur une <b>Vague</b>.<br>
+<b>Contact</b> : Utilisateur "ami" figurant dans sa liste de contact.<br>
+<h2>
+  <a id=Pr_sentation_g_n_rale_du_probl name=Pr_sentation_g_n_rale_du_probl></a> <b>Présentation générale du projet</b>
+</h2>
+<a id=Finalit_s_5591821484460443_159_26473987270240906 name=Finalit_s_5591821484460443_159_26473987270240906></a>
+<h3>
+  <a id=Expression_du_besoin_why_21816_6832051021625779 name=Expression_du_besoin_why_21816_6832051021625779></a>Expression du besoin
+</h3>
+Nous trouvons que les procédés de communication électronique actuels tel que le mail, le forum ou la messagerie instantanée ne sont pas assez aboutis et ont chacun leur lot de défaut :<br>
+<ul>
+  <li>
+    Le mail est non temps réel et non éditable.
+  </li>
+</ul>
+<ul>
+  <li>
+    Le forum est non temps réel.
+  </li>
+</ul>
+<ul>
+  <li>
+    La messagerie instantanée (IM) ou le Chat est non éditable, est généralement uniquement textuelle, et non durable (ne permet de naviguer correctement entre les discussions antérieures).
+  </li>
+</ul>
+<br>
+Pour remédier à ces problèmes, Tsunami possède de nombreux objectifs :<br>
+<ul>
+  <li>
+    L'édition d'un message après envoi.
+  </li>
+  <li>
+    Partage du déroulement des discussions avec quelqu'un qui n'a pas participé depuis le début.
+  </li>
+  <li>
+    Possibilité de connaitre le statut du destinataire (s'il est en ligne, occupé, déconnecté,...)
+  </li>
+  <li>
+    Aspect beaucoup plus dynamique de la discussion (différents niveaux de messages, messages en temps réel, ...)
+  </li>
+  <li>
+    Possibilités collaboratives beaucoup plus aboutis étant donné que n'importe qui peut éditer n'importe quel message d'un wave sur laquel il a été invité.
+  </li>
+  <li>
+    Possibilité de voir les changements d'une vague au cours du temps.
+  </li>
+</ul>
+<h3>
+  <a id=Finalit_s_but_what_59465565834_9153706467447712 name=Finalit_s_but_what_59465565834_9153706467447712></a>Finalités<span style=FONT-WEIGHT:normal> <b>(but)</b></span>
+</h3>
+Proposer une communication efficace entre des utilisateurs dans un but collaboratif.<br>
+<br>
+Messagerie en temps réel : fonctionnement asynchrone.<br>
+Application dynamique (pas besoin de recharger la page, mise à jour en temps réel).<br>
+Appréciation visuelle : ergonomie, accessibilité, rapidité (fluidité).<br>
+<h3>
+  <a id=Contexte_05938758352119067_379 name=Contexte_05938758352119067_379></a> Contexte
+</h3>
+<h4>
+  <a id=_Situation_du_projet_where_014_26203082952195966 name=_Situation_du_projet_where_014_26203082952195966></a> Situation du projet
+</h4>
+Ce projet inspiré de Google Wave. Il n'existe pas encore d'alternative similaire à cette toute nouvelle application de Google.
+<h4>
+  <a id=D_cisions_techniques_929505043_7806290489107321 name=D_cisions_techniques_929505043_7806290489107321></a>Décisions techniques
+</h4>
+<b> Utilisation des outils suivants : </b><br>
+<ul>
+  <li>
+    le framework Play! pour le serveur HTTP (en java)
+  </li>
+</ul>
+<ul>
+  <li>
+    le framework javascript jQuery pour l'application côté client
+  </li>
+  <li>
+    la librairie Gozirra(client java de protocol STOMP) pour s'interfacer avec le serveur comet.<br>
+  </li>
+  <li>
+    Orbited second serveur utilisant la technologie comet (serveur en python).
+  </li>
+  <li>
+    MorbidQ un librarie serveur STOMP integré dans Orbited.<br>
+  </li>
+  <li>
+    <i>(?), bibliothèque javascript permettant la communication en temps réel avec le serveur comet (TCP socket).</i>
+  </li>
+</ul>
+<br>
+<div id=tp21 style=TEXT-ALIGN:left>
+  <br>
+  <br>
+  <img src="images/drawing_sJp-HqTG8RhGy_oT-aKat-Q_548.png"><br>
+  <br>
+  <br>
+  Nous souhaitons exploiter au maximum le protocole HTTP en utilisant les différentes méthodes HTTP (GET, PUT, POST, DELETE) et les différents codes d'erreur.<br>
+  Une grande partie de l'application se retrouvera dans le javascript. Il permettra par des requètes ajax et comet d'avoir une application des plus dynamique possible.<br>
+</div>
+<a id=Situation_du_projet_5978022671 name=Situation_du_projet_5978022671></a>
+<h4>
+  <a id=Suites_pr_vues_118333414437564_7709921842124473 name=Suites_pr_vues_118333414437564_7709921842124473></a>Suites prévues
+</h4>
+Mise en ligne du projet éventuelle.<a id=Parties_concern_es_par_le_d_ro name=Parties_concern_es_par_le_d_ro></a><a id=Environnement_du_produit_reche name=Environnement_du_produit_reche></a>
+<h2>
+  <a id=Fonctionnalit_s_48387865056669_1363251440840686 name=Fonctionnalit_s_48387865056669_1363251440840686></a>Fonctionnalités
+</h2>
+<h3>
+  <a id=Diagramme_de_cas_d_utilisation_8371606543436452 name=Diagramme_de_cas_d_utilisation_8371606543436452></a>Diagramme de cas d'utilisation
+</h3>
+<br>
+<div style=TEXT-ALIGN:left>
+  <div id=g37f style=TEXT-ALIGN:left>
+    <img src="images/dhb9j3zr_9cj8fs3d7_b.jpg" style=HEIGHT:536.783px;WIDTH:648px>
+  </div>
+  <br>
+  <br>
+</div>
+<h3>
+  <a id=Modules_diff_rents_composants__7346325875948186 name=Modules_diff_rents_composants__7346325875948186></a>Modules (différents composants)
+</h3>
+<ul>
+  <li>
+    <b>Liste de contacts</b>
+  </li>
+  <li>
+    <b>Liste de vagues</b>
+  </li>
+  <ul>
+    <li>
+      gestions de recherche, de filtrage et de pagination<br>
+    </li>
+  </ul>
+  <li>
+    <b>Vague</b>
+  </li>
+  <ul>
+    <li>
+      Editeur WYSIWYG <i>(<span class=lang-en>What you see is what you get)</span></i>
+    </li>
+    <li>
+      gestion du temps réel dans l'éditeur<br>
+    </li>
+    <li>
+      gestion non linéaire et dynamique des vaguelettes
+    </li>
+    <li>
+      Modules complémentaires : insérer différents contenus au sein d'une <i>vague</i> (sont envisageables : fichiers, images, sons, vidéos, mini-jeux, votes ...).
+    </li>
+  </ul>
+  <li>
+    <b>Profil et configuration</b>
+  </li>
+</ul>
+<br>
+<h2>
+  <a id=Analyse_des_risques_et_des_dif_565129235156128 name=Analyse_des_risques_et_des_dif_565129235156128></a>Analyse des risques et des difficultés à rencontrer
+</h2>
+<ul>
+  <li>
+    La partie difficile du projet réside dans la bonne gestion de mise à jour en temps réel lorsque plusieurs utilisateurs modifient la même ressource. Nous allons implémenter des algorithmes de synchronisation (<i>Operational transformation</i>).
+  </li>
+</ul>
+<ul>
+  <li>
+    Il faut au préalable avoir mis en place un bon système de communication entre le serveur HTTP, le serveur comet et le navigateur client qui est aussi une autre difficulté du projet.
+  </li>
+</ul>
+<ul>
+  <li>
+    Une autre difficulté du projet est la gestion non linéaire des messages d'une vague (possibilité d'insérer des messages dans des messages ou bien des messages à la suite de messages) ainsi que la gestion dynamique (il doit être possible de voir l'ordre temporel entre les différents messages qui ne suit pas forcément l'ordre visuel des messages).
+  </li>
+</ul>
+<br>
+<h2>
+  <a id=Distribution_des_t_ches_et_ord_7682717253177467 name=Distribution_des_t_ches_et_ord_7682717253177467></a>Organisation : planification initiale
+</h2>
+Organisation agile : itération sur chaque module: Analyse, Conception, Implémentation, Test<br>
+<br>
+<table border=1 bordercolor=#000000 cellpadding=3 cellspacing=0 height=520 id=mj2h width=1062>
+  <tbody>
+  <tr>
+    <td valign=top>
+      <b>nom<br>
+      </b>
+    </td>
+    <td>
+      <b>Description concise de la tâche<br>
+      </b>
+    </td>
+    <td>
+      <b>Temps estimé (semaines)<br>
+      </b>
+    </td>
+    <td valign=top>
+      <b>Distribution des tâches<br>
+      </b>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      cahier<br>
+    </td>
+    <td>
+      Cahier des charges<br>
+    </td>
+    <td valign=top>
+      2<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      outils<br>
+    </td>
+    <td valign=top>
+      Intégration des différents outils utilisés pour Tsunami.<br>
+    </td>
+    <td valign=top>
+      1<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      visuel<br>
+    </td>
+    <td>
+      Conception visuelle du site (View). Réalisation des maquettes graphiques et du système graphique général (gestionnaire de fenêtres...)<br>
+    </td>
+    <td>
+      3<br>
+    </td>
+    <td valign=top>
+      gaetan<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      tech<br>
+    </td>
+    <td>
+      Conception technique globale : schéma de la base de donnée (Model) et structure générale des controlleurs (Controller).<br>
+    </td>
+    <td>
+      3<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      api<br>
+    </td>
+    <td>
+      Conception d'APIs surcouche pour utiliser les librairies Gozirra (java) et Orbited (javascript) (afin de créer une barrière d'abstraction).<br>
+    </td>
+    <td>
+      2<br>
+    </td>
+    <td valign=top>
+      nicolae<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      dyn<br>
+    </td>
+    <td>
+      Analyse et conception de la gestion non linéaire et dynamique de l'application.<br>
+    </td>
+    <td valign=top>
+      5<br>
+    </td>
+    <td valign=top>
+      nicolae<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      sync<br>
+    </td>
+    <td>
+      Analyse et conception de l'algorithme de synchronisation en utilisant l'API de communication serveur HTTP / serveur Comet / client.
+    </td>
+    <td valign=top>
+      5<br>
+    </td>
+    <td valign=top>
+      nicolae<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      editeur<br>
+    </td>
+    <td>
+      Réalisation d'un éditeur WYSIWYG dynamique et temps réel (éventuellement une récupération d'éditeurs libres existants).<br>
+    </td>
+    <td valign=top>
+      3<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      auth<br>
+    </td>
+    <td>
+      Développement de l'authentification et l'inscription<br>
+    </td>
+    <td valign=top>
+      2<br>
+    </td>
+    <td valign=top>
+      gaetan<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      contacts<br>
+    </td>
+    <td>
+      Développement du module : Liste de contact<br>
+    </td>
+    <td valign=top>
+      3<br>
+    </td>
+    <td valign=top>
+      gaetan<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      nav<br>
+    </td>
+    <td>
+      Développement du module : Liste de vague et navigation entre les vagues (inbox, trash, ...)<br>
+    </td>
+    <td valign=top>
+      3<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      vague<br>
+    </td>
+    <td>
+      Développement du module : Vague (intégration de l'éditeur, ajout de la gestion des vaguelettes non linéaires, ...)<br>
+    </td>
+    <td valign=top>
+      4<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      profil<br>
+    </td>
+    <td>
+      Développement du module : Profil et configuration de l'utilisateur<br>
+    </td>
+    <td>
+      2<br>
+    </td>
+    <td valign=top>
+      gaetan<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      tests+<br>
+      bugfix<br>
+    </td>
+    <td>
+      Tests fonctionnels et unitaires automatisés et plus approfondis sur chaque module de l'application + Correction de bugs sur toute l'application
+    </td>
+    <td>
+      3<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  <tr>
+    <td valign=top>
+      spec<br>
+    </td>
+    <td>
+      Documentation technique et spécification + Rapport<br>
+    </td>
+    <td valign=top>
+      3<br>
+    </td>
+    <td valign=top>
+      nous deux<br>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<br>
+Pour la distribution des tâches, même si nous allons nous entre-aider sur des mêmes tâches, nous avons nos préférences :<br>
+<br>
+<ul>
+  <li>
+    Nicolae a une préférence pour le réseau. Il se chargera entre autre du serveur Comet, des systèmes de synchronisation, ...<br>
+  </li>
+  <li>
+    Gaëtan a une préférence pour l'infographie et le design (mais aussi l'algorithmie). Il se chargera notamment du front-end (des chartes graphiques, de la maquette du site, ...) mais aussi du back-end avec le framework Play.
+  </li>
+</ul>
+<h3>
+  <a id=Diagramme_de_PERT_476775604520_9131555977229915 name=Diagramme_de_PERT_476775604520_9131555977229915></a>Diagramme de PERT
+</h3>
+<div id=v01. style=TEXT-ALIGN:left>
+  <img src="images/dhb9j3zr_10fh53j9pt_b.png" style=HEIGHT:459px;WIDTH:635px>
+</div>
+<br>
+<h3>
+  <a id=Diagramme_de_GANT_when_9232324_7999911740727196 name=Diagramme_de_GANT_when_9232324_7999911740727196></a>Diagramme de GANTT
+</h3>
+<div id=rh:l style=TEXT-ALIGN:left>
+  <img src="images/dhb9j3zr_11f4s3dpd5_b.png" style=HEIGHT:420px;WIDTH:849px>
+</div>
+<br>
+<br>
+<br>
+<hr><br></body>
+</html>
