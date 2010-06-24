@@ -9,12 +9,13 @@ tsunami.tools.namespace('tsunami.vagues.sync');
 		return dmp;
     }());
     
+    
     // This will try to have a local copy of the server vagulette
     sync.mirrorServerVagulette = (function() {
         var reloadServerCopyVagulette = function(textarea) {
             tsunami.vagues.Vague.getVaguelette(textarea.data('object').id,function(v){
                 textarea.data('object',v);
-                textarea.val(v.body);
+                setNewVal(textarea,v.body);
             });
         }
 
@@ -106,8 +107,23 @@ tsunami.tools.namespace('tsunami.vagues.sync');
         tsunami.vagues.Vague.getVaguelette(textarea.data('object').id,function(v){
             textarea.data('object',v);
             textarea.removeAttr('readonly');
-            textarea.val(v.body)
+            
+            setNewVal(textarea,v.body);
         });
+    }
+    
+    var setNewVal = function(textarea,newVal) {
+    	var pos = saveTextareaCaret(textarea);
+    	
+    	var oldVal = $(textarea).val();
+    	textarea.val(newVal);
+    	
+    	if (oldVal.substring(0,pos) != newVal.substring(0,pos)) {
+    		pos = pos+ (newVal.length - oldVal.length);
+    		restoreTextareaCaret(textarea,pos);
+    	} else {
+    		restoreTextareaCaret(textarea);
+    	}
     }
     
     var myPatchArrived = function(data) {
@@ -127,6 +143,26 @@ tsunami.tools.namespace('tsunami.vagues.sync');
             myPatchArrived(data);
         }
     });
+    
+    var saveTextareaCaret = function(textarea) {
+    	var textarea = $(textarea);
+    	var pos = tsunami.tools.textareaGetCaret(textarea[0]);
+    	textarea.data('caretPos', pos );
+    	return pos;
+    }
+    
+    var restoreTextareaCaret = function(textarea,newPos) {
+    	var textarea = $(textarea);
+    	if (textarea.data('caretPos') == null) return;
+    	
+    	var pos = textarea.data('caretPos');
+    	
+    	if (newPos != null) pos = newPos;
+    	
+    	tsunami.tools.textareaSetCaret(textarea[0],pos);
+    	
+    	textarea.data('caretPos',null);
+    }
     
     var patchArrive = function(e,data) {
         // Check if this is my patch
@@ -150,7 +186,7 @@ tsunami.tools.namespace('tsunami.vagues.sync');
            }
         }
         
-        textarea.val(new_text);
+        setNewVal(textarea,new_text);
         sync.syncNowTextarea("",textarea,true);
         textarea.data('inputValue',new_text); // For real-time.js
     }
